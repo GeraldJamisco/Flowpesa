@@ -3,38 +3,45 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Schmarc — Dashboard (Bootstrap Icons)</title>
+  <title>Schmarc — Dashboard</title>
+
+  <!-- Bootstrap (utilities you used) + Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Fonts + Unified app CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div class="stage">
     <div class="title">Home</div>
 
+    <!-- Use the shared phone layout; our unified CSS already makes it a flex column -->
     <div class="phone">
+      <!-- Header -->
       <div class="hero">
         <div class="hello">Welcome back!</div>
-        <div class="name" id="name">Gerald</div>
-        <div class="row">
-          <div>
-            <div class="text-secondary small">Balance</div>
-            <div class="balance" id="balance">UGX 895,500.00</div>
-          </div>
-          <div class="coins"><span class="dot"></span><span id="points">9,500</span></div>
-        </div>
-        <div class="actions mt-3">
-          <button class="a-btn"><a href="wallet.html"><i class="bi bi-wallet"></i>Wallet</a></button>
-          <button class="a-btn"><i class="bi bi-arrow-left-right"></i>Transfer</button>
-          <button class="a-btn"><i class="bi bi-receipt"></i>Bills</button>
-          <button class="a-btn"><i class="bi bi-qr-code-scan"></i>Scan</button>
-        </div>
-      </div>
+        <div class="name" id="name">—</div>
 
+        <div class="hero-row">
+    <div>
+      <div class="text-secondary small">Balance</div>
+      <div class="balance" id="balance">UGX 895,500.00</div>
+    </div>
+    <div class="coins"><span class="dot"></span><span id="points">9,500</span></div>
+  </div>
+
+       <div class="actions mt-3">
+  <a class="a-btn" href="wallet.html" role="button"><i class="bi bi-wallet2"></i>Wallet</a>
+  <button class="a-btn" type="button"><i class="bi bi-arrow-left-right"></i>Transfer</button>
+  <button class="a-btn" type="button"><i class="bi bi-receipt"></i>Bills</button>
+  <button class="a-btn" type="button"><i class="bi bi-qr-code-scan"></i>Scan</button>
+</div>
+
+
+      <!-- Body -->
       <div class="body">
-        <div class="grid">
+        <div class="grid" aria-label="services">
           <div class="svc"><i class="bi bi-phone"></i>Pulse</div>
           <div class="svc"><i class="bi bi-wifi"></i>Internet</div>
           <div class="svc"><i class="bi bi-telephone"></i>Call packages</div>
@@ -44,39 +51,47 @@
           <div class="svc"><i class="bi bi-controller"></i>Game</div>
           <div class="svc"><i class="bi bi-grid"></i>More</div>
         </div>
-        <div class="section-title mt-4"><b>History</b><a href="#" class="text-secondary small">See all →</a></div>
+
+        <div class="section-title mt-4">
+          <b>History</b>
+          <a href="#" class="text-secondary small">See all →</a>
+        </div>
+
         <div class="history">
           <div class="item">
             <div class="d-flex align-items-center gap-2">
               <span class="badge-success">✓</span>
-              <div><div class="fw-bold small">SN10-081212179828</div><div class="text-muted" style="font-size:11px">2:20 PM · Jun 22, 2025</div></div>
+              <div>
+                <div class="fw-bold small">SN10-081212179828</div>
+                <div class="text-muted" style="font-size:11px">2:20 PM · Jun 22, 2025</div>
+              </div>
             </div>
             <div class="fw-bold text-success">+UGX120,000</div>
           </div>
+
           <div class="item">
             <div class="d-flex align-items-center gap-2">
               <span class="badge bg-warning text-dark rounded-circle p-1">!</span>
-              <div><div class="fw-bold small">SN10-081212179828</div><div class="text-muted" style="font-size:11px">2:20 PM · Jun 22, 2025</div></div>
+              <div>
+                <div class="fw-bold small">SN10-081212179828</div>
+                <div class="text-muted" style="font-size:11px">2:20 PM · Jun 22, 2025</div>
+              </div>
             </div>
             <div class="fw-bold text-dark">-UGX56,000</div>
           </div>
         </div>
       </div>
 
+      <!-- Bottom nav (sticky via unified CSS .nav) -->
       <nav class="nav">
-        <a href="#" class="active"><i class="bi bi-house-fill"></i>Home</a>
+        <a href="dashboard.html" class="active"><i class="bi bi-house-fill"></i>Home</a>
         <a href="#"><i class="bi bi-receipt"></i>Bills</a>
-        <a href="#"><i class="bi bi-wallet2"></i>Wallet</a>
+        <a href="wallet.html"><i class="bi bi-wallet2"></i>Wallet</a>
         <a href="#"><i class="bi bi-person"></i>Profile</a>
       </nav>
     </div>
   </div>
 
-  <script>
-    const user={name:'Gerald',balance:895500,points:9500};
-    document.getElementById('name').textContent=user.name;
-    document.getElementById('balance').textContent=`UGX ${user.balance.toLocaleString(undefined,{minimumFractionDigits:2})}`;
-    document.getElementById('points').textContent=user.points.toLocaleString();
-  </script>
+  <script src="js/dashboard.js"></script>
 </body>
 </html>

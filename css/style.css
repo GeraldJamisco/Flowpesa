@@ -54,15 +54,42 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,
 .otp input{width:48px;height:56px;text-align:center;font-size:22px;border:1px solid var(--line);border-radius:12px}
 @media(max-width:420px){.otp input{width:42px;height:52px}}
 
+/* AUTH — stepper */
+.auth-stepper {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 8px 0 14px;
+}
+.auth-chip {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+  background: #fff;
+}
+.auth-chip--active {
+  background: var(--btn);
+  color: #fff;
+  border-color: var(--btn);
+}
+
+
 /* ------------------ DASHBOARD (Home) ------------------ */
 /* Shared hero used by Dashboard & can be reused by Wallet header */
+/* Replace .hero .row with .hero-row to avoid Bootstrap conflicts */
+
 .hero{background:var(--card);color:#fff;padding:18px 16px 14px;position:relative}
 .hero .hello{font-size:12px;color:#d1d5db}
 .hero .name{font-weight:700;margin-top:2px}
-.hero .row{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+/* .hero .row{display:flex;align-items:center;justify-content:space-between;margin-top:8px} */
+.hero-row{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
 .hero .balance{font-size:22px;font-weight:800}
 .hero .coins{display:flex;align-items:center;gap:6px;background:#1b1d22;padding:6px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.1)}
 .hero .coins .dot{width:8px;height:8px;background:#ffce47;border-radius:50%}
+
 
 .actions{display:flex;gap:12px;margin-top:14px}
 .a-btn{flex:1;background:#fff;border:none;border-radius:18px;padding:12px;text-align:center;font-weight:600;transition:.2s}
@@ -80,6 +107,42 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,
 .nav a{text-decoration:none;color:#6b7280;font-size:11px;text-align:center}
 .nav a.active i{color:#111}
 .nav i{display:block;font-size:20px;margin-bottom:4px}
+
+/* Make phone a fixed-height flex column so .nav sticks to bottom */
+.phone{height:calc(100vh - 120px)}
+
+
+/* History list (dashboard) */
+.history .item{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 0;border-bottom:1px solid var(--line)
+}
+.history .item:last-child{border-bottom:none}
+
+/* Simple green “success” dot like before */
+.badge-success{
+  background:#e8f7ec;color:#22c55e;border-radius:50%;
+  padding:4px 7px;font-size:12px;display:inline-block
+}
+
+
+
+
+/* DASHBOARD — small device adjustments */
+@media(max-width:420px){
+  .phone{border-radius:0;box-shadow:none}
+  .grid{grid-template-columns:repeat(3,1fr)}
+}
+
+@media(max-width:360px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .a-btn i{font-size:18px}
+  .hero .balance{font-size:clamp(18px,6vw,22px)}
+  .title{font-size:24px}
+  .stage{padding:12px}
+}
+
+
 
 /* ------------------ WALLET ------------------ */
 /* Wallet uses the same .hero for header but with extra stats */
