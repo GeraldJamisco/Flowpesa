@@ -4,11 +4,12 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Schmarc — Wallet</title>
+
+  <!-- CSS + Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  
 </head>
 <body>
   <div class="stage">
@@ -16,19 +17,24 @@
 
     <div class="phone">
       <!-- Header / total balances -->
-      <div class="hero">
+      <div class="hero wallet-hero">
         <small>Total Balance</small>
-        <div class="amount" id="total">UGX 0.00</div>
-        <div class="stats">
-          <div class="stat"><span class="label">Available</span><span id="available" class="fw-bold">UGX 0</span></div>
-          <div class="stat"><span class="label">Locked</span><span id="locked" class="fw-bold">UGX 0</span></div>
-          <div class="stat"><span class="label">Savings (SACCOs)</span><span id="savings" class="fw-bold">UGX 0</span></div>
+        <div class="amount" id="total">
+          <span class="skel" style="display:inline-block;width:140px;height:40px;"></span>
         </div>
-        <div class="actions">
-          <button><i class="bi bi-plus-circle"></i>Top Up</button>
-          <button><i class="bi bi-arrow-down-up"></i>Transfer</button>
-          <button><i class="bi bi-cash-coin"></i>Withdraw</button>
-          <button><i class="bi bi-people"></i>Add SACCO</button>
+        <div class="wallet-stats">
+          <div class="wallet-stat">
+            <span class="label">Available</span>
+            <span id="available" class="skel" style="height:16px;"></span>
+          </div>
+          <div class="wallet-stat">
+            <span class="label">Locked</span>
+            <span id="locked" class="skel" style="height:16px;"></span>
+          </div>
+          <div class="wallet-stat">
+            <span class="label">Savings</span>
+            <span id="savings" class="skel" style="height:16px;"></span>
+          </div>
         </div>
       </div>
 
@@ -52,7 +58,9 @@
         </div>
 
         <!-- Wallet accounts overview -->
-        <div class="section-title"><b>Wallet Accounts</b><a class="text-secondary small" href="#">Manage</a></div>
+        <div class="section-title">
+          <b>Wallet Accounts</b><a class="text-secondary small" href="#">Manage</a>
+        </div>
         <div class="row g-2 mb-3">
           <div class="col-12">
             <div class="sacco-card d-flex justify-content-between align-items-center">
@@ -70,9 +78,7 @@
 
         <!-- SACCOs -->
         <div class="section-title"><b>My SACCOs</b><a class="text-secondary small" href="#">See all →</a></div>
-        <div id="saccos" class="row g-2">
-          <!-- JS injects cards here -->
-        </div>
+        <div id="saccos" class="row g-2"><!-- JS injects cards here --></div>
 
         <!-- Spend vs Save (summary) -->
         <div class="section-title mt-3"><b>Spend & Save Summary</b><a class="text-secondary small" href="#">Export</a></div>
@@ -124,69 +130,7 @@
     </div>
   </div>
 
-  <script>
-    // Demo data — replace later with API call to /api/me.php and /api/wallet
-    const data = {
-      total: 2895500,
-      available: 1850000,
-      locked: 250000,
-      savingsTotal: 795500,
-      mainWallet: 1850000,
-      walletDelta: 35000,
-      savedMonth: 320000,
-      spentMonth: 210000,
-      saccos: [
-        { name: 'Kampala Traders SACCO', member: 'KT-00921', balance: 350000, goal: 1000000, last: 'Jun 18', monthlySave: 120000 },
-        { name: 'Mpigi Farmers SACCO',   member: 'MF-10234', balance: 285500, goal: 800000,  last: 'Jun 20', monthlySave: 90000  },
-        { name: 'Youth Builders SACCO',   member: 'YB-55812', balance: 160000, goal: 500000,  last: 'Jun 16', monthlySave: 110000 }
-      ]
-    };
-
-    // Bind header
-    const UGX = v => 'UGX ' + v.toLocaleString();
-    document.getElementById('total').textContent     = UGX(data.total);
-    document.getElementById('available').textContent = UGX(data.available);
-    document.getElementById('locked').textContent    = UGX(data.locked);
-    document.getElementById('savings').textContent   = UGX(data.savingsTotal);
-
-    document.getElementById('mainWallet').textContent = UGX(data.mainWallet);
-    document.getElementById('walletDelta').textContent = `${data.walletDelta>0?'+':''}${UGX(data.walletDelta)} today`;
-
-    document.getElementById('savedMonth').textContent = UGX(data.savedMonth);
-    document.getElementById('spentMonth').textContent = UGX(data.spentMonth);
-    const totalMonth = Math.max(1, data.savedMonth + data.spentMonth);
-    document.getElementById('savedBar').style.width = Math.round((data.savedMonth/totalMonth)*100)+"%";
-    document.getElementById('spentBar').style.width = Math.round((data.spentMonth/totalMonth)*100)+"%";
-
-    // Render SACCO cards
-    const wrap = document.getElementById('saccos');
-    data.saccos.forEach(s => {
-      const col = document.createElement('div');
-      col.className = 'col-12';
-      const pc = Math.min(100, Math.round((s.balance/s.goal)*100));
-      col.innerHTML = `
-        <div class="sacco-card">
-          <div class="d-flex justify-content-between align-items-start">
-            <div>
-              <div class="name">${s.name}</div>
-              <div class="meta">Member: ${s.member} · Goal: ${UGX(s.goal)}</div>
-            </div>
-            <div class="text-end">
-              <div class="money">${UGX(s.balance)}</div>
-              <div class="text-success small">Saved this month: ${UGX(s.monthlySave)}</div>
-            </div>
-          </div>
-          <div class="progress mt-2" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pc}">
-            <div class="progress-bar" style="width:${pc}%"></div>
-          </div>
-          <div class="d-flex gap-2 mt-2">
-            <button class="btn btn-sm btn-dark"><i class="bi bi-arrow-up-right-circle"></i> Deposit</button>
-            <button class="btn btn-sm btn-outline-dark"><i class="bi bi-arrow-down-left-circle"></i> Withdraw</button>
-            <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-clock-history"></i> Activity</button>
-          </div>
-        </div>`;
-      wrap.appendChild(col);
-    });
-  </script>
+  <!-- Page JS -->
+  <script src="js/wallet.js" defer></script>
 </body>
 </html>
