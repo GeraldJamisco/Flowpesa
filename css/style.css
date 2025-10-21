@@ -144,70 +144,77 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,
 
 
 
-/* ------------------ WALLET ------------------ */
-/* Wallet uses the same .hero for header but with extra stats */
-.wallet-hero .amount{font-size:22px;font-weight:800}
-.wallet-stats{display:flex;gap:14px;margin-top:8px}
-.wallet-stat{background:#1b1d22;border:1px solid rgba(255,255,255,.08);padding:8px 10px;border-radius:14px;display:flex;flex-direction:column;gap:2px;min-width:120px}
-.wallet-stat .label{font-size:11px;color:#c3c6cc}
-.wallet-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
-.wallet-actions button{background:#fff;color:#111;border:none;border-radius:16px;padding:10px 6px;font-weight:600}
-.wallet-actions i{display:block;font-size:20px;margin-bottom:4px}
+//* ================================
+   WALLET (clean + responsive)
+   ================================ */
 
-.sacco-card{border:1px solid var(--line);border-radius:16px;padding:12px}
-.sacco-card .name{font-weight:700}
-.sacco-card .meta{font-size:12px;color:#6b7280}
-.sacco-card .money{font-weight:800}
-
-.filters{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media(min-width:480px){.filters{grid-template-columns:2fr 1fr 1fr}}
-
-/* bottom nav (wallet) */
-.nav-bottom{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:10px 0;z-index:100;padding-bottom:calc(10px + env(safe-area-inset-bottom))}
-.nav-bottom a{text-decoration:none;color:#6b7280;font-size:11px;text-align:center}
-.nav-bottom i{display:block;font-size:20px;margin-bottom:4px}
-.nav-bottom a.active i{color:#111}
-
-/* ------------------ RESPONSIVE TWEAKS ------------------ */
-@media(max-width:420px){.grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:360px){
-  .hero .balance{font-size:clamp(18px,6vw,22px)}
-  .wallet-stat{min-width:100px}
-  .wallet-actions i{font-size:18px}
+/* Header totals */
+.wallet-hero .amount { font-size:22px; font-weight:800; }
+.wallet-stats {
+  display:flex; gap:14px; margin-top:8px;
+  flex-wrap:wrap;                 /* prevents squish on small screens */
 }
 
-
-
-/* --- Wallet Stat Text Fix --- */
-.wallet-stat {
-  background: #1b1d22;
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 8px 10px;
-  border-radius: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 120px;
-  color: #f5f5f5; /* Force visible text */
+/* Stat chips: Available / Locked / Savings */
+.wallet-stat{
+  background:#1b1d22;             /* solid dark card (no duplicates) */
+  border:1px solid rgba(255,255,255,.08);
+  padding:10px 12px;
+  border-radius:18px;
+  display:flex; flex-direction:column; gap:4px;
+  min-width:120px;
+  color:#f8fafc;                   /* ensure text is visible */
+}
+.wallet-stat .label{
+  font-size:11px; color:#0d0d0d;  /* muted label */
+}
+.wallet-stat span:not(.label){
+  font-weight:700; color:#090909; /* bright numbers */
 }
 
-.wallet-stat .label {
-  font-size: 11px;
-  color: #c3c6cc; /* Slightly muted label */
+/* Actions grid (if used) */
+.wallet-actions{
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:10px; margin-top:12px;
+}
+.wallet-actions i{ display:block; font-size:20px; margin-bottom:4px; }
+.wallet-actions button{
+  background:#fff; color:#111; border:none; border-radius:16px;
+  padding:10px 6px; font-weight:600;
 }
 
-.wallet-stat span:not(.label) {
-  font-weight: 700;
-  color: #ffffff; /* Bright number text */
+/* SACCO cards */
+.sacco-card{ border:1px solid var(--line); border-radius:16px; padding:12px; }
+.sacco-card .name{ font-weight:700; }
+.sacco-card .meta{ font-size:12px; color:#6b7280; }
+.sacco-card .money{ font-weight:800; }
+
+/* Filters row */
+.filters{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+@media (min-width:480px){
+  .filters{ grid-template-columns:2fr 1fr 1fr; }
 }
 
-
-.wallet-stat {
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(4px);
-  color: #fff;
+/* Bottom nav (wallet) */
+.nav-bottom{
+  position:sticky; bottom:0; z-index:100;
+  background:#fff; border-top:1px solid var(--line);
+  display:flex; justify-content:space-around; padding:10px 0;
+  padding-bottom:calc(10px + env(safe-area-inset-bottom));
 }
+.nav-bottom a{ text-decoration:none; color:#6b7280; font-size:11px; text-align:center; }
+.nav-bottom i{ display:block; font-size:20px; margin-bottom:4px; }
+.nav-bottom a.active i{ color:#111; }
 
+/* ---------- Responsive tweaks ---------- */
+@media (max-width:420px){
+  .grid{ grid-template-columns:repeat(3,1fr); }
+}
+@media (max-width:360px){
+  .hero .balance{ font-size:clamp(18px,6vw,22px); }
+  .wallet-stat{ min-width:100px; }
+  .wallet-actions i{ font-size:18px; }
+}
 
 
 
@@ -290,3 +297,33 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .a-btn,.auth-google,.auth-primary,.wallet-actions button,.sacco-card button { transition: none; }
   .skel::after { animation: none; }
 }
+
+
+
+/* ===== Embedded Top-Up sheet on Dashboard ===== */
+.body--sheet{
+  background:#fff;
+  border-top-left-radius:22px; border-top-right-radius:22px;
+  margin-top:-6px; padding:16px;
+}
+
+/* method rows */
+.method-card{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px; background:#fff; border:1px solid var(--line);
+  border-radius:16px; padding:14px 12px; margin-bottom:10px;
+  text-decoration:none; color:inherit; transition:transform .1s ease;
+}
+.method-card:active{ transform:scale(.98); }
+.method-left{ display:flex; align-items:center; gap:10px; }
+.method-ico{
+  width:36px; height:36px; border-radius:10px;
+  display:grid; place-items:center;
+  background:#f1f3f6; color:#0b0b0c; font-size:18px;
+}
+.method-title{ font-weight:700; }
+.method-sub{ font-size:12px; color:#6b7280; }
+
+/* optional slide-up animation */
+@keyframes sheetIn { from{ transform:translateY(12px); opacity:.0 } to{ transform:translateY(0); opacity:1 } }
+.body--sheet.show { animation: sheetIn .18s ease; }
