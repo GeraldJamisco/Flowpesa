@@ -32,9 +32,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   // --- Count-up animations ---
-  const user = { name: 'Gerald', balance: 895500, points: 9500 }; // replace with your data source
-  const balEl = document.getElementById('balance');
-  const ptsEl = document.getElementById('points');
+const $ = (s, r=document)=>r.querySelector(s);
+
+FlowpesaAPI.get('/me.json').then(me=>{
+  $('#name').textContent = me.name;
+  const balEl = $('#balance');
+  const ptsEl = $('#points');
+  if (typeof countUp === 'function') {
+    countUp(balEl, me.balance, { prefix: 'UGX ', decimals: 2, duration: 900 });
+    countUp(ptsEl,  me.points,  { duration: 700 });
+  } else {
+    balEl.textContent = `UGX ${me.balance.toLocaleString(undefined,{minimumFractionDigits:2})}`;
+    ptsEl.textContent  = me.points.toLocaleString();
+  }
+}).catch(err=>{
+  console.error('Dashboard load failed:', err.message);
+});
+
   if (balEl) countUp(balEl, user.balance, { duration: 1000, prefix: 'UGX ', decimals: 2 });
   if (ptsEl) countUp(ptsEl, user.points, { duration: 800 });
 

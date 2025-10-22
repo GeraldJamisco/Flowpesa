@@ -1,21 +1,20 @@
 // js/wallet.js
 document.addEventListener('DOMContentLoaded', () => {
   // Demo data — swap for /api/wallet later
-  const demo = {
-    total: 2895500,
-    available: 1850000,
-    locked: 250000,
-    savingsTotal: 795500,
-    mainWallet: 1850000,
-    walletDelta: 35000,
-    savedMonth: 320000,
-    spentMonth: 210000,
-    saccos: [
-      { name: 'Kampala Traders SACCO', member: 'KT-00921', balance: 350000, goal: 1000000, last: 'Jun 18', monthlySave: 120000 },
-      { name: 'Mpigi Farmers SACCO',   member: 'MF-10234', balance: 285500, goal: 800000,  last: 'Jun 20', monthlySave: 90000  },
-      { name: 'Youth Builders SACCO',   member: 'YB-55812', balance: 160000, goal: 500000,  last: 'Jun 16', monthlySave: 110000 }
-    ]
-  };
+ FlowpesaAPI.get('/wallet.json').then(data=>{
+  const UGX = v => 'UGX ' + Number(v||0).toLocaleString();
+
+  // update header
+  countUp(document.getElementById('total'), data.total, { prefix:'UGX ' });
+  countUp(document.getElementById('available'), data.available, { prefix:'UGX ' });
+  countUp(document.getElementById('locked'), data.locked, { prefix:'UGX ' });
+  countUp(document.getElementById('savings'), data.savingsTotal, { prefix:'UGX ' });
+
+  // update monthly bars, saccos, etc — keep your existing render code below
+}).catch(err=>{
+  console.error('Wallet load failed:', err.message);
+});
+
 
   const $  = (s, r=document) => r.querySelector(s);
   const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));

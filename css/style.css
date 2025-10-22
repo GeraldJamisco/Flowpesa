@@ -10,6 +10,9 @@
   --card:#111215;     /* dark card background (dashboard/wallet header) */
   --accent:#00b37e;
   --radius:16px;
+  --brand-name: "Flowpesa";
+  --brand: #0e7bff;     /* action color */
+  --brand-ink: #0b0b0c; /* text */
 }
 *{box-sizing:border-box}
 html,body{height:100%}
