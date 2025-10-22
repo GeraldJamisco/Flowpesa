@@ -38,6 +38,42 @@
 
       <!-- Body -->
       <div class="body">
+
+
+        <!-- Edit Profile Modal -->
+<div class="modal-sheet" id="editModal" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="editTitle">
+    <div class="modal-head">
+      <b id="editTitle">Edit Profile</b>
+      <button class="modal-x" data-close aria-label="Close"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <form id="editForm" class="modal-body">
+      <label class="label">Full name</label>
+      <input id="fName" class="input" placeholder="Your name" required />
+
+      <label class="label mt-2">Email</label>
+      <input id="fEmail" type="email" class="input" placeholder="you@example.com" required />
+
+      <label class="label mt-2">Phone</label>
+      <input id="fPhone" class="input" placeholder="+256 700 000000" required />
+
+      <label class="label mt-2">Country</label>
+      <select id="fCountry" class="select" required>
+        <option value="Uganda">Uganda</option>
+        <option value="Kenya">Kenya</option>
+        <option value="Tanzania">Tanzania</option>
+        <option value="Rwanda">Rwanda</option>
+      </select>
+
+      <div class="modal-foot">
+        <button type="button" class="btn btn-outline-dark" data-close>Cancel</button>
+        <button type="submit" class="btn btn-dark">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
         <!-- KYC progress -->
         <div class="section-card">
           <div class="section-title"><b>KYC Progress</b><a href="#" class="text-secondary small" id="continueKyc">Continue</a></div>
