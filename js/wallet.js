@@ -108,3 +108,34 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => t.classList.remove('show'), ms);
   }
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const data = { // your existing demo data
+    total: 2895500, available: 1850000, locked: 250000, savingsTotal: 795500,
+    mainWallet: 1850000, walletDelta: 35000, savedMonth: 320000, spentMonth: 210000
+  };
+
+  // totals
+  const totalEl = document.getElementById('total');
+  const availEl = document.getElementById('available');
+  const lockEl  = document.getElementById('locked');
+  const saveEl  = document.getElementById('savings');
+
+  // remove skeleton class if present
+  [totalEl, availEl, lockEl, saveEl].forEach(el => el?.classList.remove('skel'));
+
+  countUp(totalEl, data.total, { duration: 900, prefix: 'UGX ' });
+  countUp(availEl, data.available, { duration: 900, prefix: 'UGX ' });
+  countUp(lockEl,  data.locked,    { duration: 900, prefix: 'UGX ' });
+  countUp(saveEl,  data.savingsTotal, { duration: 900, prefix: 'UGX ' });
+
+  // rest of your existing code (bars, SACCO cards, etc.) …
+});
+
+
+
+countUp(document.getElementById('mainWallet'), data.mainWallet, { duration: 900, prefix: 'UGX ' });
+countUp(document.getElementById('savedMonth'), data.savedMonth, { duration: 900, prefix: 'UGX ' });
+countUp(document.getElementById('spentMonth'), data.spentMonth, { duration: 900, prefix: 'UGX ' });
+
