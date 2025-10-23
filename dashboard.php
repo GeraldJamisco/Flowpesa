@@ -1,3 +1,6 @@
+<?php require __DIR__.'/require_login.php'; ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +22,8 @@
     <div class="title">Home</div>
 
     <!-- Use the shared phone layout; our unified CSS already makes it a flex column -->
-    <div class="phone">
+<div class="phone phone--withnav">
+
 
       <!-- Header -->
       <div class="hero">

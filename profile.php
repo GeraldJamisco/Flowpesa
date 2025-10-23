@@ -1,3 +1,6 @@
+<?php require __DIR__.'/require_login.php'; ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -93,6 +93,20 @@ function old($key, $default='') {
             <?php endforeach; ?>
           </div>
         <?php endif; ?>
+<!-- Google Sign-up (placeholder until OAuth backend) -->
+<button class="auth-google" type="button" aria-label="Sign up with Google" disabled title="Coming soon">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M23.6 12.3c0-.8-.1-1.5-.2-2.2H12v4.2h6.5c-.3 1.5-1.2 2.7-2.6 3.6v3h4.2c2.4-2.2 3.7-5.4 3.7-8.6z" fill="#4285F4"/>
+    <path d="M12 24c3.2 0 5.9-1.1 7.9-3l-4.2-3c-1.1.7-2.5 1.2-3.7 1.2-2.9 0-5.3-2-6.2-4.6H1.4v2.9C3.4 21.6 7.4 24 12 24z" fill="#34A853"/>
+    <path d="M5.8 14.6c-.2-.6-.4-1.3-.4-2s.1-1.4.4-2V7.7H1.4C.5 9.5 0 11.3 0 13.1c0 1.8.5 3.6 1.4 5.4l4.4-3.9z" fill="#FBBC05"/>
+    <path d="M12 4.7c1.7 0 3.3.6 4.4 1.8l3.3-3.3C18 1.2 15.2 0 12 0 7.4 0 3.4 2.4 1.4 6l4.4 3.9C6.7 6.9 9.1 4.7 12 4.7z" fill="#EA4335"/>
+  </svg>
+  <span>Sign up with Google (coming soon)</span>
+
+  <!-- window.location.href = '/api/auth/google_start.php'; --> 
+   <!-- this is for for future use when the google oauth backend is ready -->
+
+</button>
 
         <!-- STEP 1: ACCOUNT DETAILS  (server POST happens here) -->
         <form id="step1" method="post" autocomplete="on" novalidate>

@@ -1,0 +1,2 @@
+
+<!-- redirect to Google -->

@@ -147,7 +147,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,
 
 
 
-//* ================================
+/* ================================
    WALLET (clean + responsive)
    ================================ */
 
@@ -413,3 +413,61 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .modal-card{ top:6%; }
 }
 
+
+/* --- FIX 0: remove any JS-style comments like '//' in CSS --- */
+/* (If you see a line that starts with '//' or '//*', delete it or wrap as proper CSS comments like this.) */
+
+/* --- FIX 1: do NOT force a height on all .phone containers --- */
+/* Replace your generic .phone{height:calc(100vh - 120px)} with this: */
+.phone--withnav { height: calc(100vh - 120px); }   /* only pages that have the sticky bottom nav */
+.phone { height: auto; }
+
+/* --- FIX 2: auth layout should scroll naturally and not be overly centered --- */
+.wrap { align-items: start; }               /* less aggressive centering so tall forms breathe */
+.auth-content { padding: 20px 16px 24px; }  /* slightly tighter on small devices */
+@media (min-width: 481px){
+  .wrap { align-items: center; }            /* center again on larger viewports */
+  .auth-content { padding: 24px 20px 28px; }
+}
+
+/* --- FIX 3: smarter input padding (icons optional) --- */
+/* default input padding when there is no leading/trailing icon */
+.auth-control .auth-input { padding: 12px 14px; }
+/* when a leading icon exists */
+.auth-control .auth-icon + .auth-input { padding-left: 44px; }
+/* when a trailing icon exists (eye icon) */
+.auth-control .auth-input + .auth-trailing { right: 10px; }
+.auth-control .auth-input + .auth-trailing ~ .auth-input { padding-right: 44px; }
+
+/* inputs look nicer on mobile */
+.auth-input, .input, .select {
+  min-height: 44px;
+  font-size: 15px;
+}
+
+/* --- FIX 4: make selects visually consistent --- */
+select.auth-input {
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #9aa0a6 50%), 
+                    linear-gradient(135deg, #9aa0a6 50%, transparent 50%);
+  background-position: calc(100% - 20px) 16px, calc(100% - 14px) 16px;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+/* --- FIX 5: wallet stat colors (were dark on dark) --- */
+.wallet-stat { color: #f8fafc; }
+.wallet-stat .label { color: #c3c6cc; }
+.wallet-stat span:not(.label) { color: #ffffff; }
+
+/* --- FIX 6: small-screen polish for long forms --- */
+@media (max-width: 420px){
+  .phone { border-radius: 0; box-shadow: none; border: none; }
+  .auth-content h1 { font-size: 22px; }
+  .auth-sub { font-size: 14px; }
+  .auth-chip { padding: 5px 8px; font-size: 11px; }
+}
+
+/* Optional: keep bottom padding so last button isn't hidden by keyboard / safe areas */
+.auth-content { padding-bottom: calc(16px + env(safe-area-inset-bottom)); }
