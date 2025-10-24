@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['csrf'] = bin2hex(random_bytes(16));
 
         // redirect (change to dashboard.php if you convert it to PHP later)
-        header('Location: dashboard.html');
+        header('Location: dashboard.php');
         exit;
       }
     }

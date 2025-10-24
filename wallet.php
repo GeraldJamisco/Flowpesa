@@ -127,10 +127,10 @@
       </div>
 
       <nav class="nav">
-        <a href="dashboard.html"><i class="bi bi-house"></i>Home</a>
+        <a href="dashboard.php"><i class="bi bi-house"></i>Home</a>
         <a href="#"><i class="bi bi-receipt"></i>Bills</a>
-        <a href="wallet.html" class="active"><i class="bi bi-wallet2"></i>Wallet</a>
-        <a href="profile.html"><i class="bi bi-person-fill"></i>Profile</a>
+        <a href="wallet.php" class="active"><i class="bi bi-wallet2"></i>Wallet</a>
+        <a href="profile.php"><i class="bi bi-person-fill"></i>Profile</a>
       </nav>
     </div>
   </div>

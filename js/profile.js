@@ -113,6 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
   $('#logout')?.addEventListener('click', () => {
     // localStorage.removeItem('token');
     alert('Logged out (UI only). Redirecting to login…');
-    location.href = 'login.html';
+    location.href = 'login.php';
   });
 });

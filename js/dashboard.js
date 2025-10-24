@@ -102,3 +102,33 @@ FlowpesaAPI.get('/me.json').then(me=>{
   });
 });
 
+
+
+const $ = (s, r=document)=>r.querySelector(s);
+
+async function loadDashboard(){
+  try{
+    // Use relative path so it works under subfolders like /Flowpesa/
+    const res = await fetch('api/me.php', { credentials: 'include' });
+    if(!res.ok) throw new Error('Not logged in');
+    const { ok, data, error } = await res.json();
+    if(!ok) throw new Error(error || 'Failed to load');
+
+    $('#name').textContent = data.name;
+    const balEl = $('#balance');
+    const ptsEl = $('#points');
+    if (typeof countUp === 'function') {
+      countUp(balEl, data.balance, { prefix:'UGX ', decimals:2, duration:900 });
+      countUp(ptsEl,  data.points,  { duration:700 });
+    } else {
+      balEl.textContent = `UGX ${Number(data.balance).toLocaleString(undefined,{minimumFractionDigits:2})}`;
+      ptsEl.textContent  = Number(data.points).toLocaleString();
+    }
+  } catch (e){
+    // console.warn('Dashboard load failed:', e);
+    console.error(e);
+    location.href = 'login.php';
+  }
+}
+document.addEventListener('DOMContentLoaded', loadDashboard);
+

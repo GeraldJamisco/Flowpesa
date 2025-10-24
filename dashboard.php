@@ -80,7 +80,7 @@
 </div>
 
 <div class="actions mt-3">
-  <button class="a-btn" href="wallet.html" role="button" aria-label="Open Wallet">
+  <button class="a-btn" href="wallet.php" role="button" aria-label="Open Wallet">
     <i class="bi bi-wallet2"></i>Wallet
   </button>
   <button class="a-btn" type="button" id="openTopup" aria-label="Transfer">
@@ -137,10 +137,10 @@
 
       <!-- Bottom nav (sticky via unified CSS .nav) -->
       <nav class="nav">
-        <a href="dashboard.html" class="active"><i class="bi bi-house"></i>Home</a>
+        <a href="dashboard.php" class="active"><i class="bi bi-house"></i>Home</a>
         <a href="#"><i class="bi bi-receipt"></i>Bills</a>
-        <a href="wallet.html"><i class="bi bi-wallet2"></i>Wallet</a>
-        <a href="profile.html" ><i class="bi bi-person-fill"></i>Profile</a>
+        <a href="wallet.php"><i class="bi bi-wallet2"></i>Wallet</a>
+        <a href="profile.php" ><i class="bi bi-person-fill"></i>Profile</a>
       </nav>
     </div>
   </div>

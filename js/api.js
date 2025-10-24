@@ -18,7 +18,7 @@
 
   function token() { return localStorage.getItem('token') || ''; }
   function setToken(t){ t ? localStorage.setItem('token', t) : localStorage.removeItem('token'); }
-  function logout(to='login.html'){ setToken(''); location.href = to; }
+  function logout(to='login.php'){ setToken(''); location.href = to; }
 
   async function request(path, { method='GET', headers={}, body, mock=false } = {}) {
     const isMock = CONFIG.USE_MOCK || mock || !path.startsWith('/');
@@ -56,7 +56,7 @@
   const del  = (path, o={}) => request(path, { ...o, method: 'DELETE' });
 
   // Simple auth guard
-  function guard(to='login.html'){
+  function guard(to='login.php'){
     if (!token()) location.href = to;
   }
 
