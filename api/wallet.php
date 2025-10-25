@@ -1,19 +1,21 @@
 <?php
+// api/wallet.php
 declare(strict_types=1);
 require __DIR__ . '/db.php';
 session_start();
 
 header('Content-Type: application/json');
+
+// Must be logged in
 if (empty($_SESSION['uid'])) {
   http_response_code(401);
-  echo json_encode(['ok'=>false,'error'=>'unauthorized']); exit;
+  echo json_encode(['ok'=>false, 'error'=>'unauthorized']); exit;
 }
 
 /*
-  Later we’ll pull these numbers from DB tables like wallet_txns, sacco_balances, etc.
-  For now we send demo data so the JS/UI can render.
+  TODO (next iterations): pull from DB tables (wallet, sacco_balances, txns…)
+  For now we return demo numbers so the UI renders live.
 */
-
 $data = [
   'total'        => 2895500,
   'available'    => 1850000,
@@ -23,7 +25,7 @@ $data = [
   'walletDelta'  => 35000,
   'savedMonth'   => 320000,
   'spentMonth'   => 210000,
-  'saccos' => [
+  'saccos'       => [
     [
       'name'        => 'Kampala Traders SACCO',
       'member'      => 'KT-00921',
@@ -47,8 +49,8 @@ $data = [
       'goal'        => 500000,
       'last'        => 'Jun 16',
       'monthlySave' => 110000
-    ]
-  ]
+    ],
+  ],
 ];
 
-echo json_encode(['ok'=>true,'data'=>$data]);
+echo json_encode(['ok'=>true, 'data'=>$data]);
