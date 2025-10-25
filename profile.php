@@ -130,7 +130,7 @@
 
         <!-- Danger / Logout -->
         <div class="section-card">
-          <button class="btn btn-dark w-100" id="logout"><i class="bi bi-box-arrow-right"></i> Log out</button>
+          <a class="btn btn-dark w-100" id="logout" href="#"><i class="bi bi-box-arrow-right"></i> Log out</a>
         </div>
       </div>
 
