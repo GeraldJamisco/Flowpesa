@@ -32,11 +32,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       if (!$user || !password_verify($password, $user['password_hash'])) {
         $errors[] = 'Invalid email or password.';
       } else {
-        // success: set session
-        $_SESSION['uid'] = (int)$user['id'];
-        $_SESSION['name'] = $user['name'];
-        $_SESSION['tier'] = (int)$user['tier'];
-        $_SESSION['kyc_pct'] = (int)$user['kyc_pct'];
+     // ✅ RIGHT AFTER password_verify(...) === true
+session_regenerate_id(true);          // prevent fixation
+$_SESSION['uid']     = (int)$user['id'];
+$_SESSION['name']    = $user['name'];
+$_SESSION['tier']    = (int)$user['tier'];
+$_SESSION['kyc_pct'] = (int)$user['kyc_pct'];
 
         // rotate CSRF on login
         $_SESSION['csrf'] = bin2hex(random_bytes(16));

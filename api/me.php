@@ -1,8 +1,9 @@
 <?php
 declare(strict_types=1);
 require __DIR__ . '/db.php';
-session_start();
+session_start();                      
 header('Content-Type: application/json');
+// Must be logged in
 
 if (empty($_SESSION['uid'])) {
   http_response_code(401);
