@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   try {
     // IMPORTANT: use a RELATIVE path so it works under /Flowpesa/ subfolder
-    const res = await fetch('api/wallet.php', { credentials: 'include' });
+    const res = await fetch('./api/wallet.php', { credentials: 'include' });
     if (!res.ok) throw new Error('unauth_or_network');
     const { ok, data, error } = await res.json();
     if (!ok) throw new Error(error || 'bad_payload');
