@@ -54,7 +54,13 @@
       <div class="method-ico"><i class="bi bi-bank"></i></div>
       <div>
         <div class="method-title">Bank Transfer</div>
-        <div class="method-sub">Top up balance via bank transfer</div>
+        <div class="method-sub">Top up via supported banks</div>
+        <div class="mt-1 small text-secondary">
+          <span class="badge text-bg-light me-1">Stanbic</span>
+          <span class="badge text-bg-light me-1">Absa</span>
+          <span class="badge text-bg-light me-1">Equity</span>
+          <span class="badge text-bg-light">Centenary</span>
+        </div>
       </div>
     </div>
     <i class="bi bi-chevron-right"></i>
@@ -66,17 +72,38 @@
       <div>
         <div class="method-title">Agent / Flowpesa</div>
         <div class="method-sub">Top up via nearby agent</div>
+        <div class="mt-1 small text-secondary">
+          <span class="badge text-bg-light me-1">MTN Agent</span>
+          <span class="badge text-bg-light me-1">Airtel Agent</span>
+          <span class="badge text-bg-light">Flowpesa Desk</span>
+        </div>
       </div>
     </div>
     <i class="bi bi-chevron-right"></i>
   </a>
 
-  <a class="method-card" href="#" data-method="virtual">
+  <a class="method-card" href="#" data-method="mobile">
+    <div class="method-left">
+      <div class="method-ico"><i class="bi bi-phone"></i></div>
+      <div>
+        <div class="method-title">Mobile Money</div>
+        <div class="method-sub">Top up from your phone instantly</div>
+        <div class="mt-1 small text-secondary">
+          <span class="badge text-bg-light me-1">MTN</span>
+          <span class="badge text-bg-light me-1">Airtel</span>
+          <span class="badge text-bg-light">Others</span>
+        </div>
+      </div>
+    </div>
+    <i class="bi bi-chevron-right"></i>
+  </a>
+
+  <a class="method-card" href="#" data-method="card">
     <div class="method-left">
       <div class="method-ico"><i class="bi bi-credit-card-2-front"></i></div>
       <div>
-        <div class="method-title">Virtual Account</div>
-        <div class="method-sub">Confirm automatically within 24 hours</div>
+        <div class="method-title">Bank Card</div>
+        <div class="method-sub">Instant top up by card</div>
       </div>
     </div>
     <i class="bi bi-chevron-right"></i>

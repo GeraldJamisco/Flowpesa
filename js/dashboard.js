@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
       topupBody.style.display = 'block';
       requestAnimationFrame(() => topupBody.classList.add('show'));
     });
-  }
+  }  
 
   if (closeBtn && topupBody) {
     closeBtn.addEventListener('click', (e) => {
