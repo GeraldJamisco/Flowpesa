@@ -1,46 +1,30 @@
+// Simple Top-Up sheet toggle (no overlay)
 document.addEventListener('DOMContentLoaded', () => {
-  // --- Enhanced Top-Up sheet toggle with overlay ---
-  const dashBody  = document.getElementById('dashboard-body') || document.querySelector('.body');
+  const dashBody  = document.getElementById('dashboard-body');
   const topupBody = document.getElementById('topup-body');
-  const openBtn   = document.getElementById('openTopup') || document.querySelector('.a-btn i.bi-arrow-left-right')?.closest('.a-btn');
+  const openBtn   = document.getElementById('openTopup');
   const closeBtn  = document.getElementById('closeTopup');
 
-  // create overlay once
-  let overlay = document.querySelector('.sheet-overlay');
-  if (!overlay) {
-    overlay = document.createElement('div');
-    overlay.className = 'sheet-overlay';
-    document.body.appendChild(overlay);
-  }
-
-  function openTopup() {
-    if (!dashBody || !topupBody) return;
-    dashBody.style.display = 'none';
-    topupBody.style.display = 'block';
-    // trigger transition
-    requestAnimationFrame(() => {
+  if (openBtn && dashBody && topupBody) {
+    openBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      dashBody.style.display = 'none';
+      topupBody.style.display = 'block';
       topupBody.classList.add('show');
-      overlay.classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  function closeTopup() {
-    if (!dashBody || !topupBody) return;
-    topupBody.classList.remove('show');
-    overlay.classList.remove('show');
-    // wait for transition end then hide
-    setTimeout(() => {
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
       topupBody.style.display = 'none';
       dashBody.style.display = 'block';
-    }, 200);
+      topupBody.classList.remove('show');
+    });
   }
 
-  openBtn?.addEventListener('click', (e) => { e.preventDefault(); openTopup(); });
-  closeBtn?.addEventListener('click', closeTopup);
-  overlay?.addEventListener('click', closeTopup);
-
-  // (optional) tap a method (stub)
+  // tap a method (stub — route later)
   document.querySelectorAll('.method-card').forEach(card => {
     card.addEventListener('click', e => {
       e.preventDefault();
@@ -48,8 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-
-
 
 const $ = (s, r=document)=>r.querySelector(s);
 

@@ -41,12 +41,13 @@
         </div>
 
         <div class="hero-cta">
-          <button class="btn-hero"><i class="bi bi-plus-circle"></i><span>Add Money</span></button>
+          <button class="btn-hero" id="openTopup" aria-label="Add Money"><i class="bi bi-plus-circle"></i><span>Add Money</span></button>
           <button class="btn-hero btn-hero--outline"><i class="bi bi-arrow-up-right-circle"></i><span>Withdraw</span></button>
         </div>
       <!-- Top Up sheet (hidden by default) -->
 <div class="body body--sheet" id="topup-body" style="display:none">
-  <div class="section-title mb-2"><b>Top Up Method</b></div>
+  <button type="button" class="btn-close float-end mb-2" id="closeTopup" aria-label="Close"></button>
+  <div class="section-title mb-2 mt-1"><b>Top Up Method</b></div>
 
   <a class="method-card" href="#" data-method="bank">
     <div class="method-left">
@@ -80,17 +81,14 @@
     </div>
     <i class="bi bi-chevron-right"></i>
   </a>
-
-  <button class="btn btn-outline-dark w-100 mt-3" id="closeTopup">
-    <i class="bi bi-arrow-left"></i> Back to Dashboard
-  </button>
+  
 </div>
 
 <div class="quick-actions mt-3">
-  <button class="a-btn" href="wallet.php" role="button" aria-label="Open Wallet">
+  <button class="a-btn" type="button" aria-label="Open Wallet" onclick="location.href='wallet.php'">
     <i class="bi bi-wallet2"></i>Wallet
   </button>
-  <button class="a-btn a-btn--primary" type="button" id="openTopup" aria-label="Transfer">
+  <button class="a-btn a-btn--primary" type="button" aria-label="Transfer">
     <i class="bi bi-arrow-left-right"></i>Transfer
   </button>
   <button class="a-btn" type="button" aria-label="Bills"><i class="bi bi-receipt"></i>Bills</button>
@@ -100,7 +98,7 @@
 
 
       <!-- Body -->
-      <div class="body">
+      <div class="body" id="dashboard-body">
         <div class="section">
           <div class="section-head">Services</div>
           <div class="services-block">
