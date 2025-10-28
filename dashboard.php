@@ -13,7 +13,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <!-- Fonts + Unified app CSS -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -26,7 +26,7 @@
 
 
       <!-- Header -->
-      <div class="hero">
+      <div class="hero hero--card">
         <div class="hero-row">
           <div>
             <div class="hello">Welcome back!</div>
@@ -38,6 +38,11 @@
         <div class="hero-balance">
           <div class="text-secondary small">Balance</div>
           <div class="balance" id="balance">UGX 895,500.00</div>
+        </div>
+
+        <div class="hero-cta">
+          <button class="btn-hero"><i class="bi bi-plus-circle"></i><span>Add Money</span></button>
+          <button class="btn-hero btn-hero--outline"><i class="bi bi-arrow-up-right-circle"></i><span>Withdraw</span></button>
         </div>
       <!-- Top Up sheet (hidden by default) -->
 <div class="body body--sheet" id="topup-body" style="display:none">
@@ -81,7 +86,7 @@
   </button>
 </div>
 
-<div class="actions mt-3">
+<div class="quick-actions mt-3">
   <button class="a-btn" href="wallet.php" role="button" aria-label="Open Wallet">
     <i class="bi bi-wallet2"></i>Wallet
   </button>
@@ -96,48 +101,49 @@
 
       <!-- Body -->
       <div class="body">
-        <div class="section-card">
-        <div class="grid" aria-label="services">
-          <div class="svc"><i class="bi bi-phone"></i>Pulse</div>
-          <div class="svc"><i class="bi bi-wifi"></i>Internet</div>
-          <div class="svc"><i class="bi bi-telephone"></i>Call packages</div>
-          <div class="svc"><i class="bi bi-droplet"></i>Water</div>
-          <div class="svc"><i class="bi bi-lightning-charge"></i>Electricity</div>
-          <div class="svc"><i class="bi bi-credit-card"></i>Insurance</div>
-          <div class="svc"><i class="bi bi-controller"></i>Game</div>
-          <div class="svc"><i class="bi bi-grid"></i>More</div>
-        </div>
-        </div>
-
-        <div class="section-title mt-4">
-          <b>History</b>
-          <a href="#" class="text-secondary small">See all →</a>
-        </div>
-
-        <div class="section-card">
-        <div class="history">
-          <div class="item">
-            <div class="d-flex align-items-center gap-2">
-              <span class="badge-success">✓</span>
-              <div>
-                <div class="fw-bold small">SN10-081212179828</div>
-                <div class="text-muted" style="font-size:11px">2:20 PM · Jun 22, 2025</div>
-              </div>
-            </div>
-            <div class="fw-bold text-success">+UGX120,000</div>
+        <div class="section">
+          <div class="section-head">Services</div>
+          <div class="services-block">
+          <div class="grid" aria-label="services">
+           <div class="svc"><i class="bi bi-phone"></i>Pulse</div>
+           <div class="svc"><i class="bi bi-wifi"></i>Internet</div>
+           <div class="svc"><i class="bi bi-telephone"></i>Call packages</div>
+           <div class="svc"><i class="bi bi-droplet"></i>Water</div>
+           <div class="svc"><i class="bi bi-lightning-charge"></i>Electricity</div>
+           <div class="svc"><i class="bi bi-credit-card"></i>Insurance</div>
+           <div class="svc"><i class="bi bi-controller"></i>Game</div>
+           <div class="svc"><i class="bi bi-grid"></i>More</div>
           </div>
-
-          <div class="item">
-            <div class="d-flex align-items-center gap-2">
-              <span class="badge bg-warning text-dark rounded-circle p-1">!</span>
-              <div>
-                <div class="fw-bold small">SN10-081212179828</div>
-                <div class="text-muted" style="font-size:11px">2:20 PM · Jun 22, 2025</div>
-              </div>
-            </div>
-            <div class="fw-bold text-danger">-UGX56,000</div>
           </div>
         </div>
+
+        <div class="section">
+          <div class="section-head d-flex justify-content-between align-items-center">
+            <span>Activity</span>
+            <a href="#" class="text-secondary small">See all →</a>
+          </div>
+          <div class="history">
+            <div class="item">
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge-success">✓</span>
+                <div>
+                  <div class="fw-bold small">UGX120,000 received</div>
+                  <div class="text-muted" style="font-size:11px">2:20 PM • Jun 22, 2025</div>
+                </div>
+              </div>
+              <div class="fw-bold text-success">+UGX120,000</div>
+            </div>
+            <div class="item">
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge bg-warning text-dark rounded-circle p-1">!</span>
+                <div>
+                  <div class="fw-bold small">UGX56,000 sent</div>
+                  <div class="text-muted" style="font-size:11px">2:20 PM • Jun 22, 2025</div>
+                </div>
+              </div>
+              <div class="fw-bold text-danger">-UGX56,000</div>
+            </div>
+          </div>
         </div>
       </div>
 

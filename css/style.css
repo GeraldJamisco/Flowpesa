@@ -85,6 +85,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,
 /* Replace .hero .row with .hero-row to avoid Bootstrap conflicts */
 
 .hero{background:var(--card);color:#fff;padding:18px 16px 14px;position:relative}
+.hero--card{background:linear-gradient(135deg,#0B57D0 0%, #083C8A 100%);border-radius:16px;margin:12px 12px 0 12px;box-shadow:0 10px 24px rgba(8,60,138,.18)}
 .hero .hello{font-size:12px;color:#d1d5db}
 .hero .name{font-weight:700;margin-top:2px}
 /* .hero .row{display:flex;align-items:center;justify-content:space-between;margin-top:8px} */
@@ -92,30 +93,46 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,
 .hero .balance{font-size:clamp(22px,5vw,26px);font-weight:800;font-feature-settings:"tnum"}
 .hero .coins{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);padding:6px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.12)}
 .hero-balance{margin-top:8px}
+.hero-cta{display:flex;gap:10px;margin-top:12px}
+.btn-hero{display:flex;align-items:center;gap:6px;background:#fff;border:0;border-radius:12px;padding:10px 12px;color:#0b0b0c;font-weight:700}
+.btn-hero i{font-size:18px;color:#0B57D0}
+.btn-hero--outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45)}
+.btn-hero--outline i{color:#fff}
 .hero .coins .dot{width:8px;height:8px;background:#ffce47;border-radius:50%}
 
 
 .actions{display:flex;gap:12px;margin-top:14px}
-.a-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;min-height:88px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;text-align:center;font-weight:600;transition:.2s}
+.a-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;min-height:88px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;font-weight:600;transition:.2s;box-shadow:0 4px 14px rgba(10,10,10,.04)}
 .a-btn i{font-size:22px;display:block;margin-bottom:0;color:#111}
 .a-btn--primary{background:var(--brand);color:#fff;border-color:var(--brand)}
 .a-btn:hover{background:#f2f2f2}
+.quick-actions{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0 12px}
 
 .body{background:#fff;padding:16px;flex:1;overflow:auto;-webkit-overflow-scrolling:touch}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.svc{text-align:center;font-size:12px;color:#6b7280;border:1px solid var(--line);border-radius:14px;padding:12px 6px;background:#fff}
-.svc i{font-size:20px;display:block;margin-bottom:4px;color:#111}
+.svc{text-align:center;font-size:13px;color:#6b7280;border:1px solid var(--line);border-radius:12px;padding:12px 6px;background:#fff}
+.svc i{font-size:18px;display:grid;place-items:center;margin:0 auto 6px;color:#0B57D0;width:36px;height:36px;border-radius:999px;background:rgba(14,123,255,.08)}
+.section{padding:12px}
+.section-head{font-weight:800;margin:4px 0 10px 4px}
+.services-block{background:#F9FAFB;border:1px solid #eef2f7;border-radius:12px;padding:12px}
 .section-title{display:flex;align-items:center;justify-content:space-between;margin:18px 0 8px;font-size:14px}
 
-/* bottom nav (dashboard) */
-.nav{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:10px 0}
-.nav a{text-decoration:none;color:#6b7280;font-size:11px;text-align:center}
-.nav a.active{color:#111}
-.nav a.active i{color:#111}
+/* bottom nav (fixed, always visible like native app) */
+.nav{
+  position:fixed;left:50%;transform:translateX(-50%);bottom:0;z-index:1000;
+  width:100%;max-width:420px;background:#fff;border-top:1px solid var(--line);
+  display:flex;justify-content:space-around;padding:10px 0;
+  padding-bottom:calc(10px + env(safe-area-inset-bottom));
+}
+.nav a{text-decoration:none;color:#94A3B8;font-size:11px;text-align:center}
+.nav a i{color:#94A3B8}
+.nav a.active{color:#0B57D0}
+.nav a.active i{color:#0B57D0}
+.nav a.active{background:rgba(11,87,208,.08);border-radius:999px;padding:6px 10px;transform:translateY(-2px)}
 .nav i{display:block;font-size:20px;margin-bottom:4px}
 
-/* Make phone a fixed-height flex column so .nav sticks to bottom */
-.phone{height:calc(100vh - 120px)}
+/* Ensure content isn't hidden behind the fixed bottom nav */
+.body{padding-bottom:90px}
 
 
 /* History list (dashboard) */
@@ -124,6 +141,10 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,
   padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer
 }
 .history .item:last-child{border-bottom:none}
+.activity-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 6px 18px rgba(0,0,0,.05);margin-bottom:10px}
+.activity-left{display:flex;align-items:center;gap:10px}
+.activity-title{font-weight:800}
+.activity-sub{font-size:12px;color:#8a8f98}
 
 /* Simple green “success” dot like before */
 .badge-success{
@@ -151,6 +172,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,
 /* overrides for clear amount colors */
 .text-success{color:#16a34a !important}
 .text-danger{color:#dc2626 !important}
+.hero .name, .section-head{font-family:Manrope, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;letter-spacing:.2px}
 
 
 
