@@ -27,16 +27,18 @@
 
       <!-- Header -->
       <div class="hero">
-        <div class="hello">Welcome back!</div>
-        <div class="name" id="name">—</div>
-
         <div class="hero-row">
-    <div>
-      <div class="text-secondary small">Balance</div>
-      <div class="balance" id="balance">UGX 895,500.00</div>
-    </div>
-    <div class="coins"><span class="dot"></span><span id="points">9,500</span></div>
-  </div>
+          <div>
+            <div class="hello">Welcome back!</div>
+            <div class="name" id="name">—</div>
+          </div>
+          <div class="coins"><span class="dot"></span><span id="points">9,500</span></div>
+        </div>
+
+        <div class="hero-balance">
+          <div class="text-secondary small">Balance</div>
+          <div class="balance" id="balance">UGX 895,500.00</div>
+        </div>
       <!-- Top Up sheet (hidden by default) -->
 <div class="body body--sheet" id="topup-body" style="display:none">
   <div class="section-title mb-2"><b>Top Up Method</b></div>
@@ -83,7 +85,7 @@
   <button class="a-btn" href="wallet.php" role="button" aria-label="Open Wallet">
     <i class="bi bi-wallet2"></i>Wallet
   </button>
-  <button class="a-btn" type="button" id="openTopup" aria-label="Transfer">
+  <button class="a-btn a-btn--primary" type="button" id="openTopup" aria-label="Transfer">
     <i class="bi bi-arrow-left-right"></i>Transfer
   </button>
   <button class="a-btn" type="button" aria-label="Bills"><i class="bi bi-receipt"></i>Bills</button>
@@ -94,6 +96,7 @@
 
       <!-- Body -->
       <div class="body">
+        <div class="section-card">
         <div class="grid" aria-label="services">
           <div class="svc"><i class="bi bi-phone"></i>Pulse</div>
           <div class="svc"><i class="bi bi-wifi"></i>Internet</div>
@@ -104,12 +107,14 @@
           <div class="svc"><i class="bi bi-controller"></i>Game</div>
           <div class="svc"><i class="bi bi-grid"></i>More</div>
         </div>
+        </div>
 
         <div class="section-title mt-4">
           <b>History</b>
           <a href="#" class="text-secondary small">See all →</a>
         </div>
 
+        <div class="section-card">
         <div class="history">
           <div class="item">
             <div class="d-flex align-items-center gap-2">
@@ -130,8 +135,9 @@
                 <div class="text-muted" style="font-size:11px">2:20 PM · Jun 22, 2025</div>
               </div>
             </div>
-            <div class="fw-bold text-dark">-UGX56,000</div>
+            <div class="fw-bold text-danger">-UGX56,000</div>
           </div>
+        </div>
         </div>
       </div>
 
