@@ -1,26 +1,22 @@
 // Simple Top-Up sheet toggle (no overlay)
 document.addEventListener('DOMContentLoaded', () => {
-  const dashBody  = document.getElementById('dashboard-body');
   const topupBody = document.getElementById('topup-body');
   const openBtn   = document.getElementById('openTopup');
   const closeBtn  = document.getElementById('closeTopup');
 
-  if (openBtn && dashBody && topupBody) {
+  if (openBtn && topupBody) {
     openBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      dashBody.style.display = 'none';
       topupBody.style.display = 'block';
-      topupBody.classList.add('show');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      requestAnimationFrame(() => topupBody.classList.add('show'));
     });
   }
 
-  if (closeBtn) {
+  if (closeBtn && topupBody) {
     closeBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      topupBody.style.display = 'none';
-      dashBody.style.display = 'block';
       topupBody.classList.remove('show');
+      setTimeout(()=>{ topupBody.style.display = 'none'; }, 220);
     });
   }
 

@@ -332,11 +332,20 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 
 
-/* ===== Embedded Top-Up sheet on Dashboard ===== */
+/* ===== Bottom Sheet (Top-Up) ===== */
 .body--sheet{
+  position:fixed;
+  left:50%;
+  bottom:calc(64px + env(safe-area-inset-bottom)); /* sit just above bottom nav */
+  transform:translate(-50%, 110%); /* hidden below */
+  width:100%;
+  max-width:420px;
+  z-index:1001;
   background:#fff;
+  border:1px solid var(--line);
   border-top-left-radius:22px; border-top-right-radius:22px;
-  margin-top:-6px; padding:16px;
+  box-shadow:0 18px 48px rgba(0,0,0,.2);
+  padding:16px;
 }
 
 /* method rows */
@@ -357,28 +366,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .method-sub{ font-size:12px; color:#6b7280; }
 
 /* optional slide-up animation */
-@keyframes sheetIn { from{ transform:translateY(12px); opacity:.0 } to{ transform:translateY(0); opacity:1 } }
-.body--sheet.show { animation: sheetIn .18s ease; }
+@keyframes sheetIn { from{ transform:translate(-50%, 110%)} to{ transform:translate(-50%, 0)} }
+.body--sheet{ transition: transform .26s cubic-bezier(.16,.84,.44,1); }
+.body--sheet.show { transform:translate(-50%, 0); }
 
 
 
 
 /* ===== Overlay + smoother sheet animation ===== */
-.sheet-overlay{
-  position: fixed; inset: 0; background: rgba(0,0,0,.36);
-  opacity: 0; pointer-events: none; transition: opacity .18s ease;
-}
-.sheet-overlay.show{ opacity: 1; pointer-events: auto; }
-
-.body--sheet{
-  transform: translateY(10px);
-  opacity: 0;
-  transition: transform .22s cubic-bezier(.16,.84,.44,1), opacity .18s ease;
-}
-.body--sheet.show{
-  transform: translateY(0);
-  opacity: 1;
-}
+/* no overlay for this sheet (previous overlay styles removed) */
 
 
 
