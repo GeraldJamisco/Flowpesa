@@ -86,6 +86,7 @@
 
   <a class="method-card" href="#" data-method="mobile">
     <div class="method-left">
+    <a href="topup-momo.php">
       <div class="method-ico"><i class="bi bi-phone"></i></div>
       <div>
         <div class="method-title">Mobile Money</div>
@@ -97,6 +98,7 @@
         </div>
       </div>
     </div>
+  </a>
     <i class="bi bi-chevron-right"></i>
   </a>
 
