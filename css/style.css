@@ -355,6 +355,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   border-radius:16px; padding:14px 12px; margin-bottom:10px;
   text-decoration:none; color:inherit; transition:transform .1s ease;
 }
+.method-card.method-card--btn{ appearance:none; -webkit-appearance:none; border:1px solid var(--line); background:#fff; cursor:pointer; width:100%; text-align:left; }
 .method-card:active{ transform:scale(.98); }
 .method-left{ display:flex; align-items:center; gap:10px; }
 .method-ico{

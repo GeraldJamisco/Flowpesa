@@ -49,11 +49,11 @@
   <button type="button" class="btn-close float-end mb-2" id="closeTopup" aria-label="Close"></button>
   <div class="section-title mb-2 mt-1"><b>Top Up Method</b></div>
 
-  <a class="method-card" href="#" data-method="bank">
+  <!-- Bank Transfer -->
+  <a class="method-card" href="topup-bank.php" data-method="bank">
     <div class="method-left">
       <div class="method-ico"><i class="bi bi-bank"></i></div>
       <div>
-        <a href="topup-bank.php">
         <div class="method-title">Bank Transfer</div>
         <div class="method-sub">Top up via supported banks</div>
         <div class="mt-1 small text-secondary">
@@ -63,12 +63,12 @@
           <span class="badge text-bg-light">Centenary</span>
         </div>
       </div>
-      </a>
     </div>
     <i class="bi bi-chevron-right"></i>
   </a>
 
-  <a class="method-card" href="#" data-method="agent">
+  <!-- Agent (placeholder) -->
+  <button class="method-card method-card--btn" type="button" data-method="agent">
     <div class="method-left">
       <div class="method-ico"><i class="bi bi-shop"></i></div>
       <div>
@@ -82,11 +82,11 @@
       </div>
     </div>
     <i class="bi bi-chevron-right"></i>
-  </a>
+  </button>
 
-  <a class="method-card" href="#" data-method="mobile">
+  <!-- Mobile Money -->
+  <a class="method-card" href="topup-momo.php" data-method="mobile">
     <div class="method-left">
-    <a href="topup-momo.php">
       <div class="method-ico"><i class="bi bi-phone"></i></div>
       <div>
         <div class="method-title">Mobile Money</div>
@@ -98,11 +98,11 @@
         </div>
       </div>
     </div>
-  </a>
     <i class="bi bi-chevron-right"></i>
   </a>
 
-  <a class="method-card" href="#" data-method="card">
+  <!-- Card (placeholder) -->
+  <button class="method-card method-card--btn" type="button" data-method="card">
     <div class="method-left">
       <div class="method-ico"><i class="bi bi-credit-card-2-front"></i></div>
       <div>
@@ -111,7 +111,7 @@
       </div>
     </div>
     <i class="bi bi-chevron-right"></i>
-  </a>
+  </button>
   
 </div>
 

@@ -20,11 +20,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // tap a method (stub — route later)
-  document.querySelectorAll('.method-card').forEach(card => {
-    card.addEventListener('click', e => {
+  // Ensure real links inside sheet always navigate (defuse any stale handlers)
+  document.querySelectorAll('.method-card[href]:not([href="#"])').forEach(link => {
+    // Capture-phase handler: stop propagation so no other click handler intercepts
+    link.addEventListener('click', (e) => {
+      // allow default navigation; just prevent any other JS from hijacking
+      // also let modifier/middle-click behave normally
+      if (e.defaultPrevented) return;
+      e.stopPropagation();
+    }, true);
+  });
+
+  // Only attach stub behavior to placeholder buttons
+  document.querySelectorAll('.method-card--btn').forEach(btn => {
+    btn.addEventListener('click', e => {
       e.preventDefault();
-      alert(`Top Up via ${card.dataset.method} (UI only)`);
+      e.stopPropagation();
+      alert(`Top Up via ${btn.dataset.method} (UI only)`);
     });
   });
 });
@@ -56,4 +68,3 @@ async function loadDashboard(){
   }
 }
 document.addEventListener('DOMContentLoaded', loadDashboard);
-
