@@ -53,6 +53,7 @@
     <div class="method-left">
       <div class="method-ico"><i class="bi bi-bank"></i></div>
       <div>
+        <a href="topup-bank.php">
         <div class="method-title">Bank Transfer</div>
         <div class="method-sub">Top up via supported banks</div>
         <div class="mt-1 small text-secondary">
@@ -62,6 +63,7 @@
           <span class="badge text-bg-light">Centenary</span>
         </div>
       </div>
+      </a>
     </div>
     <i class="bi bi-chevron-right"></i>
   </a>

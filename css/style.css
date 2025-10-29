@@ -481,6 +481,20 @@ select.auth-input {
   background-repeat: no-repeat;
 }
 
+/* ----- Forms inside standard page body (e.g., topup-bank.php) ----- */
+.body .label{ font-size:12px; color:var(--muted); margin:8px 0 6px; display:block; }
+.body .input, .body .select{
+  width:100%; padding:12px; border:1px solid var(--line); border-radius:12px; background:#fff;
+}
+.body input[type="file"]{ width:100%; border:1px solid var(--line); border-radius:12px; padding:10px; background:#fff; }
+
+/* 2‑column grid helper for paired fields */
+.grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+@media (max-width:480px){ .grid-2{ grid-template-columns:1fr; } }
+
+/* subtle helper text */
+.mutelink{ color:var(--muted); font-size:13px; }
+
 /* --- FIX 5: wallet stat colors (were dark on dark) --- */
 .wallet-stat { color: #f8fafc; }
 .wallet-stat .label { color: #c3c6cc; }
