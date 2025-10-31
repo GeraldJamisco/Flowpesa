@@ -36,6 +36,7 @@ session_start();
       <div class="body">
         <!-- Flowpesa bank details (read-only) -->
         <div class="section-card">
+          <!-- will have to add different bank details for different banks later meaning that a customer when making a transfer can use their preferred bank by choice and stored in database -->
           <div class="section-title"><b>Transfer to Flowpesa account</b></div>
           <div class="list">
             <div class="rowi">
