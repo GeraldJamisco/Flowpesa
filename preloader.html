@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Preloader</title>
+    <meta name="preloader-next" content="index.html">
+    <link rel="stylesheet" href="css/vars.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="loading-dark-mode">
+      <div class="logo-homepage" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="91" height="46" viewBox="0 0 91 46" fill="none" class="leaf-green">
+          <path d="M0 45.1429L45.156 45.1429C70.0948 45.1429 90.3121 24.9315 90.3121 0L45.156 0C20.2173 0 0 20.2114 0 45.1429Z" fill="#00EB77"/>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="91" height="46" viewBox="0 0 91 46" fill="none" class="leaf-blue">
+          <path d="M0 45.1429L45.156 45.1429C70.0948 45.1429 90.3121 24.9315 90.3121 0L45.156 0C20.2173 0 0 20.2114 0 45.1429Z" fill="#1682F9"/>
+        </svg>
+      </div>
+      <div class="Flow-pesa">
+        <span>
+          <span class="Flow-pesa-span">Flow</span>
+          <!-- <span class="Flow-pesa-span2">-</span> -->
+          <span class="Flow-pesa-span3">Pesa</span>
+        </span>
+      </div>
+    </div>
+    <script>
+      // Simple preloader redirect logic
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+        const metaNext = document.querySelector('meta[name="preloader-next"]');
+        const next = params.get('next') || (metaNext ? metaNext.content : '');
+        // Match the CSS animation total (~1.3s); add small buffer
+        const redirectDelay = 1400;
+        if (next && next !== window.location.pathname) {
+          window.addEventListener('load', function () {
+            setTimeout(function () {
+              window.location.href = next;
+            }, redirectDelay);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

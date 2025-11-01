@@ -1,0 +1,108 @@
+/* Figma Styles of your File */
+:root {
+  /* Colors */
+  --foundation-primary-blue-50: #e8f3fe;
+  --foundation-primary-blue-100: #b7d8fd;
+  --foundation-primary-blue-200: #94c6fc;
+  --foundation-primary-blue-300: #63abfb;
+  --foundation-primary-blue-400: #459bfa;
+  --foundation-primary-blue-500: #1682f9;
+  --foundation-primary-blue-600: #1476e3;
+  --foundation-primary-blue-700: #105cb1;
+  --foundation-primary-blue-800: #0c4889;
+  --foundation-primary-blue-900: #093769;
+  --foundation-secondary-green-50: #e6fdf1;
+  --foundation-secondary-green-100: #b0f9d5;
+  --foundation-secondary-green-200: #8af6c0;
+  --foundation-secondary-green-300: #54f2a4;
+  --foundation-secondary-green-400: #33ef92;
+  --foundation-secondary-green-500: #00eb77;
+  --foundation-secondary-green-600: #00d66c;
+  --foundation-secondary-green-700: #00a754;
+  --foundation-secondary-green-800: #008141;
+  --foundation-secondary-green-900: #006332;
+  --foundation-neutral-grey-50: #e9e9e9;
+  --foundation-neutral-grey-100: #b9b9b9;
+  --foundation-neutral-grey-200: #989898;
+  --foundation-neutral-grey-300: #686868;
+  --foundation-neutral-grey-400: #4b4b4b;
+  --foundation-neutral-grey-500: #1e1e1e;
+  --foundation-neutral-grey-600: #1b1b1b;
+  --foundation-neutral-grey-700: #151515;
+  --foundation-neutral-grey-800: #111111;
+  --foundation-neutral-grey-900: #0d0d0d;
+  --foundation-pink-blue-50: #f2f2ff;
+  --foundation-pink-blue-100: #d6d8ff;
+  --foundation-pink-blue-200: #c2c5ff;
+  --foundation-pink-blue-300: #a7aaff;
+  --foundation-pink-blue-400: #9599ff;
+  --foundation-pink-blue-500: #7b80ff;
+  --foundation-pink-blue-600: #7074e8;
+  --foundation-pink-blue-700: #575bb5;
+  --foundation-pink-blue-800: #44468c;
+  --foundation-pink-blue-900: #34366b;
+
+  /* Fonts */
+  /* Effects */
+}
+/* Figma Color Variables of your File */
+:root,
+[data-tokens-mode="dark"] {
+  /* dark */
+  --background-color: #111111;
+  --primary-color: #1682f9;
+  --main-section: #17181b;
+  --main-text: #f8f9fa;
+  --primary-active: #105cb1;
+  --main-section-cover: #202124;
+  --secondary-text: #c7c7c7;
+  --same-text: #f8f9fa;
+}
+
+[data-tokens-mode="light"] {
+  /* light */
+  --background-color: #f6f6f6;
+  --primary-color: #1682f9;
+  --main-section: #ffffff;
+  --main-text: #1b1b1b;
+  --primary-active: #e8f3fe;
+  --main-section-cover: #f6f6f6;
+  --secondary-text: #6d6d6d;
+  --same-text: #95999d;
+}
+
+:root,
+[data-color-mode="mode-1"] {
+  /* mode-1 */
+  --error-50: #ffebea;
+  --error-100: #ffc2bf;
+  --error-200: #ffa5a0;
+  --error-300: #ff7c74;
+  --error-400: #ff6259;
+  --error-500: #ff3b30;
+  --error-600: #e8362c;
+  --error-700: #b52a22;
+  --error-800: #8c201a;
+  --error-900: #6b1914;
+  --success-50: #ebf9ee;
+  --success-100: #c0eecc;
+  --success-200: #a2e5b3;
+  --success-300: #77d990;
+  --success-400: #5dd27a;
+  --success-500: #34c759;
+  --success-600: #2fb551;
+  --success-700: #258d3f;
+  --success-800: #1d6d31;
+  --success-900: #165425;
+  --warning-50: #fffae6;
+  --warning-100: #ffefb0;
+  --warning-200: #ffe88a;
+  --warning-300: #ffdd54;
+  --warning-400: #ffd633;
+  --warning-500: #ffcc00;
+  --warning-600: #e8ba00;
+  --warning-700: #b59100;
+  --warning-800: #8c7000;
+  --warning-900: #8c7000;
+  --white: #ffffff;
+}

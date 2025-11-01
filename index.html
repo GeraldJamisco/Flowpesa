@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flow Pesa — Home</title>
+    <link rel="stylesheet" href="css/vars.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+      // If preloader hasn't run this session, bounce through it
+      (function () {
+        try {
+          var key = 'preloaderShown';
+          if (!sessionStorage.getItem(key)) {
+            sessionStorage.setItem(key, '1');
+            var target = encodeURIComponent(location.pathname.replace(/\\\\/g, '/').split('/').pop() || 'index.html');
+            location.replace('preloader.html?next=' + target);
+          }
+        } catch (_) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <main class="onboard active-1" aria-label="Onboarding">
+      <div class="slides">
+        <!-- Slide 1 -->
+        <section class="slide active" aria-roledescription="slide" aria-label="Your money, always secure">
+          <img class="image-20" src="assets/image-200.png" />
+          <section class="copy">
+            <h1 class="title">Your money, always secure</h1>
+            <p class="subtitle">Every deposit and transfer on Flowpesa is encrypted, tracked, and protected, so your money stays safe every step of the way..</p>
+          </section>
+        </section>
+
+        <!-- Slide 2 -->
+        <section class="slide" aria-roledescription="slide" aria-label="Send and receive with ease">
+         <img class="image-20" src="assets/image-201.png" />
+          <section class="copy">
+            <h1 class="title">Send and receive with ease</h1>
+            <p class="subtitle">Instantly add money, send to friends, or withdraw to mobile money or bank, all from one simple Flowpesa wallet.</p>
+          </section>
+        </section>
+
+        <!-- Slide 3 -->
+        <section class="slide" aria-roledescription="slide" aria-label="Save and grow together">
+          <img src="assets/image-202.png" alt="" class="image-20">
+          <section class="copy">
+            <h1 class="title">Save and grow together</h1>
+            <p class="subtitle">Use real-time pricing to manage orders in your self-directed accounts.</p>
+          </section>
+        </section>
+
+        <!-- Slide 4 -->
+        <section class="slide" aria-roledescription="slide" aria-label="Built for Africa, made for you">
+          <img src="assets/" alt="" class="image-20">
+          <section class="copy">
+            <h1 class="title">Built for Africa, made for you</h1>
+            <p class="subtitle">Flowpesa connects people, businesses, and communities across borders, powered by trust, not speculation.</p>
+          </section>
+        </section>
+      </div>
+
+      <div class="pager" aria-label="Onboarding progress">
+        <span class="bar active"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="#create-account" role="button">Create account</a>
+        <a class="btn btn-outline" href="#sign-in" role="button">Sign in</a>
+      </div>
+    </main>
+    <script>
+      (function(){
+        var root = document.querySelector('.onboard');
+        var slides = Array.prototype.slice.call(document.querySelectorAll('.slides .slide'));
+        var bars = Array.prototype.slice.call(document.querySelectorAll('.pager .bar'));
+        var index = 0, timer;
+        function setIndex(i){
+          index = (i + slides.length) % slides.length;
+          slides.forEach(function(s, j){ s.classList.toggle('active', j === index); });
+          bars.forEach(function(b, j){ b.classList.toggle('active', j === index); });
+          root.classList.remove('active-1','active-2','active-3');
+          root.classList.add('active-' + (index+1));
+        }
+        function start(){ stop(); timer = setInterval(function(){ setIndex(index+1); }, 4000); }
+        function stop(){ if (timer) clearInterval(timer); }
+        document.addEventListener('visibilitychange', function(){ document.hidden ? stop() : start(); });
+        bars.forEach(function(b, j){ b.addEventListener('click', function(){ setIndex(j); start(); }); });
+        setIndex(0); start();
+      })();
+    </script>
+  </body>
+</html>

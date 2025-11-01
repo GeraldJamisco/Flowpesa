@@ -1,1 +1,0 @@
-<!-- receive token & create user -->

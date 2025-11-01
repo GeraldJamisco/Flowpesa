@@ -1,8 +1,0 @@
-RewriteEngine On
-# Send everything to HTTPS
-RewriteCond %{HTTPS} !=on
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# Optional: pick non-www (or swap to www if you prefer)
-RewriteCond %{HTTP_HOST} ^www\.flowpesa\.com$ [NC]
-RewriteRule ^ https://flowpesa.com%{REQUEST_URI} [L,R=301]
