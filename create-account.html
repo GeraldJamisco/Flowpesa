@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Flowpesa — Sign up</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <button class="icon-btn" type="button" onclick="history.back()" aria-label="Go back">
+      <!-- chevron-left icon -->
+      <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 18L9 12l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <h1 class="top-title">Sign Up</h1>
+    <span aria-hidden="true" class="top-ghost"></span>
+  </header>
+
+  <main class="screen">
+    <section class="intro">
+      <h2 class="heading">Let’s get started</h2>
+      <p class="subheading" id="phone-help">
+        Enter your phone number. We’ll send a confirmation code.
+      </p>
+    </section>
+
+    <form class="card" id="signup-form" novalidate>
+      <div class="phone-row">
+        <label class="sr-only" for="country-code">Country code</label>
+        <select id="country-code" name="country_code" class="cc-select" aria-label="Country code">
+  <option value="+256" selected>🇺🇬 +256</option>
+  <option value="+254">🇰🇪 +254</option>
+  <option value="+255">🇹🇿 +255</option>
+  <option value="+250">🇷🇼 +250</option>
+  <option value="+44">🇬🇧 +44</option>
+  <option value="+1">🇺🇸 +1</option>
+</select>
+
+        <div class="placeholder">
+  <input
+    id="phone"  
+    type="tel"
+    inputmode="tel"
+    autocomplete="tel-national"
+    placeholder="Mobile number"
+  />
+</div>
+
+        </div>
+      </div>
+
+      <p class="error" id="phone-error" role="alert" hidden></p>
+
+      <button id="continue-btn" class="regular-button" type="submit" href="verify-phone.html" disabled>
+        <span class="button-label">Continue</span>
+      </button>
+    </form>
+
+    <p class="auth-foot">
+      Already have an account?
+      <a href="/login" class="link">Log in</a>
+    </p>
+  </main>
+
+  <script>
+    // Minimal client-side guard; do full validation on the server too.
+    const form = document.getElementById('signup-form');
+    const phone = document.getElementById('phone');
+    const cc = document.getElementById('country-code');
+    const error = document.getElementById('phone-error');
+    const btn = document.getElementById('continue-btn');
+
+    const ugPattern = /^0?\d{9}$/; // simple UG local format: 9 digits, optional leading 0
+    const intlDigits = /^\d{6,14}$/; // fallback for other countries (digits only)
+
+    function validate() {
+      const code = cc.value;            // e.g., +256
+      const raw = phone.value.replace(/\s+/g,'');
+      let ok;
+
+      if (code === '+256') {
+        ok = ugPattern.test(raw);
+      } else {
+        ok = intlDigits.test(raw);
+      }
+
+      btn.disabled = !ok;
+      error.hidden = ok;
+      if (!ok) {
+        error.textContent = 'Enter a valid mobile number.';
+      }
+    }
+
+    
+
+    phone.addEventListener('input', validate);
+    cc.addEventListener('change', validate);
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      validate();
+      if (btn.disabled) return;
+
+      const payload = {
+        country_code: cc.value,
+        phone: phone.value.trim()
+      };
+
+      // POST to your backend; on success, navigate to OTP screen.
+      // Example:
+      // fetch('/api/auth/begin', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)})
+      //   .then(r => r.json())
+      //   .then(() => location.href = '/verify-otp?msisdn=' + encodeURIComponent(cc.value + phone.value))
+      //   .catch(() => { error.hidden = false; error.textContent = 'Something went wrong. Try again.'; });
+
+      // For now just simulate navigation:
+      location.href = '/verify-phone.html';
+    });
+
+    // Autofocus for better UX
+    window.addEventListener('DOMContentLoaded', () => phone.focus());
+  </script>
+</body>
+</html>

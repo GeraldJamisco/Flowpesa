@@ -1,287 +1,37 @@
-.loading-dark-mode,
-.loading-dark-mode * {
-  box-sizing: border-box;
-}
-.loading-dark-mode,
-.loading-dark-mode * {
-  box-sizing: border-box;
-}
+/* Cleaned stylesheet for index.html onboarding only */
 
-/* Global reset + background to eliminate white borders */
-html,
-body {
-  height: 100%;
-  background: var(--background-color, #111111);
-}
-body {
-  margin: 0;
-  padding: 0;
-}
+/* Global background and typography */
+html, body { height: 100%; margin: 0; background: var(--background-color, #111111); color: var(--main-text, #f8f9fa); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
 
-.loading-dark-mode {
-  background: var(--background-color, #111111);
-  min-height: 100vh;
-  min-height: 100dvh; /* mobile chrome */
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0 16px;
-}
-.vector {
-  width: 22.98%;
-  height: 5.3%;
-  position: absolute;
-  right: 32.71%;
-  left: 44.31%;
-  bottom: 49.98%;
-  top: 44.72%;
-  transform: translate(0px, 0px);
-  overflow: visible;
-}
-.vector2 {
-  width: 22.98%;
-  height: 5.3%;
-  position: absolute;
-  right: 44.2%;
-  left: 32.82%;
-  bottom: 44.68%;
-  top: 50.02%;
-  transform: translate(0px, 0px);
-  overflow: visible;
-}
-.paya-bank {
-  text-align: center;
-  font-family: var(--font-family, "Inter-Regular", sans-serif);
-  font-size: 48px;
-  font-weight: 400;
-  position: absolute;
-  left: 50%;
-  translate: -50%;
-  top: calc(50% - -74px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.paya-bank-span {
-  color: var(--foundation-primary-blue-500, #1682f9);
-  font-family: "Inter-Regular", sans-serif;
-}
-.paya-bank-span2 {
-  color: var(--main-text, #f8f9fa);
-  font-family: "Inter-Regular", sans-serif;
-}
-.paya-bank-span3 {
-  color: var(--success-500, #34c759);
-  font-family: "Inter-Regular", sans-serif;
-}
-.status-bar {
-  background: var(--background-color, #111111);
-  display: flex;
-  flex-direction: row;
-  gap: 128px;
-  align-items: center;
-  justify-content: center;
-  width: 393px;
-  height: 52px;
-  position: absolute;
-  left: 50%;
-  translate: -50%;
-  top: 0px;
-}
-.time {
-  padding: 16px 25px 16px 25px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  align-self: stretch;
-  flex: 1;
-  position: relative;
-}
-.time2 {
-  color: var(--main-text, #f8f9fa);
-  text-align: center;
-  font-family: "SfPro-Semibold", sans-serif;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 600;
-  position: relative;
-  width: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.levels {
-  padding: 16px 30px 16px 30px;
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
-  align-self: stretch;
-  flex: 1;
-  position: relative;
-}
-.cellular-connection {
-  flex-shrink: 0;
-  width: 20px;
-  height: 12px;
-  position: relative;
-  overflow: visible;
-}
-.wifi {
-  flex-shrink: 0;
-  width: 16px;
-  height: 12px;
-  position: relative;
-  overflow: visible;
-}
-.battery {
-  flex-shrink: 0;
-  width: 24px;
-  height: 12px;
-  position: relative;
-  overflow: visible;
-}
-.home-indicator {
-  background: var(--background-color, #111111);
-  width: 100%;
-  height: 23px;
-  position: fixed;
-  right: 0%;
-  left: 0%;
-  bottom: 0px;
-}
-.home-indicator2 {
-  background: var(--main-text, #f8f9fa);
-  border-radius: 100px;
-  width: 134px;
-  height: 5px;
-  position: absolute;
-  left: 50%;
-  translate: -50%;
-  bottom: 8px;
-}
+/* Onboarding layout */
+.onboard { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 20px; padding: 24px 16px calc(24px + env(safe-area-inset-bottom)); max-width: 480px; margin: 0 auto; }
 
-
-.logo-homepage{
-    width: 90.312px;
-height: 45.143px;
-flex-shrink: 0;
-fill: var(--Foundation-Secondary-green-500, #00EB77);
-}
-
-
-
-  .Flow-pesa,
-.Flow-pesa * {
-    box-sizing: border-box;
-}
-
-.Flow-pesa {
-    text-align: center;
-    font-family: var(--font-family, 'Inter-Regular', sans-serif);
-    font-size: clamp(28px, 8vw, 48px);
-    font-weight: 400;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.Flow-pesa-span {
-    color: var(--foundation-primary-blue-500, #1682f9);
-    font-family: 'Inter-Regular', sans-serif;
-}
-
-.Flow-pesa-span2 {
-    color: var(--main-text, #f8f9fa);
-    font-family: 'Inter-Regular', sans-serif;
-}
-
-.Flow-pesa-span3 {
-    color: var(--success-500, #34c759);
-    font-family: 'Inter-Regular', sans-serif;
-    margin-left: 0.25em;
-}
-
-/* Centered logo composed of two overlapping leaves */
-.logo-homepage {
-  position: relative;
-  width: clamp(90px, 30vw, 180px);
-  aspect-ratio: 3 / 2;
-  margin-bottom: 12px;
-}
-
-.logo-homepage .leaf-green,
-.logo-homepage .leaf-blue {
-  position: absolute;
-  width: 76%;
-  height: auto;
-  opacity: 0;
-  will-change: transform, opacity;
-}
-
-.logo-homepage .leaf-green {
-  top: -8%;
-  left: 42%;
-  transform: translateY(-60vh);
-  animation: leafFromTop 800ms cubic-bezier(0.22, 1, 0.36, 1) 50ms forwards;
-}
-
-.logo-homepage .leaf-blue {
-  bottom: -8%;
-  left: -2%;
-  transform: translateY(60vh) rotate(180deg);
-  animation: leafFromBottom 800ms cubic-bezier(0.22, 1, 0.36, 1) 50ms forwards;
-}
-
-/* Hide phone status UI for clean splash */
-.status-bar,
-.home-indicator { display: none; }
-
-/* =====================
-   Onboarding (index.html)
-   ===================== */
-html, body { background: var(--background-color, #111111); }
-.onboard {
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 20px;
-  padding: 24px 16px calc(24px + env(safe-area-inset-bottom));
-  color: var(--main-text, #f8f9fa);
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-}
-
-.hero { width: 100%; display: grid; place-items: center; margin-top: 16px; }
-.hero-ill { width: min(320px, 85vw); height: auto; filter: drop-shadow(0 18px 35px rgba(0,0,0,0.5)); }
-
-/* Slides */
-.slides { width: 100%; display: flex; flex-direction: column; align-items: center; }
+.slides { width: 100%; display: flex; flex-direction: column; align-items: center; margin-bottom: 8px; }
 .slide { width: 100%; display: none; flex-direction: column; align-items: center; gap: 10px; opacity: 0; transform: translateX(24px); transition: opacity 320ms ease, transform 320ms ease; }
 .slide.active { display: flex; opacity: 1; transform: translateX(0); }
 
-.pager { display: flex; gap: 16px; margin-top: 10px; align-items: center; justify-content: center; }
-.pager .bar { width: clamp(34px, 18vw, 56px); height: 4px; border-radius: 8px; background: rgba(255,255,255,0.38); }
+/* (hero-ill styles removed; slides use .image-20) */
+
+/* Raster/SVG hero images used in slides */
+.image-20 { width: min(320px, 85vw); height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 18px 35px rgba(0,0,0,0.5)); border-radius: 12px; }
+.onboard.active-3 .image-20 { width: min(280px, 78vw); }
+
+/* Centered message style for Slide 4 */
+.slide.center-message { min-height: 54vh; justify-content: center; gap: 16px; }
+.slide.center-message .title { font-size: clamp(28px, 8.5vw, 40px); text-align: center; }
+.slide.center-message .subtitle { font-size: clamp(14px, 3.6vw, 16px); text-align: center; max-width: 34rem; }
+
+/* Pager */
+.pager { display: flex; gap: 16px; margin-top: 12px; align-items: center; justify-content: center; width: min(360px, 90vw); padding-inline: 12px; }
+.pager .bar { flex: 1 1 auto; max-width: 72px; height: 4px; border-radius: 8px; background: rgba(255,255,255,0.38); }
 .pager .bar.active { background: var(--foundation-primary-blue-500, #1682f9); box-shadow: 0 0 0 1px rgba(22,130,249,0.15); }
 
-/* Allow selecting the active bar via a modifier on .onboard */
-.onboard.active-1 .pager .bar:nth-child(1) { background: var(--foundation-primary-blue-500, #1682f9); box-shadow: 0 0 0 1px rgba(22,130,249,0.15); }
-.onboard.active-2 .pager .bar:nth-child(2) { background: var(--foundation-primary-blue-500, #1682f9); box-shadow: 0 0 0 1px rgba(22,130,249,0.15); }
-.onboard.active-3 .pager .bar:nth-child(3) { background: var(--foundation-primary-blue-500, #1682f9); box-shadow: 0 0 0 1px rgba(22,130,249,0.15); }
-
+/* Copy */
 .copy { text-align: center; max-width: 32rem; padding-inline: 8px; }
 .title { font-size: clamp(22px, 6vw, 28px); margin: 12px 0 8px; font-weight: 600; color: var(--same-text, #f8f9fa); }
 .subtitle { margin: 0; color: var(--secondary-text, #c7c7c7); font-size: clamp(14px, 3.6vw, 16px); line-height: 1.5; }
 
+/* Actions */
 .actions { width: min(420px, 100%); display: flex; flex-direction: column; gap: 12px; margin-top: auto; }
 .btn { display: inline-flex; align-items: center; justify-content: center; height: 48px; border-radius: 12px; text-decoration: none; font-size: 16px; font-weight: 600; transition: transform 120ms ease, background-color 120ms ease, border-color 120ms ease; }
 .btn:active { transform: scale(0.98); }
@@ -290,253 +40,459 @@ html, body { background: var(--background-color, #111111); }
 .btn-outline { color: var(--same-text, #f8f9fa); border: 1px solid #3a3a3a; background: transparent; }
 .btn-outline:hover { border-color: #5a5a5a; }
 
-@media (min-width: 768px) {
-  .onboard { gap: 24px; }
-}
-/* Brand text appears after leaves combine */
-.Flow-pesa {
-  opacity: 0;
-  transform: translateY(24px);
-  animation: titleRise 560ms cubic-bezier(0.22, 1, 0.36, 1) 700ms forwards;
-}
+@media (min-width: 768px) { .onboard { gap: 24px; } }
 
-@keyframes leafFromTop {
-  0% { transform: translateY(-60vh); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
-}
 
-@keyframes leafFromBottom {
-  0% { transform: translateY(60vh) rotate(180deg); opacity: 0; }
-  100% { transform: translateY(0) rotate(180deg); opacity: 1; }
+
+/* signup page by creating phone number  */
+
+/* === FLOWPESA SIGN-UP — ALIGN TO MOCK === */
+
+/* page */
+.register-phone-number-deactive-dark-mode {
+  background: #111;      /* dark bg */
+  min-height: 100dvh;    /* full height on mobile */
+  padding: 108px 16px 24px; /* space for fixed top-bar + page padding */
 }
 
-@keyframes titleRise {
-  0% { transform: translateY(24px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+/* container holding title, input, link, button */
+.welcome-text-input-link {
+  position: static;      /* remove absolute */
+  width: 100%;
+  max-width: 361px;
+  margin: 0 auto;        /* center horizontally */
+  gap: 16px;
 }
 
-/* Respect reduced motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  .logo-homepage .leaf-green,
-  .logo-homepage .leaf-blue,
-  .Flow-pesa {
-    animation: none !important;
-    transform: none !important;
-    opacity: 1 !important;
-  }
-}
-
-
-/* index or the pre signin page  */
-
-
-
-.onboarding-dark-mode,
-.onboarding-dark-mode * {
-    box-sizing: border-box;
-}
-
-.onboarding-dark-mode {
-    background: var(--background-color, #111111);
-    height: 852px;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 361px;
-    position: absolute;
-    left: 50%;
-    translate: -50%;
-    bottom: 59px;
-}
-
-.regular-button {
-    background: var(--foundation-primary-blue-500, #1682f9);
-    border-radius: var(--12, 12px);
-    padding: 14px var(--font-size-text-base, 16px) 14px var(--font-size-text-base, 16px);
-    display: flex;
-    flex-direction: row;
-    gap: 0px;
-    align-items: center;
-    justify-content: center;
-    align-self: stretch;
-    flex-shrink: 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.create-account {
-    color: var(--white, #ffffff);
-    text-align: left;
-    font-family: var(--font-family, 'Inter-Medium', sans-serif);
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 500;
-    position: relative;
-}
-
-.regular-button2 {
-    background: var(--main-section-cover, #202124);
-    border-radius: var(--12, 12px);
-    border-style: solid;
-    border-color: var(--secondary-text, #c7c7c7);
-    border-width: 1px;
-    padding: 14px var(--font-size-text-base, 16px) 14px var(--font-size-text-base, 16px);
-    display: flex;
-    flex-direction: row;
-    gap: 0px;
-    align-items: center;
-    justify-content: center;
-    align-self: stretch;
-    flex-shrink: 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.sign-in {
-    color: var(--main-text, #f8f9fa);
-    text-align: left;
-    font-family: var(--font-family, 'Inter-Medium', sans-serif);
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 500;
-    position: relative;
-}
-
-.onboarding-slide-section {
-    display: flex;
-    flex-direction: column;
-    gap: var(--48, 48px);
-    align-items: center;
-    justify-content: flex-start;
-    width: 361px;
-    position: absolute;
-    left: 16px;
-    top: 120px;
-}
-
-.onboarding-slide-top-section {
-    display: flex;
-    flex-direction: column;
-    gap: var(--20, 20px);
-    align-items: center;
-    justify-content: flex-start;
-    align-self: stretch;
-    flex-shrink: 0;
-    position: relative;
-}
-
-.image-20 {
-    align-self: stretch;
-    flex-shrink: 0;
-    height: 361px;
-    position: relative;
-    object-fit: cover;
-}
-
-.swipe-onboarding-slide-bar {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    align-items: center;
-    justify-content: flex-start;
-    flex-shrink: 0;
-    width: 227px;
-    position: relative;
-}
-
-.rectangle-40703 {
-    background: var(--foundation-primary-blue-500, #1682f9);
-    border-radius: 12px;
-    flex-shrink: 0;
-    width: 68px;
-    height: 6px;
-    position: relative;
-}
-
-.rectangle-40704 {
-    background: var(--foundation-neutral-grey-50, #e9e9e9);
-    border-radius: 12px;
-    flex-shrink: 0;
-    width: 68px;
-    height: 6px;
-    position: relative;
-}
-
-.rectangle-40705 {
-    background: var(--foundation-neutral-grey-50, #e9e9e9);
-    border-radius: 12px;
-    flex-shrink: 0;
-    width: 68px;
-    height: 6px;
-    position: relative;
-}
-
-.welcome-text {
-    display: flex;
-    flex-direction: column;
-    gap: var(--12, 12px);
-    align-items: center;
-    justify-content: flex-start;
-    align-self: stretch;
-    flex-shrink: 0;
-    position: relative;
-}
-
+/* headings */
 .heading {
-    color: var(--main-text, #f8f9fa);
-    text-align: left;
-    font-family: var(--font-family, 'Inter-Regular', sans-serif);
-    font-size: var(--font-size-text-xxl, 32px);
-    line-height: var(--32, 32px);
-    font-weight: 400;
-    position: relative;
-    transform-origin: 0 0;
-    transform: rotate(0deg) scale(1, 1);
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 32px;
+  line-height: 40px;
+  color: #f8f9fa;
+  margin: 0;
 }
 
 .heading2 {
-    color: var(--main-text, #f8f9fa);
-    text-align: center;
-    font-family: var(--font-family, 'Inter-Regular', sans-serif);
-    font-size: var(--font-size-text-base, 16px);
-    line-height: var(--font-height-text-base, 20px);
-    font-weight: 400;
-    position: relative;
-    align-self: stretch;
-    transform-origin: 0 0;
-    transform: rotate(0deg) scale(1, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  color: #c9c9c9;
 }
 
-.home-indicator {
-    background: var(--background-color, #111111);
-    width: 100%;
-    height: 23px;
-    position: fixed;
-    right: 0%;
-    left: 0%;
-    bottom: 0px;
+/* input row */
+.input { gap: 12px; }
+.input-mobile-active {
+  width: 100%;
+  gap: 12px;
 }
 
-.home-indicator2 {
-    background: var(--main-text, #f8f9fa);
-    border-radius: 100px;
-    width: 134px;
-    height: 5px;
-    position: absolute;
-    left: 50%;
-    translate: -50%;
-    bottom: 8px;
+/* country selector chip */
+.flag {
+  background: #17181b;
+  border-radius: 12px;
+  height: 48px;
+  padding: 10px 14px;
+  gap: 8px;
+}
+
+/* dropdown visual */
+.flag select {
+  color: #f8f9fa;
+  border: 0;
+  font: 16px/20px 'Inter', system-ui, sans-serif;
+  padding-left: 6px;
+  min-width: 70px;
+}
+
+/* phone input field (matches dark pill look) */
+.placeholder {
+  background: #17181b;
+  border-radius: 12px;
+  height: 48px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+}
+
+/* turn placeholder text into a real text field if you inject <input> (see HTML snippet below) */
+.placeholder input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f8f9fa;
+  font: 16px/20px 'Inter', system-ui, sans-serif;
+}
+
+/* support/link line */
+.heading3 {
+  color: #1682f9;
+  margin-top: 4px;
+}
+
+/* primary button (centered, disabled style like screenshot) */
+.regular-button {
+  position: static;      /* remove absolute positioning */
+  width: 100%;
+  max-width: 361px;
+  height: 48px;
+  margin: 12px auto 0;
+  border-radius: 12px;
+  background: #b7d8fd;   /* disabled look */
+  cursor: not-allowed;
+}
+
+.button-label {
+  color: #2b2b2b;        /* better contrast on light-blue */
+  font-weight: 600;
+}
+
+/* top bar fixed like iOS */
+.top-bar {
+  position: fixed;
+  left: 0; top: 0;
+  width: 100%;
+  height: 108px;
+}
+
+.top {
+  width: calc(100% - 32px);
+  max-width: 361px;
+  left: 50%;
+  translate: -50%;
+}
+
+/* back button circle */
+.rectangle2 { background: #202124; }
+
+/* optional: when form is valid, enable button look */
+.regular-button.is-active {
+  background: #1682f9;
+  cursor: pointer;
+}
+.regular-button.is-active .button-label {
+  color: #fff;
+}
+
+
+
+/* === Map current HTML (.screen/.card/.phone-row) to the mock === */
+body { background:#111; color:#f8f9fa; }
+
+/* top bar */
+.top-bar {
+  position: fixed; inset: 0 0 auto 0; height: 72px;
+  display:flex; align-items:center; gap:12px; padding:0 16px;
+  background: transparent;
+}
+.top-bar .icon-btn {
+  width:40px; height:40px; border:0; border-radius:999px;
+  background:#202124; color:#f8f9fa; display:inline-grid; place-items:center;
+}
+.top-title {
+  font: 600 20px/1 Inter, system-ui, sans-serif;
+  margin:0; color:#f8f9fa;
+}
+
+/* main screen area */
+.screen {
+  min-height:100dvh; padding:92px 16px 24px; /* room for fixed top bar */
+  display:flex; flex-direction:column; align-items:center;
+}
+
+/* intro copy */
+.intro { width:100%; max-width:361px; margin:0 auto 12px; }
+.heading { font: 600 32px/40px Inter, system-ui, sans-serif; margin:0 0 6px; }
+.subheading { color:#c9c9c9; margin:0; font: 400 16px/20px Inter, system-ui, sans-serif; }
+
+/* form card container */
+.card { width:100%; max-width:361px; margin:16px auto 0; background:transparent; padding:0; }
+
+/* row with country + phone */
+.phone-row { display:flex; gap:12px; align-items:center; }
+.input-col { flex:1; }
+
+/* pill country select (no .flag wrapper needed) */
+.cc-select {
+  appearance:none; -webkit-appearance:none; -moz-appearance:none;
+  background:#17181b; color:#f8f9fa; border:0; outline:0;
+  border-radius:12px; height:48px; padding:0 14px;
+  font: 400 16px/20px Inter, system-ui, sans-serif;
+}
+
+/* pill phone input */
+.placeholder {
+  background:#17181b; border-radius:12px; height:48px;
+  padding:0 14px; display:flex; align-items:center;
+}
+.placeholder input {
+  width:100%; height:100%; background:transparent; border:0; outline:0;
+  color:#f8f9fa; font: 400 16px/20px Inter, system-ui, sans-serif;
+}
+
+/* error text (kept hidden unless invalid) */
+.error { color:#ff6b6b; margin:8px 0 0; font: 400 14px/18px Inter, system-ui, sans-serif; }
+
+/* primary button (disabled look by default) */
+.regular-button {
+  display:block; width:100%; max-width:361px; height:48px;
+  margin:16px auto 0; border-radius:12px; border:0;
+  background:#b7d8fd; cursor:not-allowed;
+}
+.button-label { color:#2b2b2b; font:600 16px/20px Inter, system-ui, sans-serif; }
+
+/* enabled state toggled by JS */
+.regular-button:is(:not([disabled]), .is-active) { background:#1682f9; cursor:pointer; }
+.regular-button:is(:not([disabled]), .is-active) .button-label { color:#fff; }
+
+/* footer link */
+.auth-foot { width:100%; max-width:361px; margin:16px auto 0; }
+.auth-foot .link { color:#1682f9; text-decoration:none; }
+.auth-foot .link:hover { text-decoration:underline; }
+
+
+
+/* ===== FLOWPESA OTP — POLISH PATCH (drop at end) ===== */
+
+/* Page */
+.register-digit-code-dark-mode{
+  background:#111;
+  min-height:100dvh;
+  padding:96px 16px 24px;        /* room for fixed top bar */
+}
+
+/* Center the main column */
+.welcome-text-input-link{
+  position:static;
+  width:100%;
+  max-width:361px;
+  margin:0 auto;
+  gap:20px;
+}
+
+/* Typography */
+.heading{
+  margin:0 0 6px;
+  color:#f8f9fa;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  font-weight:600; font-size:32px; line-height:40px;
+}
+.heading2{ margin:0; color:#c9c9c9; font-size:16px; line-height:20px; }
+.heading3{ margin:0; color:#1682f9; }
+
+/* OTP row */
+.digit-code-input{
+  display:flex; gap:12px; width:100%;
+  margin-top:10px;
+}
+
+/* Boxes – soft, larger, with subtle stroke */
+.digit-code-placeholder{
+  width:56px; height:56px;
+  border-radius:14px;
+  background:#17181b;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+}
+
+/* Blue caret only in the first box */
+.digit-code-placeholder .rectangle-40707{
+  width:2.4px; height:30px; border-radius:2px;
+  background:#1682f9;
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  animation: otpCaretBlink 1s step-end infinite;
+}
+.digit-code-input .digit-code-placeholder:not(:first-child) .rectangle-40707{
+  display:none;
+}
+@keyframes otpCaretBlink{ 0%,49%{opacity:1;} 50%,100%{opacity:0;} }
+
+/* Stack under the boxes */
+.frame-1261155778{
+  width:100%; display:flex; flex-direction:column; gap:8px;
+}
+
+/* Links */
+.heading3 a,
+.welcome-text-input-link a{ color:#1682f9; text-decoration:none; }
+.heading3 a:hover,
+.welcome-text-input-link a:hover{ text-decoration:underline; }
+
+/* ---- Top bar (fixed, clean) ---- */
+.top-bar{
+  position:fixed; inset:0 0 auto 0; height:72px;
+  display:flex; align-items:center; z-index:10;
+  background:transparent;
+}
+.top{
+  width:100%; max-width:361px; margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between;
+  position:static; translate:none;
+}
+.button{ width:40px; height:40px; position:relative; }
+.rectangle2{ background:#202124; border-radius:999px; width:100%; height:100%; }
+.icon-chevron-left{ position:absolute; inset:20% 20% 20% 20%; }
+.icon-chevron-left path{ stroke:#f8f9fa; }
+
+/* Show the centered title */
+.home-made{
+  opacity:1; color:#f8f9fa;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  font-weight:600; font-size:18px; line-height:24px;
+  text-align:center; width:auto;
+}
+
+/* Hide the extra right icon holder */
+.featured-icon{ display:none; }
+
+/* Remove the fake status bar on web */
+.bars-statusbar{ display:none; }
+
+
+/* OTP inputs styled like your dark pills */
+.otp-input{
+  width:56px; height:56px; border-radius:14px;
+  background:#17181b; color:#f8f9fa;
+  text-align:center; font:600 22px/56px Inter, system-ui, sans-serif;
+  border:none; outline:none;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+  caret-color: transparent;        /* hide native caret */
+}
+/* show a blue vertical caret when focused & empty */
+.otp-input:focus:placeholder-shown,
+.otp-input:focus:empty { }
+.otp-input:focus{
+  box-shadow: inset 0 0 0 1px rgba(22,130,249,0.35);
+  position: relative;
+}
+.otp-input:focus::after{
+  content:""; position:absolute; left:50%; top:50%;
+  width:2.4px; height:30px; border-radius:2px; background:#1682f9;
+  transform:translate(-50%,-50%);
+  animation: otpCaretBlink 1s step-end infinite;
+}
+@keyframes otpCaretBlink{0%,49%{opacity:1;}50%,100%{opacity:0;}}
+
+/* keep row spacing */
+.digit-code-input{ display:flex; gap:12px; width:100%; margin-top:10px; }
+
+/* ===== FLOWPESA — RESPONSIVE PATCH (apply last) ===== */
+
+/* Use fluid viewport height and safe areas */
+:root{
+  --page-max: 420px;             /* max content width */
+  --col-max: 361px;              /* design column target */
+  --gap-md: 16px;
+  --gap-lg: 20px;
+}
+
+/* Generic page wrappers (create-account + otp) */
+.register-phone-number-deactive-dark-mode,
+.register-digit-code-dark-mode{
+  min-height: 100dvh;
+  padding: 96px var(--gap-md) calc(24px + env(safe-area-inset-bottom));
+}
+
+/* Top bar becomes fluid width, centered content */
+.top-bar{
+  position: fixed; inset: 0 0 auto 0; height: 72px; z-index: 10;
+  display: flex; align-items: center; background: transparent;
+}
+.top{
+  width: 100%;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--gap-md);
+  display: flex; align-items: center; justify-content: space-between;
+  position: static; translate: none;
+}
+
+/* Content columns */
+.welcome-text-input-link,
+.card,
+.auth-foot,
+.intro{
+  width: 100%;
+  max-width: var(--col-max);
+  margin: 0 auto;
+}
+
+/* Headings scale with screen */
+.heading{
+  font-size: clamp(24px, 5.5vw, 32px);
+  line-height: 1.25;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+.heading2{ font-size: clamp(14px, 3.8vw, 16px); line-height: 1.4; }
+
+/* ---------- CREATE-ACCOUNT ---------- */
+
+/* Make the row wrap on small screens */
+.phone-row{
+  display: flex; gap: 12px; width: 100%;
+  flex-wrap: wrap;
+}
+.cc-select{ flex: 0 0 120px; height: 48px; }     /* country code */
+.input-col{ flex: 1 1 200px; min-width: 0; }     /* phone field grows */
+
+/* Full width primary button */
+.regular-button{
+  width: 100%;
+  max-width: var(--col-max);
+  height: 48px;
+  margin: 16px auto 0;
+  border-radius: 12px;
+}
+
+/* ---------- OTP SCREEN ---------- */
+
+/* Let OTP boxes auto-fit responsively */
+.digit-code-input{
+  display: grid;
+  grid-template-columns: repeat(6, minmax(44px, 1fr));
+  gap: 12px;
+  width: 100%;
+  max-width: var(--col-max);
+  margin-top: 10px;
+}
+
+/* If you're using <div> placeholders */
+.digit-code-placeholder{
+  width: auto;                  /* grid controls width */
+  height: clamp(48px, 10vw, 56px);
+  border-radius: 14px;
+}
+
+/* If you're using real <input class="otp-input"> */
+.otp-input{
+  width: 100%;
+  height: clamp(48px, 10vw, 56px);
+  border-radius: 14px;
+  font-size: clamp(18px, 5.3vw, 22px);
+  line-height: 1;
+}
+
+/* ---------- Small devices tuning ---------- */
+@media (max-width: 360px){
+  .cc-select{ flex: 1 1 100%; }     /* country code goes full line */
+  .input-col{ flex-basis: 100%; }   /* phone field on next line */
+}
+
+/* ---------- Large devices (web preview) ---------- */
+@media (min-width: 640px){
+  .register-phone-number-deactive-dark-mode,
+  .register-digit-code-dark-mode{
+    padding-top: 112px;             /* more breathing room */
+  }
+  .top-bar{ height: 80px; }
+}
+
+/* Remove all fixed widths left from the design export */
+.top-bar,
+.bars-statusbar,
+.i-os-numeric-keyboard,
+.top{
+  max-width: none;
+  width: 100%;
 }

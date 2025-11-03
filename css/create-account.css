@@ -1,0 +1,51 @@
+/* Clean, self-contained styles for create-account.html */
+
+:root { color-scheme: dark; }
+
+html, body { height: 100%; margin: 0; }
+
+.register-phone-number-deactive-dark-mode {
+  background: var(--background-color, #111111);
+  min-height: 100vh;
+  min-height: 100dvh;
+  color: var(--same-text, #f8f9fa);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 16px calc(24px + env(safe-area-inset-bottom));
+}
+
+/* Top bar */
+.top-bar { position: static; height: auto; }
+.top { display: flex; align-items: center; justify-content: flex-start; gap: 12px; }
+.button { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 20px; background: #1a1a1a; }
+.home-made { color: var(--same-text, #f8f9fa); font-weight: 600; }
+
+/* Headings */
+.welcome-text { margin-top: 8px; }
+.heading { font-size: clamp(28px, 6.8vw, 34px); font-weight: 600; color: var(--same-text, #f8f9fa); margin: 0 0 6px; }
+.heading2 { margin: 0; color: var(--secondary-text, #c7c7c7); font-size: clamp(14px, 3.6vw, 16px); line-height: 1.5; }
+
+/* Input row */
+.input { margin-top: 18px; }
+.input-mobile-active { display: flex; gap: 10px; align-items: center; }
+.flag { background: var(--main-section, #17181b); border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; gap: 8px; }
+.country-flag { width: 28px; height: 28px; display: grid; place-items: center; }
+.flag select { color: var(--same-text, #f8f9fa); background: transparent; border: none; outline: none; font: inherit; min-width: 70px; appearance: none; -webkit-appearance: none; -moz-appearance: none; }
+.flag select::-ms-expand { display: none; }
+.flag option { color: #000; background: #fff; }
+
+.placeholder { flex: 1; background: var(--main-section, #17181b); border-radius: 12px; padding: 12px 16px; color: var(--secondary-text, #c7c7c7); }
+.mobile-number { font-size: 16px; line-height: 20px; }
+
+.heading3 { color: var(--primary-color, #1682f9); margin-top: 12px; }
+
+/* Primary action button pinned near bottom */
+.regular-button { background: var(--foundation-primary-blue-100, #b7d8fd); border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; justify-content: center; width: 100%; height: 46px; margin-top: auto; order: 99; }
+.button-label { color: #2a2a2a; font-weight: 600; }
+
+/* Small helpers for SVGs in the mock */
+.vector, .group { display: block; }
+
+@media (min-width: 480px) { .register-phone-number-deactive-dark-mode { max-width: 480px; margin: 0 auto; } }

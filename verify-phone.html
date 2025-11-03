@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Flowpesa - verify phone</title>
+</head>
+<body>
+    <div class="register-digit-code-dark-mode">
+   
+    <div class="welcome-text-input-link">
+        <div class="welcome-text-input">
+            <div class="welcome-text">
+                <div class="heading"> 6-digit code </div>
+                <div class="heading2"> Code sent to +90 55 999 88 77 unless you already have an account </div>
+            </div>
+            <div class="digit-code-input" role="group" aria-label="6-digit code">
+  <input class="otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 1">
+  <input class="otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 2">
+  <input class="otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 3">
+  <input class="otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 4">
+  <input class="otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 5">
+  <input class="otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 6">
+</div>
+
+        </div>
+        <div class="frame-1261155778">
+            <div class="heading2"> Resend code in 00:30 </div>
+            <div class="heading3"> Already have an account ? Log in </div>
+        </div>
+    </div>
+    <div class="top-bar">
+        <div class="rectangle">
+        </div>
+        <div class="top">
+            <div class="button">
+                <div class="rectangle2">
+                </div><svg class="icon-chevron-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="var(--main-text, #f8f9fa)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </div>
+            <div class="home-made"> Sign Up </div>
+            <div class="featured-icon">
+                <div class="search-normal">
+                    <svg class="vuesax-linear-search-normal" width="20" height="20"></svg>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</div>
+
+
+<script>
+  (function(){
+    const inputs = Array.from(document.querySelectorAll('.otp-input'));
+    const isDigit = v => /^[0-9]$/.test(v);
+
+    // focus first
+    inputs[0]?.focus();
+
+    inputs.forEach((inp, idx) => {
+      // keep one character & go next
+      inp.addEventListener('input', e => {
+        let v = e.target.value.replace(/\D/g,'');
+        e.target.value = v.slice(0,1);
+        if (v && idx < inputs.length - 1) inputs[idx+1].focus();
+        checkComplete();
+      });
+
+      // handle backspace: if empty, go prev
+      inp.addEventListener('keydown', e => {
+        if (e.key === 'Backspace' && !inp.value && idx > 0) {
+          inputs[idx-1].focus();
+          inputs[idx-1].value = '';
+          e.preventDefault();
+        }
+      });
+
+      // restrict to digits
+      inp.addEventListener('beforeinput', e => {
+        if (e.data && !isDigit(e.data)) e.preventDefault();
+      });
+    });
+
+    // paste full code anywhere
+    inputs.forEach(inp => {
+      inp.addEventListener('paste', e => {
+        const txt = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g,'').slice(0, inputs.length);
+        if (!txt) return;
+        e.preventDefault();
+        inputs.forEach((i, j) => i.value = txt[j] || '');
+        (txt.length < inputs.length ? inputs[txt.length] : inputs[inputs.length-1]).focus();
+        checkComplete();
+      });
+    });
+
+    function checkComplete(){
+      const code = inputs.map(i => i.value).join('');
+      // enable your Continue/Verify button if present
+      const btn = document.getElementById('continue-btn') || document.querySelector('.regular-button');
+      if (btn){
+        const ok = code.length === inputs.length;
+        btn.toggleAttribute('disabled', !ok);
+        btn.classList.toggle('is-active', ok);
+      }
+      // when complete, you can auto-submit or call API:
+      // if (code.length === inputs.length) verifyCode(code)
+    }
+
+    // Example verify handler:
+    // async function verifyCode(code){
+    //   const res = await fetch('/api/auth/verify-otp',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code})});
+    //   if(res.ok) location.href='/set-passcode';
+    // }
+  })();
+</script>
+
+</body>
+</html>
