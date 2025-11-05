@@ -22,7 +22,11 @@ It enables users to **send, receive, save, and grow** their money seamlessly thr
 flowpesa/
 ├── index.html                 # Onboarding slides
 ├── create-account.html        # Phone number signup
+<<<<<<< HEAD
 ├── verify-phone.html          # 6-digit verification screen
+=======
+├── verify-otp.html            # 6-digit verification screen
+>>>>>>> e63a2dba45972b2976932632279679ed61f12aa1
 ├── css/
 │   ├── style.css              # Unified UI/UX styling
 │   └── vars.css               # Color & font variables
@@ -44,6 +48,7 @@ flowpesa/
 
 ---
 
+<<<<<<< HEAD
 ## 🧑‍💻 Getting Started (Local Preview)
 
 ```bash
@@ -62,6 +67,8 @@ http://localhost:3000
 
 ---
 
+=======
+>>>>>>> e63a2dba45972b2976932632279679ed61f12aa1
 ## 🪄 UI/UX Principles
 
 - **Simple > Fancy:** 3 taps to finish any action  
