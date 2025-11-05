@@ -22,7 +22,7 @@ It enables users to **send, receive, save, and grow** their money seamlessly thr
 flowpesa/
 ├── index.html                 # Onboarding slides
 ├── create-account.html        # Phone number signup
-├── verify-otp.html            # 6-digit verification screen
+├── verify-phone.html          # 6-digit verification screen
 ├── css/
 │   ├── style.css              # Unified UI/UX styling
 │   └── vars.css               # Color & font variables

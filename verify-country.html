@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flowpesa – Verify Country</title>
+  <link rel="stylesheet" href="css/vars.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="theme-dark">
+  <!-- Scoped wrapper so styles don’t leak -->
+  <main class="country-screen register-country-selected-dark-mode">
+    <!-- Top bar (reuses your component) -->
+    <header class="top-bar">
+      <div class="top">
+        <button class="button" type="button" onclick="history.back()" aria-label="Go back">
+          <div class="rectangle2"></div>
+          <svg class="icon-chevron-left" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <h1 class="home-made">Sign Up</h1>
+        <span class="featured-icon" aria-hidden="true" style="display:none"></span>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <section class="country-selected-section">
+      <div class="welcome-text">
+        <h2 class="heading2">Country of residence</h2>
+        <p class="heading3">
+          The terms and services that apply to you are based on your native land.
+        </p>
+      </div>
+
+      <form class="input" id="country-form">
+        <label class="input2" for="country">
+          <span class="label-cap">Country</span>
+          <div class="select-wrap">
+            <select id="country" name="country" aria-label="Country">
+              <!-- List you asked to prioritise -->
+              <option value="Uganda" selected>🇺🇬 Uganda</option>
+              <option value="Kenya">🇰🇪 Kenya</option>
+              <option value="Tanzania">🇹🇿 Tanzania</option>
+              <option value="Rwanda">🇷🇼 Rwanda</option>
+              <option value="United Kingdom">🇬🇧 United Kingdom</option>
+              <option value="United States">🇺🇸 United States</option>
+            </select>
+            <svg class="chev" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M5 8l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </label>
+
+        <button class="regular-button" type="submit">
+          <span class="button-label">Register Securely</span>
+        </button>
+      </form>
+    </section>
+
+    <p class="country-legal">
+      By clicking the Secure Sign Up button, you consent to our
+      <a href="#" class="link">Terms &amp; Conditions</a> and
+      <a href="#" class="link">Privacy Policy</a>.
+      Enjoy 24/7 digital support through our in-app chat feature.
+    </p>
+  </main>
+
+  <script>
+    // optional: keep a clean submit
+    document.getElementById('country-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const country = document.getElementById('country').value;
+      // navigate to next step
+      location.href = 'create-account.html?country=' + encodeURIComponent(country);
+    });
+  </script>
+</body>
+</html>

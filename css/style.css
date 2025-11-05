@@ -1,498 +1,153 @@
-/* Cleaned stylesheet for index.html onboarding only */
-
-/* Global background and typography */
-html, body { height: 100%; margin: 0; background: var(--background-color, #111111); color: var(--main-text, #f8f9fa); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-
-/* Onboarding layout */
-.onboard { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 20px; padding: 24px 16px calc(24px + env(safe-area-inset-bottom)); max-width: 480px; margin: 0 auto; }
-
-.slides { width: 100%; display: flex; flex-direction: column; align-items: center; margin-bottom: 8px; }
-.slide { width: 100%; display: none; flex-direction: column; align-items: center; gap: 10px; opacity: 0; transform: translateX(24px); transition: opacity 320ms ease, transform 320ms ease; }
-.slide.active { display: flex; opacity: 1; transform: translateX(0); }
-
-/* (hero-ill styles removed; slides use .image-20) */
-
-/* Raster/SVG hero images used in slides */
-.image-20 { width: min(320px, 85vw); height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 18px 35px rgba(0,0,0,0.5)); border-radius: 12px; }
-.onboard.active-3 .image-20 { width: min(280px, 78vw); }
-
-/* Centered message style for Slide 4 */
-.slide.center-message { min-height: 54vh; justify-content: center; gap: 16px; }
-.slide.center-message .title { font-size: clamp(28px, 8.5vw, 40px); text-align: center; }
-.slide.center-message .subtitle { font-size: clamp(14px, 3.6vw, 16px); text-align: center; max-width: 34rem; }
-
-/* Pager */
-.pager { display: flex; gap: 16px; margin-top: 12px; align-items: center; justify-content: center; width: min(360px, 90vw); padding-inline: 12px; }
-.pager .bar { flex: 1 1 auto; max-width: 72px; height: 4px; border-radius: 8px; background: rgba(255,255,255,0.38); }
-.pager .bar.active { background: var(--foundation-primary-blue-500, #1682f9); box-shadow: 0 0 0 1px rgba(22,130,249,0.15); }
-
-/* Copy */
-.copy { text-align: center; max-width: 32rem; padding-inline: 8px; }
-.title { font-size: clamp(22px, 6vw, 28px); margin: 12px 0 8px; font-weight: 600; color: var(--same-text, #f8f9fa); }
-.subtitle { margin: 0; color: var(--secondary-text, #c7c7c7); font-size: clamp(14px, 3.6vw, 16px); line-height: 1.5; }
-
-/* Actions */
-.actions { width: min(420px, 100%); display: flex; flex-direction: column; gap: 12px; margin-top: auto; }
-.btn { display: inline-flex; align-items: center; justify-content: center; height: 48px; border-radius: 12px; text-decoration: none; font-size: 16px; font-weight: 600; transition: transform 120ms ease, background-color 120ms ease, border-color 120ms ease; }
-.btn:active { transform: scale(0.98); }
-.btn-primary { background: var(--foundation-primary-blue-500, #1682f9); color: #fff; border: 1px solid transparent; }
-.btn-primary:hover { background: var(--primary-active, #105cb1); }
-.btn-outline { color: var(--same-text, #f8f9fa); border: 1px solid #3a3a3a; background: transparent; }
-.btn-outline:hover { border-color: #5a5a5a; }
-
-@media (min-width: 768px) { .onboard { gap: 24px; } }
-
-
-
-/* signup page by creating phone number  */
-
-/* === FLOWPESA SIGN-UP — ALIGN TO MOCK === */
-
-/* page */
-.register-phone-number-deactive-dark-mode {
-  background: #111;      /* dark bg */
-  min-height: 100dvh;    /* full height on mobile */
-  padding: 108px 16px 24px; /* space for fixed top-bar + page padding */
+/* =========================================
+   FLOWPESA — Verify Country (scoped styles)
+   ========================================= */
+.country-screen {
+  background:#111;
+  color:#f8f9fa;
+  min-height:100dvh;
+  padding: calc(72px + 16px) 16px calc(24px + env(safe-area-inset-bottom));
 }
 
-/* container holding title, input, link, button */
-.welcome-text-input-link {
-  position: static;      /* remove absolute */
-  width: 100%;
-  max-width: 361px;
-  margin: 0 auto;        /* center horizontally */
-  gap: 16px;
+/* Top bar sizing reused but fluid */
+.country-screen .top-bar{
+  position:fixed; inset:0 0 auto 0; height:72px; background:transparent; z-index:10;
+}
+.country-screen .top{
+  max-width:480px; margin:0 auto; padding:0 16px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.country-screen .button{ width:40px; height:40px; position:relative; border:0; padding:0; background:transparent; border-radius:999px; display:inline-grid; place-items:center; cursor:pointer; }
+.country-screen .rectangle2{ background:#202124; border-radius:999px; width:100%; height:100%; }
+.country-screen .icon-chevron-left{ position:absolute; inset:20% 20% 20% 20%; color:#f8f9fa; }
+.country-screen .button:focus-visible{ outline:2px solid rgba(22,130,249,.55); outline-offset:2px; }
+.country-screen .button:active{ transform: scale(0.98); }
+.country-screen .home-made{
+  color:#f8f9fa; font:600 18px/24px Inter,system-ui,sans-serif; margin:0;
 }
 
-/* headings */
-.heading {
-  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  font-size: 32px;
-  line-height: 40px;
+/* Section */
+.country-screen .country-selected-section{
+  width:100%; max-width:420px; margin:0 auto;
+}
+.country-screen .welcome-text{ margin-bottom:16px; }
+.country-screen .heading2{
+  font:700 clamp(26px, 6.5vw, 36px)/1.25 Inter,system-ui,sans-serif; margin:0 0 6px;
+}
+.country-screen .heading3{
+  margin:0; color:#c9c9c9; font:400 16px/1.4 Inter,system-ui,sans-serif;
+}
+
+/* Input/Select pill */
+.country-screen .input{ display:flex; flex-direction:column; gap:16px; }
+.country-screen .input2{
+  display:flex; flex-direction:column; gap:8px;
+  background:transparent; border-radius:16px; padding:0;
+}
+.country-screen .label-cap{
+  color:#c9c9c9; font:400 12px/16px Inter,system-ui,sans-serif;
+}
+.country-screen .select-wrap{
+  position:relative;
+  background:#17181b; border-radius:16px; height:56px; padding:0 14px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.country-screen select{
+  flex:1; min-width:0; border:0; outline:0;
+  background:transparent; color:#f8f9fa; font:400 16px/20px Inter,system-ui,sans-serif;
+  appearance:none; -webkit-appearance:none; -moz-appearance:none;
+}
+.country-screen .chev{
+  flex:0 0 auto; color:#c7c7c7;
+}
+
+/* CTA */
+.country-screen .regular-button{
+  display:block; width:100%; height:56px; border:0;
+  border-radius:16px; background:#1682f9; margin-top:24px;
+}
+.country-screen .button-label{ color:#fff; font:600 16px/20px Inter,system-ui,sans-serif; }
+
+/* Legal text */
+.country-screen .country-legal{
+  max-width:480px; margin:18px auto 0; text-align:center;
+  color:#c9c9c9; font:400 14px/18px Inter,system-ui,sans-serif;
+}
+.country-screen .country-legal .link{ color:#1682f9; text-decoration:none; }
+.country-screen .country-legal .link:hover{ text-decoration:underline; }
+
+/* Small phones */
+@media (max-width:360px){
+  .country-screen{ padding-top: calc(72px + 12px); }
+}
+
+
+
+/* === Verify Country — Dark dropdown fix === */
+.country-screen {
+  background: #111; 
   color: #f8f9fa;
-  margin: 0;
+  min-height: 100dvh;
+  margin: 0;              /* remove default body margins that cause white frame */
+  border: none;           /* ensure no global border shows */
+  outline: none;
 }
 
-.heading2 {
-  color: #c9c9c9;
+/* Remove any white gap around edges */
+html, body {
+  background: #111 !important;
+  border: none !important;
+  outline: none !important;
 }
 
-/* input row */
-.input { gap: 12px; }
-.input-mobile-active {
-  width: 100%;
-  gap: 12px;
-}
-
-/* country selector chip */
-.flag {
-  background: #17181b;
-  border-radius: 12px;
-  height: 48px;
-  padding: 10px 14px;
-  gap: 8px;
-}
-
-/* dropdown visual */
-.flag select {
-  color: #f8f9fa;
-  border: 0;
-  font: 16px/20px 'Inter', system-ui, sans-serif;
-  padding-left: 6px;
-  min-width: 70px;
-}
-
-/* phone input field (matches dark pill look) */
-.placeholder {
-  background: #17181b;
-  border-radius: 12px;
-  height: 48px;
-  padding: 0 14px;
-  display: flex;
-  align-items: center;
-}
-
-/* turn placeholder text into a real text field if you inject <input> (see HTML snippet below) */
-.placeholder input {
-  width: 100%;
-  height: 100%;
-  background: transparent;
+/* Style the select to look native-dark */
+.country-screen select {
+  flex: 1;
+  min-width: 0;
   border: none;
   outline: none;
   color: #f8f9fa;
-  font: 16px/20px 'Inter', system-ui, sans-serif;
-}
-
-/* support/link line */
-.heading3 {
-  color: #1682f9;
-  margin-top: 4px;
-}
-
-/* primary button (centered, disabled style like screenshot) */
-.regular-button {
-  position: static;      /* remove absolute positioning */
-  width: 100%;
-  max-width: 361px;
-  height: 48px;
-  margin: 12px auto 0;
-  border-radius: 12px;
-  background: #b7d8fd;   /* disabled look */
-  cursor: not-allowed;
-}
-
-.button-label {
-  color: #2b2b2b;        /* better contrast on light-blue */
-  font-weight: 600;
-}
-
-/* top bar fixed like iOS */
-.top-bar {
-  position: fixed;
-  left: 0; top: 0;
-  width: 100%;
-  height: 108px;
-}
-
-.top {
-  width: calc(100% - 32px);
-  max-width: 361px;
-  left: 50%;
-  translate: -50%;
-}
-
-/* back button circle */
-.rectangle2 { background: #202124; }
-
-/* optional: when form is valid, enable button look */
-.regular-button.is-active {
-  background: #1682f9;
-  cursor: pointer;
-}
-.regular-button.is-active .button-label {
-  color: #fff;
-}
-
-
-
-/* === Map current HTML (.screen/.card/.phone-row) to the mock === */
-body { background:#111; color:#f8f9fa; }
-
-/* top bar */
-.top-bar {
-  position: fixed; inset: 0 0 auto 0; height: 72px;
-  display:flex; align-items:center; gap:12px; padding:0 16px;
-  background: transparent;
-}
-.top-bar .icon-btn {
-  width:40px; height:40px; border:0; border-radius:999px;
-  background:#202124; color:#f8f9fa; display:inline-grid; place-items:center;
-}
-.top-title {
-  font: 600 20px/1 Inter, system-ui, sans-serif;
-  margin:0; color:#f8f9fa;
-}
-
-/* main screen area */
-.screen {
-  min-height:100dvh; padding:92px 16px 24px; /* room for fixed top bar */
-  display:flex; flex-direction:column; align-items:center;
-}
-
-/* intro copy */
-.intro { width:100%; max-width:361px; margin:0 auto 12px; }
-.heading { font: 600 32px/40px Inter, system-ui, sans-serif; margin:0 0 6px; }
-.subheading { color:#c9c9c9; margin:0; font: 400 16px/20px Inter, system-ui, sans-serif; }
-
-/* form card container */
-.card { width:100%; max-width:361px; margin:16px auto 0; background:transparent; padding:0; }
-
-/* row with country + phone */
-.phone-row { display:flex; gap:12px; align-items:center; }
-.input-col { flex:1; }
-
-/* pill country select (no .flag wrapper needed) */
-.cc-select {
-  appearance:none; -webkit-appearance:none; -moz-appearance:none;
-  background:#17181b; color:#f8f9fa; border:0; outline:0;
-  border-radius:12px; height:48px; padding:0 14px;
   font: 400 16px/20px Inter, system-ui, sans-serif;
-}
-
-/* pill phone input */
-.placeholder {
-  background:#17181b; border-radius:12px; height:48px;
-  padding:0 14px; display:flex; align-items:center;
-}
-.placeholder input {
-  width:100%; height:100%; background:transparent; border:0; outline:0;
-  color:#f8f9fa; font: 400 16px/20px Inter, system-ui, sans-serif;
-}
-
-/* error text (kept hidden unless invalid) */
-.error { color:#ff6b6b; margin:8px 0 0; font: 400 14px/18px Inter, system-ui, sans-serif; }
-
-/* primary button (disabled look by default) */
-.regular-button {
-  display:block; width:100%; max-width:361px; height:48px;
-  margin:16px auto 0; border-radius:12px; border:0;
-  background:#b7d8fd; cursor:not-allowed;
-}
-.button-label { color:#2b2b2b; font:600 16px/20px Inter, system-ui, sans-serif; }
-
-/* enabled state toggled by JS */
-.regular-button:is(:not([disabled]), .is-active) { background:#1682f9; cursor:pointer; }
-.regular-button:is(:not([disabled]), .is-active) .button-label { color:#fff; }
-
-/* footer link */
-.auth-foot { width:100%; max-width:361px; margin:16px auto 0; }
-.auth-foot .link { color:#1682f9; text-decoration:none; }
-.auth-foot .link:hover { text-decoration:underline; }
-
-
-
-/* ===== FLOWPESA OTP — POLISH PATCH (drop at end) ===== */
-
-/* Page */
-.register-digit-code-dark-mode{
-  background:#111;
-  min-height:100dvh;
-  padding:96px 16px 24px;        /* room for fixed top bar */
-}
-
-/* Center the main column */
-.welcome-text-input-link{
-  position:static;
-  width:100%;
-  max-width:361px;
-  margin:0 auto;
-  gap:20px;
-}
-
-/* Typography */
-.heading{
-  margin:0 0 6px;
-  color:#f8f9fa;
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-  font-weight:600; font-size:32px; line-height:40px;
-}
-.heading2{ margin:0; color:#c9c9c9; font-size:16px; line-height:20px; }
-.heading3{ margin:0; color:#1682f9; }
-
-/* OTP row */
-.digit-code-input{
-  display:flex; gap:12px; width:100%;
-  margin-top:10px;
-}
-
-/* Boxes – soft, larger, with subtle stroke */
-.digit-code-placeholder{
-  width:56px; height:56px;
-  border-radius:14px;
-  background:#17181b;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
-  display:flex; align-items:center; justify-content:center;
-  position:relative;
-}
-
-/* Blue caret only in the first box */
-.digit-code-placeholder .rectangle-40707{
-  width:2.4px; height:30px; border-radius:2px;
-  background:#1682f9;
-  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
-  animation: otpCaretBlink 1s step-end infinite;
-}
-.digit-code-input .digit-code-placeholder:not(:first-child) .rectangle-40707{
-  display:none;
-}
-@keyframes otpCaretBlink{ 0%,49%{opacity:1;} 50%,100%{opacity:0;} }
-
-/* Stack under the boxes */
-.frame-1261155778{
-  width:100%; display:flex; flex-direction:column; gap:8px;
-}
-
-/* Links */
-.heading3 a,
-.welcome-text-input-link a{ color:#1682f9; text-decoration:none; }
-.heading3 a:hover,
-.welcome-text-input-link a:hover{ text-decoration:underline; }
-
-/* ---- Top bar (fixed, clean) ---- */
-.top-bar{
-  position:fixed; inset:0 0 auto 0; height:72px;
-  display:flex; align-items:center; z-index:10;
-  background:transparent;
-}
-.top{
-  width:100%; max-width:361px; margin:0 auto;
-  display:flex; align-items:center; justify-content:space-between;
-  position:static; translate:none;
-}
-.button{ width:40px; height:40px; position:relative; }
-.rectangle2{ background:#202124; border-radius:999px; width:100%; height:100%; }
-.icon-chevron-left{ position:absolute; inset:20% 20% 20% 20%; }
-.icon-chevron-left path{ stroke:#f8f9fa; }
-
-/* Show the centered title */
-.home-made{
-  opacity:1; color:#f8f9fa;
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-  font-weight:600; font-size:18px; line-height:24px;
-  text-align:center; width:auto;
-}
-
-/* Hide the extra right icon holder */
-.featured-icon{ display:none; }
-
-/* Remove the fake status bar on web */
-.bars-statusbar{ display:none; }
-
-
-/* OTP inputs styled like your dark pills */
-.otp-input{
-  width:56px; height:56px; border-radius:14px;
-  background:#17181b; color:#f8f9fa;
-  text-align:center; font:600 22px/56px Inter, system-ui, sans-serif;
-  border:none; outline:none;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
-  caret-color: transparent;        /* hide native caret */
-}
-/* show a blue vertical caret when focused & empty */
-.otp-input:focus:placeholder-shown,
-.otp-input:focus:empty { }
-.otp-input:focus{
-  box-shadow: inset 0 0 0 1px rgba(22,130,249,0.35);
-  position: relative;
-}
-.otp-input:focus::after{
-  content:""; position:absolute; left:50%; top:50%;
-  width:2.4px; height:30px; border-radius:2px; background:#1682f9;
-  transform:translate(-50%,-50%);
-  animation: otpCaretBlink 1s step-end infinite;
-}
-@keyframes otpCaretBlink{0%,49%{opacity:1;}50%,100%{opacity:0;}}
-
-/* keep row spacing */
-.digit-code-input{ display:flex; gap:12px; width:100%; margin-top:10px; }
-
-/* ===== FLOWPESA — RESPONSIVE PATCH (apply last) ===== */
-
-/* Use fluid viewport height and safe areas */
-:root{
-  --page-max: 420px;             /* max content width */
-  --col-max: 361px;              /* design column target */
-  --gap-md: 16px;
-  --gap-lg: 20px;
-}
-
-/* Generic page wrappers (create-account + otp) */
-.register-phone-number-deactive-dark-mode,
-.register-digit-code-dark-mode{
-  min-height: 100dvh;
-  padding: 96px var(--gap-md) calc(24px + env(safe-area-inset-bottom));
-}
-
-/* Top bar becomes fluid width, centered content */
-.top-bar{
-  position: fixed; inset: 0 0 auto 0; height: 72px; z-index: 10;
-  display: flex; align-items: center; background: transparent;
-}
-.top{
-  width: 100%;
-  max-width: var(--page-max);
-  margin: 0 auto;
-  padding: 0 var(--gap-md);
-  display: flex; align-items: center; justify-content: space-between;
-  position: static; translate: none;
-}
-
-/* Content columns */
-.welcome-text-input-link,
-.card,
-.auth-foot,
-.intro{
-  width: 100%;
-  max-width: var(--col-max);
-  margin: 0 auto;
-}
-
-/* Headings scale with screen */
-.heading{
-  font-size: clamp(24px, 5.5vw, 32px);
-  line-height: 1.25;
-  font-weight: 600;
-  margin: 0 0 6px;
-}
-.heading2{ font-size: clamp(14px, 3.8vw, 16px); line-height: 1.4; }
-
-/* ---------- CREATE-ACCOUNT ---------- */
-
-/* Make the row wrap on small screens */
-.phone-row{
-  display: flex; gap: 12px; width: 100%;
-  flex-wrap: wrap;
-}
-.cc-select{ flex: 0 0 120px; height: 48px; }     /* country code */
-.input-col{ flex: 1 1 200px; min-width: 0; }     /* phone field grows */
-
-/* Full width primary button */
-.regular-button{
-  width: 100%;
-  max-width: var(--col-max);
-  height: 48px;
-  margin: 16px auto 0;
+  background: #17181b;
   border-radius: 12px;
+  padding: 0 12px;
+  height: 48px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* ---------- OTP SCREEN ---------- */
-
-/* Let OTP boxes auto-fit responsively */
-.digit-code-input{
-  display: grid;
-  grid-template-columns: repeat(6, minmax(44px, 1fr));
-  gap: 12px;
-  width: 100%;
-  max-width: var(--col-max);
-  margin-top: 10px;
+/* Remove white system border highlight on focus */
+.country-screen select:focus {
+  box-shadow: 0 0 0 2px rgba(22,130,249,0.4);
+  background: #1e1f22;
 }
 
-/* If you're using <div> placeholders */
-.digit-code-placeholder{
-  width: auto;                  /* grid controls width */
-  height: clamp(48px, 10vw, 56px);
-  border-radius: 14px;
+/* For Chrome/Safari dropdown list background (WebKit only) */
+.country-screen select::-webkit-scrollbar { width: 8px; }
+.country-screen select::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 4px; }
+.country-screen option {
+  background-color: #17181b;
+  color: #f8f9fa;
 }
 
-/* If you're using real <input class="otp-input"> */
-.otp-input{
-  width: 100%;
-  height: clamp(48px, 10vw, 56px);
-  border-radius: 14px;
-  font-size: clamp(18px, 5.3vw, 22px);
-  line-height: 1;
-}
-
-/* ---------- Small devices tuning ---------- */
-@media (max-width: 360px){
-  .cc-select{ flex: 1 1 100%; }     /* country code goes full line */
-  .input-col{ flex-basis: 100%; }   /* phone field on next line */
-}
-
-/* ---------- Large devices (web preview) ---------- */
-@media (min-width: 640px){
-  .register-phone-number-deactive-dark-mode,
-  .register-digit-code-dark-mode{
-    padding-top: 112px;             /* more breathing room */
+/* For Firefox dropdown background */
+@-moz-document url-prefix() {
+  .country-screen select {
+    background-color: #17181b;
+    color: #f8f9fa;
   }
-  .top-bar{ height: 80px; }
+  .country-screen option {
+    background-color: #17181b;
+    color: #f8f9fa;
+  }
 }
 
-/* Remove all fixed widths left from the design export */
-.top-bar,
-.bars-statusbar,
-.i-os-numeric-keyboard,
-.top{
-  max-width: none;
-  width: 100%;
+/* Chevron styling */
+.country-screen .chev {
+  flex-shrink: 0;
+  color: #c7c7c7;
+  pointer-events: none;
 }
+/* End of Verify Country dark dropdown fix */

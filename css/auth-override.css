@@ -1,0 +1,88 @@
+/* Flowpesa Auth Override — makes create-account & OTP match the mock and be responsive */
+
+:root{
+  --page-max: 480px;
+  --col-max: 361px;
+  --gap-sm: 12px;
+  --gap-md: 16px;
+  --gap-lg: 20px;
+  --btn-h: 48px;
+  --bg: #111;
+  --pill: #17181b;
+  --text: #f8f9fa;
+  --muted: #c9c9c9;
+  --brand: #1682f9;
+  --btn-disabled: #b7d8fd;
+}
+
+/* Base */
+.theme-dark, .theme-dark body { background: var(--bg); color: var(--text); }
+img { max-width: 100%; height: auto; display: block; }
+
+/* Top bar (fluid) */
+.top-bar{ position: fixed; inset: 0 0 auto 0; height: 72px; z-index: 100; display:flex; align-items:center; }
+.top{ width:100%; max-width: var(--page-max); margin:0 auto; padding:0 var(--gap-md);
+      display:flex; align-items:center; justify-content:space-between; }
+.icon-btn{ width:40px; height:40px; border:0; border-radius:999px; display:grid; place-items:center; background:#202124; color:var(--text); }
+.top-title{ margin:0; font:600 18px/24px Inter,system-ui,sans-serif; color:var(--text); }
+.top-ghost{ width:40px; height:40px; }
+
+/* Shared screen layout */
+.screen{ min-height:100dvh; display:flex; flex-direction:column; align-items:center;
+         padding: calc(72px + var(--gap-md)) var(--gap-md) calc(24px + env(safe-area-inset-bottom)); }
+.intro, .card, .auth-foot{ width:100%; max-width: var(--col-max); margin:0 auto; }
+
+.heading{ margin:0 0 6px; font:600 clamp(24px,5.5vw,32px)/1.25 Inter,system-ui,sans-serif; color:var(--text); }
+.subheading{ margin:0; color:var(--muted); font:400 clamp(14px,3.8vw,16px)/1.5 Inter,system-ui,sans-serif; }
+.link{ color: var(--brand); text-decoration: none; }
+.link:hover{ text-decoration: underline; }
+
+/* Create account */
+.phone-row{ display:flex; flex-wrap:wrap; gap: var(--gap-sm); width:100%; }
+.cc-select{ flex: 0 0 120px; height: var(--btn-h); border-radius:12px; border:0; outline:0;
+            background: var(--pill); color: var(--text); padding:0 14px; font-size:16px; }
+.input-col{ flex:1 1 200px; min-width:0; }
+.input-pill{ display:flex; align-items:center; gap:8px; height: var(--btn-h); border-radius:12px; background: var(--pill); padding:0 14px; }
+.input-pill input{ flex:1; min-width:0; border:0; outline:0; background:transparent; color:var(--text); font-size:16px; }
+.clear-btn{ width:28px; height:28px; border-radius:999px; border:0; background:#2a2a2a; color:#cfcfcf; }
+.clear-btn:active{ transform: scale(0.96); }
+
+/* Button */
+.regular-button{ display:block; width:100%; max-width: var(--col-max); height:var(--btn-h);
+  margin: 24px auto 0; border-radius:12px; border:0; background: var(--btn-disabled); cursor:not-allowed; }
+.button-label{ font:600 16px/20px Inter,system-ui,sans-serif; color:#2b2b2b; }
+.regular-button.is-active{ background: var(--brand); cursor:pointer; }
+.regular-button.is-active .button-label{ color:#fff; }
+
+/* OTP */
+.digit-code-input{
+  display:grid; grid-template-columns: repeat(6, minmax(44px, 1fr));
+  gap: var(--gap-sm); width:100%; margin-top:10px;
+}
+.otp-input{
+  width:100%; height: clamp(48px, 10vw, 56px);
+  border-radius:14px; background: var(--pill); color: var(--text);
+  border:0; outline:0; text-align:center;
+  font:600 clamp(18px,5.3vw,22px)/1 Inter,system-ui,sans-serif;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+  caret-color: transparent;
+}
+.otp-input:focus{
+  box-shadow: inset 0 0 0 1px rgba(22,130,249,.35);
+  position: relative;
+}
+.otp-input:focus::after{
+  content:""; position:absolute; left:50%; top:50%;
+  width:2.4px; height:30px; border-radius:2px; background: var(--brand);
+  transform: translate(-50%,-50%); animation: otpCaretBlink 1s step-end infinite;
+}
+@keyframes otpCaretBlink{ 0%,49%{opacity:1;} 50%,100%{opacity:0;} }
+
+.stack-under{ width:100%; display:flex; flex-direction:column; gap:8px; margin-top:12px; }
+.error{ color:#ff6b6b; margin:8px 0 0; font: 400 14px/18px Inter,system-ui,sans-serif; }
+
+/* Small phones */
+@media (max-width: 360px){
+  .cc-select{ flex: 1 1 100%; }
+  .input-col{ flex-basis: 100%; }
+}
