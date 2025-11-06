@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flowpesa — Verify email</title>
+
+  <!-- Global first, page-scoped second -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/verify-email.css" />
+</head>
+<body class="email-screen">
+  <!-- Top bar -->
+  <header class="top-bar">
+    <div class="top">
+      <button class="back-btn" type="button" onclick="history.back()" aria-label="Go back">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15 18L9 12l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <span aria-hidden="true"></span>
+    </div>
+  </header>
+
+  <main class="content">
+    <h1 class="title">Email</h1>
+    <p class="subtitle">Please provide your email address.</p>
+
+    <form id="email-form" novalidate>
+      <label class="label" for="email">Email address</label>
+      <div class="pill">
+        <input
+          id="email"
+          type="email"
+          inputmode="email"
+          autocomplete="email"
+          placeholder="you@example.com"
+          maxlength="100"
+          aria-describedby="email-help"
+          required
+        />
+        <button class="clear-btn" type="button" aria-label="Clear" hidden>&times;</button>
+      </div>
+
+      <div class="hint-row">
+        <span id="email-help">We’ll use this for receipts and security alerts.</span>
+        <span class="counter" data-for="email">0/100</span>
+      </div>
+
+      <p class="error" id="email-error">Enter a valid email address (e.g., name@domain.com).</p>
+
+      <button id="email-continue" class="cta" type="submit" disabled>Continue</button>
+    </form>
+  </main>
+
+  <script src="Js/verify-email.js"></script>
+</body>
+</html>

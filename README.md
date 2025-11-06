@@ -34,6 +34,10 @@ flowpesa/
 └── README.md
 ```
 
+## 🔐 Registration Flow
+
+- `create-account.html` → `verify-phone.html` (OTP) → `verify-location.html` (country + street) → `verify-email.html` → `verify-id.html`
+
 ---
 
 ## ⚙️ Tech Stack

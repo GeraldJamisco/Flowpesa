@@ -1,0 +1,24 @@
+/* FLOWPESA — 6-digit Passcode */
+.passcode-screen{
+  --blue:#1682f9; --bg:#111; --key:#17181b; --keySize:clamp(70px,18vw,90px); --dot:12px;
+  background:var(--bg); color:#f8f9fa; min-height:100dvh;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  display:flex; flex-direction:column; align-items:center; padding-top:100px;
+}
+.top-bar{position:fixed;inset:0 0 auto 0;height:72px;display:flex;align-items:center;background:transparent;padding:0 16px}
+.back-btn{width:40px;height:40px;border:0;border-radius:50%;background:#202124;color:#f8f9fa;display:grid;place-items:center}
+
+.title{font:700 clamp(22px,6vw,34px)/1.25 Inter;margin:60px 0 8px;text-align:center}
+.subtitle{color:#c9c9c9;text-align:center;font:400 15px/1.45 Inter;margin-bottom:40px}
+
+.dots{display:flex;justify-content:center;gap:12px;margin-bottom:40px}
+.dots .dot{width:var(--dot);height:var(--dot);border-radius:50%;background:#2b2b2b;transition:background .2s}
+.dots .dot.active{background:var(--blue)}
+
+.keypad{display:flex;flex-direction:column;gap:14px;align-items:center}
+.row{display:flex;gap:14px}
+.key{width:var(--keySize);height:var(--keySize);border-radius:20px;background:var(--key);color:#f8f9fa;
+     font:600 clamp(20px,5vw,28px)/1 Inter;border:none;cursor:pointer;transition:all .1s}
+.key:active{background:var(--blue);color:#fff;transform:scale(.96)}
+.key-action{font-size:clamp(22px,6vw,28px)}
+@media (max-width:400px){.key{border-radius:16px}.dots{gap:10px}}
