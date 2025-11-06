@@ -1,0 +1,146 @@
+/* =========================================
+   Flowpesa — Onboarding (Home)
+   Styles for index.html only
+   ========================================= */
+
+/* Base */
+html, body {
+  height: 100%;
+  background: var(--background-color, #111111);
+}
+body {
+  margin: 0;
+  color: var(--main-text, #f8f9fa);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Onboarding container */
+.onboard {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 24px 16px calc(24px + env(safe-area-inset-bottom));
+  background: var(--background-color, #111111);
+}
+
+/* Slides area */
+.onboard .slides {
+  flex: 1 1 auto;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.onboard .slide {
+  display: none;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+.onboard .slide.active { display: block; }
+
+/* Images */
+.onboard .image-20 {
+  display: block;
+  width: min(78vw, 340px);
+  max-width: 360px;
+  height: auto;
+  margin: 8px auto 12px;
+}
+
+/* Copy */
+.onboard .copy .title {
+  margin: 12px 0 6px;
+  font: 700 clamp(24px, 6.2vw, 34px)/1.25 Inter, system-ui, sans-serif;
+  color: var(--main-text, #f8f9fa);
+}
+.onboard .copy .subtitle {
+  margin: 0 auto;
+  color: var(--secondary-text, #c7c7c7);
+  font: 400 clamp(14px, 3.6vw, 16px)/1.45 Inter, system-ui, sans-serif;
+  max-width: 640px;
+}
+
+/* Pager */
+.onboard .pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 8px auto 0;
+}
+.onboard .pager .bar {
+  width: 28px;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.22);
+  transition: background .2s ease, width .2s ease;
+}
+.onboard .pager .bar.active {
+  background: var(--main-text, #f8f9fa);
+  width: 36px;
+}
+
+/* Actions */
+.onboard .actions {
+  width: 100%;
+  max-width: 560px;
+  margin: 16px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.onboard .btn {
+  display: grid;
+  place-items: center;
+  height: 56px;
+  padding: 0 16px;
+  border-radius: 16px;
+  text-decoration: none;
+  font: 600 16px/20px Inter, system-ui, sans-serif;
+  transition: transform .08s ease, background .15s ease, color .15s ease, box-shadow .15s ease;
+  user-select: none;
+}
+.onboard .btn:active { transform: scale(.98); }
+
+.onboard .btn-primary {
+  background: var(--primary-color, #1682f9);
+  color: #ffffff;
+  border: 0;
+}
+.onboard .btn-primary:hover { filter: brightness(1.05); }
+.onboard .btn-primary:focus-visible { outline: 2px solid rgba(22,130,249,.5); outline-offset: 2px; }
+
+.onboard .btn-outline {
+  background: transparent;
+  color: var(--main-text, #f8f9fa);
+  border: 1px solid rgba(255,255,255,0.22);
+}
+.onboard .btn-outline:hover {
+  border-color: rgba(255,255,255,0.38);
+}
+.onboard .btn-outline:focus-visible { outline: 2px solid rgba(255,255,255,.4); outline-offset: 2px; }
+
+/* Center-message slide (no image) */
+.onboard .slide.center-message .copy { margin: 24px 0 0; }
+
+/* Small phones */
+@media (max-width: 360px) {
+  .onboard { padding: 20px 12px calc(20px + env(safe-area-inset-bottom)); }
+  .onboard .pager .bar { width: 24px; }
+  .onboard .pager .bar.active { width: 30px; }
+}
+
+/* Larger preview */
+@media (min-width: 768px) {
+  .onboard .image-20 { width: min(54vw, 400px); }
+}
+
