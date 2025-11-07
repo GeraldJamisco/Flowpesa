@@ -29,13 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
     passcode = passcode.slice(0, -1);
     renderDots();
   }
-  function submitIfComplete() {
-    if (passcode.length === PASSCODE_LENGTH) {
-      // TODO: send to backend, then redirect
-      // localStorage.setItem('fp_passcode', passcode);
-      location.href = 'verify-id.html';
-    }
+ 
+function submitIfComplete() {
+  if (passcode.length === PASSCODE_LENGTH) {
+    sessionStorage.setItem('fp_first_passcode', passcode); // save first entry
+    location.href = 'confirm-passcode.html';
   }
+}
+
 
   // on-screen keypad
   keypadKeys.forEach(btn => btn.addEventListener('click', () => pushDigit(btn.textContent)));

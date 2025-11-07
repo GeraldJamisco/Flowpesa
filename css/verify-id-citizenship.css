@@ -1,0 +1,63 @@
+/* FLOWPESA — Verify ID: Citizenship (page-scoped) */
+.citizenship-screen{
+  --bg:#111;
+  --text:#f8f9fa;
+  --muted:#c9c9c9;
+  --card:#17181b;
+  --blue:#1682f9;
+
+  background:var(--bg);
+  color:var(--text);
+  min-height:100dvh;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  display:flex; flex-direction:column;
+}
+
+/* top bar (matching your other screens) */
+.top-bar{position:fixed; inset:0 0 auto 0; height:72px; display:flex; align-items:center; z-index:10; background:transparent;}
+.top{width:100%; max-width:480px; margin:0 auto; padding:0 16px; display:flex; align-items:center; justify-content:space-between;}
+.back-btn{width:40px;height:40px;border:0;border-radius:999px;background:#202124;color:var(--text);display:grid;place-items:center}
+.top-spacer{width:40px;height:40px;}
+
+/* main content */
+.citizenship-content{
+  width:100%;
+  max-width:480px;
+  margin:0 auto;
+  padding:calc(72px + 24px) 16px 24px;
+  display:flex; flex-direction:column; gap:12px;
+}
+.title{font-weight:700; font-size:clamp(24px,6.8vw,34px); line-height:1.25; margin:0}
+.subtitle{color:var(--muted); margin:0 0 8px; font-size:clamp(14px,3.8vw,16px); line-height:1.45}
+
+.id-figure{margin:12px 0 0; display:flex; justify-content:center}
+.id-figure img{
+  width:min(360px, 82vw);
+  height:auto;
+  display:block;
+  filter: drop-shadow(0 18px 35px rgba(0,0,0,.45));
+  border-radius:16px;
+  background:transparent;
+}
+
+/* sticky bottom actions */
+.citizenship-actions{
+  position:sticky; bottom:0;
+  margin-top:auto;
+  background:linear-gradient(180deg, rgba(17,17,17,0) 0%, rgba(17,17,17,1) 28%);
+  padding:16px 16px calc(16px + env(safe-area-inset-bottom));
+  display:flex; gap:12px; justify-content:center;
+}
+.citizenship-actions .btn{
+  height:52px; border-radius:14px; padding:0 18px; font-weight:600; font-size:16px; cursor:pointer; border:1px solid transparent;
+  min-width:140px;
+}
+.btn-primary{background:var(--blue); color:#fff;}
+.btn-primary:active{transform:scale(.98)}
+.btn-outline{background:transparent; color:var(--text); border-color:#2f2f2f;}
+.btn-outline:active{transform:scale(.98)}
+
+@media (min-width:640px){
+  .citizenship-content{padding-top:calc(80px + 24px);}
+  .top-bar{height:80px;}
+}

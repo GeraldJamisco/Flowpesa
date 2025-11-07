@@ -36,7 +36,7 @@ form.addEventListener('submit', (e) => {
   // await fetch('/api/auth/email-begin', {...})
 
   // Go to next step (Verify ID)
-  location.href = 'verify-id.html';
+  location.href = 'set-passcode.html';
 });
 
 window.addEventListener('DOMContentLoaded', () => {

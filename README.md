@@ -36,7 +36,7 @@ flowpesa/
 
 ## 🔐 Registration Flow
 
-- `create-account.html` → `verify-phone.html` (OTP) → `verify-location.html` (country + street) → `verify-email.html` → `verify-id.html`
+- `create-account.html` → `verify-phone.html` → `verify-email.html` → `set-passcode.html` → `confirm-passcode.html` → `verify-id-citizenship.html` → `verify-id-consent.html` → `verify-id-type.html` → `upload-…`
 
 ---
 
@@ -90,6 +90,39 @@ http://localhost:3000
 - [ ] API endpoint for signup/login  
 - [ ] KYC tier flow (Tier 0 → Tier 2)  
 - [ ] Admin dashboard  
+
+---
+
+## 🔒 Passcode Setup Flow
+
+- Create passcode (`set-passcode.html`, `Js/set-passcode.js`)
+  - User enters 6 digits.
+  - When complete, store `sessionStorage.fp_first_passcode` and route to `confirm-passcode.html`.
+
+- Confirm passcode (`confirm-passcode.html`, `Js/confirm-passcode.js`)
+  - Compare input with `sessionStorage.fp_first_passcode`.
+  - If mismatch: show red message + shake animation; let user try again.
+  - If match: clear `fp_first_passcode` and continue to `verify-id-citizenship.html`.
+
+Notes
+- `verify-id-citizenship.html` is the intended next step and can be added later.
+- Store only salted+hashed passcodes server‑side; client storage is temporary UX only.
+
+### API Wiring (on Confirm success)
+
+- Endpoint: `POST /api/auth/passcode/set`
+- Request (JSON):
+  - `phone`: `string` (e.g., `+256700000000`)
+  - `passcode`: `string` (6 digits)
+  - `client`: `"web" | "android" | "ios"`
+  - `device_fingerprint` (optional): `string`
+- Response (200 JSON):
+  - `token`: `string` (JWT or opaque)
+  - `next`: `string` (e.g., `"verify-id-citizenship.html"`)
+- Errors: `400` invalid payload, `401` unauthorized/expired session, `409` passcode already set
+
+Optional hardening later
+- Challenge/response: server issues `{ salt_id, salt }`; client submits `{ phone, passcode_hash = sha256(passcode+salt), salt_id }`.
 
 ---
 

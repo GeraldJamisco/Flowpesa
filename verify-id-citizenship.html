@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flowpesa — Verify ID</title>
+
+  <!-- your global styles first -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- page-scoped overrides (safe; won’t affect other pages) -->
+  <link rel="stylesheet" href="css/verify-id-citizenship.css" />
+</head>
+<body class="citizenship-screen">
+  <header class="top-bar">
+    <div class="top">
+      <button class="back-btn" type="button" aria-label="Back" onclick="history.back()">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15 18L9 12l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <span class="top-spacer" aria-hidden="true"></span>
+    </div>
+  </header>
+
+  <main class="citizenship-content">
+    <h1 class="title">Do you hold citizenship in Uganda?</h1>
+    <p class="subtitle">This information is required to set up your Flowpesa account.</p>
+
+    <figure class="id-figure">
+      <img src="assets/identity.png" alt="Identity badge illustration" />
+    </figure>
+  </main>
+
+  <!-- sticky bottom actions -->
+  <nav class="citizenship-actions" aria-label="Citizenship choice">
+    <button class="btn btn-outline" id="btn-no">No</button>
+    <button class="btn btn-primary" id="btn-yes">Yes</button>
+  </nav>
+
+  <script src="Js/verify-id-citizenship.js" defer></script>
+</body>
+</html>

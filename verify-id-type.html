@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flowpesa — Select ID Type</title>
+
+  <!-- your global stylesheet first -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- page-scoped styles for this screen only -->
+  <link rel="stylesheet" href="css/verify-id-type.css" />
+</head>
+<body class="idtype-screen">
+  <header class="top-bar">
+    <div class="top">
+      <button class="back-btn" type="button" aria-label="Back" onclick="history.back()">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15 18L9 12l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <span class="top-spacer" aria-hidden="true"></span>
+    </div>
+  </header>
+
+  <main class="content">
+    <h1 class="title">Please select a unique document to upload.</h1>
+    <p class="subtitle">
+      To verify your identity and confirm your residency in Uganda,
+      please provide a valid document. Rest assured, your data will be handled securely.
+    </p>
+
+    <form id="idtype-form" class="options" role="radiogroup" aria-label="Document type">
+      <!-- Card-radio -->
+      <label class="option">
+        <input type="radio" name="doc_type" value="national_id" />
+        <span class="option-body">
+          <span class="opt-label">Identity card</span>
+          <span class="opt-radio" aria-hidden="true"></span>
+        </span>
+      </label>
+
+      <label class="option">
+        <input type="radio" name="doc_type" value="passport" />
+        <span class="option-body">
+          <span class="opt-label">Passport</span>
+          <span class="opt-radio" aria-hidden="true"></span>
+        </span>
+      </label>
+
+      <label class="option">
+        <input type="radio" name="doc_type" value="drivers_license" />
+        <span class="option-body">
+          <span class="opt-label">Driver’s license</span>
+          <span class="opt-radio" aria-hidden="true"></span>
+        </span>
+      </label>
+
+      <button id="continue" class="btn btn-primary" type="submit" disabled>
+        Continue
+      </button>
+    </form>
+
+    <p class="foot-note">
+      <a href="verify-id-citizenship.html" class="link">Change your citizenship</a>
+    </p>
+  </main>
+
+  <script src="Js/verify-id-type.js" defer></script>
+</body>
+</html>

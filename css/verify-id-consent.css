@@ -1,0 +1,49 @@
+/* FLOWPESA — Verify ID: Consent (page-scoped) */
+.consent-screen{
+  --bg:#111; --text:#f8f9fa; --muted:#c9c9c9; --card:#17181b; --stroke:rgba(255,255,255,.06);
+  --blue:#1682f9; --outline:#3a3a3a;
+  background:var(--bg); color:var(--text);
+  min-height:100dvh; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  display:flex; flex-direction:column;
+}
+
+/* Top bar */
+.top-bar{position:fixed; inset:0 0 auto 0; height:72px; display:flex; align-items:center; z-index:10;}
+.top{width:100%; max-width:540px; margin:0 auto; padding:0 16px; display:flex; align-items:center; justify-content:space-between;}
+.back-btn{width:40px; height:40px; border:0; border-radius:999px; background:#202124; color:var(--text); display:grid; place-items:center}
+.top-title{font:600 18px/1 Inter,system-ui,sans-serif;}
+.top-spacer{width:40px;height:40px}
+
+/* Content */
+.content{
+  width:100%; max-width:540px; margin:0 auto;
+  padding:calc(72px + 20px) 16px 120px;  /* bottom space for sticky buttons */
+}
+.title{margin:0 0 16px; font-weight:700; font-size:clamp(22px,6vw,32px); line-height:1.25;}
+.copy{display:block; background:transparent;}
+.h3{margin:18px 0 8px; font-weight:600; font-size:clamp(16px,4.2vw,18px);}
+.copy p{margin:0 0 10px; color:var(--muted); line-height:1.55;}
+.bullets{margin:0 0 12px 18px; padding:0; color:var(--muted); line-height:1.55;}
+.bullets li{margin:8px 0;}
+.link{color:var(--blue); text-decoration:none;}
+.link:hover{text-decoration:underline;}
+.note{color:var(--muted); margin-top:8px;}
+
+/* Sticky action bar */
+.actions{
+  position:fixed; left:0; right:0; bottom:0;
+  background:linear-gradient(180deg, rgba(17,17,17,0) 0%, rgba(17,17,17,.85) 30%, #111 70%);
+  padding:16px; display:flex; flex-direction:column; gap:12px; align-items:center;
+}
+.actions .btn{width:100%; max-width:540px; height:52px; border-radius:14px; font-weight:600; font-size:16px;}
+.btn{border:0; cursor:pointer;}
+.btn:active{transform:scale(.98);}
+.btn-primary{background:var(--blue); color:#fff;}
+.btn-outline{background:transparent; color:var(--text); border:1px solid var(--outline);}
+
+/* Larger devices */
+@media (min-width:640px){
+  .top-bar{height:80px;}
+  .content{padding-top:calc(80px + 24px);}
+}
+    

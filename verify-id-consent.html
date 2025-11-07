@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flowpesa — Verify your identity</title>
+
+  <!-- Your global styles first -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Page-only styles -->
+  <link rel="stylesheet" href="css/verify-id-consent.css" />
+</head>
+<body class="consent-screen">
+  <header class="top-bar">
+    <div class="top">
+      <button class="back-btn" type="button" aria-label="Back" onclick="history.back()">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15 18L9 12l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <h1 class="top-title">Verify your identity</h1>
+      <span class="top-spacer" aria-hidden="true"></span>
+    </div>
+  </header>
+
+  <main class="content">
+    <h2 class="title">Pick an original document to upload</h2>
+
+    <section class="copy">
+      <h3 class="h3">What is Flowpesa?</h3>
+      <p>
+        Flowpesa is a financial services platform built to help people send, save and
+        transact securely across Africa. To keep everyone safe and comply with KYC/AML laws,
+        we need to verify your identity.
+      </p>
+
+      <h3 class="h3">How we use your data</h3>
+      <ul class="bullets">
+        <li>We use your document photos/videos and, if needed, a short face selfie video
+            (“Scan Data”) only to verify you, prevent fraud, and meet legal requirements.</li>
+        <li>Scan Data is kept for up to <strong>360 days</strong> after submission (or less if
+            regulations require). After that it’s permanently deleted unless the law requires us to keep it longer.</li>
+        <li>Document photos/videos and audio are stored for up to <strong>3 years</strong> and then destroyed,
+            unless a longer period is legally required.</li>
+        <li>Your data is encrypted and access is restricted to a small team that needs it for verification.</li>
+        <li>You can request deletion where permitted by law. See our
+            <a class="link" href="/privacy" target="_blank" rel="noopener">Privacy Policy</a> and
+            <a class="link" href="/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a>.
+        </li>
+      </ul>
+
+      <p class="note">By choosing “Accept”, you consent to this use of your data to verify your identity for your Flowpesa account.</p>
+    </section>
+  </main>
+
+  <!-- Sticky actions -->
+  <nav class="actions" aria-label="Consent actions">
+    <button class="btn btn-primary" id="accept-btn" type="button">Accept</button>
+    <button class="btn btn-outline" id="decline-btn" type="button">Do not accept</button>
+  </nav>
+
+  <script src="Js/verify-id-consent.js" defer></script>
+</body>
+</html>
