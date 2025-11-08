@@ -359,3 +359,219 @@ html, body {
 @media (min-width: 1024px){
   .dob-screen{ --page-max: 640px; }
 }
+
+
+
+/* ===== IDV: tiny patch (scoped) ===== */
+.chip{
+  display:inline-flex; align-items:center; height:28px; padding:0 10px;
+  border-radius:999px; background:#17181b; color:#e9eaec;
+  font:600 12px/1 Inter,system-ui,sans-serif; border:1px solid rgba(255,255,255,.08);
+}
+.photo-grid{
+  width:100%; max-width:var(--col-max, 361px); margin:8px auto 0;
+  display:grid; gap:12px; grid-template-columns:1fr;
+}
+@media (min-width:520px){ .photo-grid{ grid-template-columns:1fr 1fr; } }
+.photo-card{ padding:10px; border-radius:16px; background:#0e1012; box-shadow:0 0 0 2px #2a5fb6, 0 12px 32px rgba(0,0,0,.45); }
+.photo-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.mini-pill{
+  height:30px; padding:0 10px; border-radius:8px; border:1px solid rgba(255,255,255,.12);
+  background:transparent; color:#e9eaec; font:600 12px/1 Inter,system-ui,sans-serif;
+}
+.photo-card img{ width:100%; display:block; border-radius:10px; }
+
+/* Camera card sizes reuse your column max width */
+.cam-card{
+  width:100%; max-width:var(--col-max, 361px); margin:8px auto 0;
+  position:relative; aspect-ratio: 16 / 10; border-radius:16px; overflow:hidden;
+  background:#0e1012; box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
+}
+#idv-video{ width:100%; height:100%; object-fit:cover; display:block; }
+.cam-frame{
+  position:absolute; inset:8px; border-radius:12px;
+  box-shadow: inset 0 0 0 3px rgba(255,255,255,.7);
+  pointer-events:none;
+}
+.cam-fallback{ position:absolute; inset:0; display:grid; place-items:center; background:rgba(0,0,0,.3); }
+
+.cam-controls{
+  width:100%; max-width:var(--col-max, 361px); margin:12px auto 0;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.ghost-pill{
+  width:56px; height:56px; border-radius:16px; display:grid; place-items:center;
+  background:#17181b; box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+  color:#e9eaec; font-size:20px;
+}
+.shutter{
+  width:74px; height:74px; border-radius:999px; background:#fff; border:6px solid #1a1a1a;
+  box-shadow: 0 8px 28px rgba(0,0,0,.45);
+}
+.btn-outline, .mt-8{ margin-top:8px; }
+.btn-outline{
+  width:100%; max-width:var(--col-max, 361px); height:48px; border-radius:12px;
+  background:transparent; border:1px solid #3a3a3a; color:#f8f9fa; font:600 16px/1 Inter,system-ui,sans-serif;
+}
+.success-card{ width:100%; max-width:var(--col-max, 361px); margin:20vh auto 0; text-align:center; }
+.success-ill{
+  width:160px; height:100px; margin:0 auto 12px; border-radius:16px; display:grid; place-items:center;
+  background:#1682f9; color:#fff; font-size:42px; box-shadow:0 16px 44px rgba(22,130,249,.28);
+}
+
+/* Small helpers */
+.visually-hidden{ position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+
+
+/* ===========================
+   IDV (Front/Back/Review) scope
+   =========================== */
+.idv-screen{
+  --col-max: 361px;
+  background:#111; color:#f8f9fa; min-height:100dvh;
+  padding: calc(72px + 16px) 16px calc(24px + env(safe-area-inset-bottom));
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Top bar (reusing your pattern) */
+.idv-screen .top-bar{
+  position:fixed; inset:0 0 auto 0; height:72px; z-index:100; background:transparent;
+}
+.idv-screen .top{
+  max-width:480px; margin:0 auto; padding:0 16px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.idv-screen .back-btn{
+  width:40px; height:40px; border:0; border-radius:999px;
+  background:#202124; color:#f8f9fa; display:grid; place-items:center;
+}
+.idv-screen .top-title{ margin:0; font:600 18px/24px Inter,system-ui,sans-serif; }
+.idv-screen .top-ghost{ width:40px; height:40px; }
+
+/* Content column + headings */
+.idv-screen .content{ width:100%; max-width:420px; margin:0 auto; }
+.idv-screen .heading{ margin:0 0 6px; font:700 clamp(24px,6vw,32px)/1.25 Inter,system-ui,sans-serif; }
+.idv-screen .subheading{ margin:0 0 16px; color:#c9c9c9; font:400 16px/1.4 Inter,system-ui,sans-serif; }
+
+/* Camera & preview (scoped versions of your earlier classes) */
+.idv-screen .cam-card{
+  width:100%; max-width:var(--col-max); margin:8px auto 0;
+  position:relative; aspect-ratio: 16/10; border-radius:16px; overflow:hidden;
+  background:#0e1012; box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
+}
+.idv-screen #idv-video{ width:100%; height:100%; object-fit:cover; display:block; }
+.idv-screen .cam-frame{ position:absolute; inset:8px; border-radius:12px; box-shadow: inset 0 0 0 3px rgba(255,255,255,.7); pointer-events:none; }
+.idv-screen .cam-fallback{ position:absolute; inset:0; display:grid; place-items:center; background:rgba(0,0,0,.3); color:#c9c9c9; }
+
+.idv-screen .cam-controls{
+  width:100%; max-width:var(--col-max); margin:12px auto 0;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.idv-screen .ghost-pill{
+  width:56px; height:56px; border-radius:16px; display:grid; place-items:center;
+  background:#17181b; box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+  color:#e9eaec; font-size:20px;
+}
+.idv-screen .shutter{
+  width:74px; height:74px; border-radius:999px; background:#fff; border:6px solid #1a1a1a;
+  box-shadow: 0 8px 28px rgba(0,0,0,.45);
+}
+
+.idv-screen .photo-grid{
+  width:100%; max-width:var(--col-max); margin:8px auto 0;
+  display:grid; gap:12px; grid-template-columns:1fr;
+}
+@media (min-width:520px){ .idv-screen .photo-grid{ grid-template-columns:1fr 1fr; } }
+
+.idv-screen .photo-card{ padding:10px; border-radius:16px; background:#0e1012; box-shadow:0 0 0 2px #2a5fb6, 0 12px 32px rgba(0,0,0,.45); }
+.idv-screen .photo-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.idv-screen .mini-pill{ height:30px; padding:0 10px; border-radius:8px; border:1px solid rgba(255,255,255,.12); background:transparent; color:#e9eaec; font:600 12px/1 Inter,system-ui,sans-serif; }
+.idv-screen .photo-card img{ width:100%; display:block; border-radius:10px; background:#0e1012; }
+
+/* Buttons */
+.idv-screen .btn-primary{
+  width:100%; max-width:var(--col-max); height:56px; border-radius:16px; border:0;
+  background:#1682f9; color:#fff; font:600 16px/20px Inter,system-ui,sans-serif; margin-top:16px;
+}
+.idv-screen .btn-outline{
+  width:100%; max-width:var(--col-max); height:48px; border-radius:12px; margin-top:8px;
+  background:transparent; border:1px solid #3a3a3a; color:#f8f9fa; font:600 16px/1 Inter,system-ui,sans-serif;
+}
+
+/* Success */
+.idv-screen .success-card{ width:100%; max-width:var(--col-max); margin:20vh auto 0; text-align:center; }
+.idv-screen .success-ill{
+  width:160px; height:100px; margin:0 auto 12px; border-radius:16px; display:grid; place-items:center;
+  background:#1682f9; color:#fff; font-size:42px; box-shadow:0 16px 44px rgba(22,130,249,.28);
+}
+
+
+
+
+/* ==============================
+   FLOWPESA — Confirm info (scoped)
+   ============================== */
+.confirm-screen{
+  --page-max: 520px;
+  --col-max: 420px;
+  background:#111; color:#f8f9fa; min-height:100dvh;
+  padding: calc(72px + 16px) 16px calc(24px + env(safe-area-inset-bottom));
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* top bar */
+.confirm-screen .top-bar{
+  position:fixed; inset:0 0 auto 0; height:72px; z-index:100; background:transparent;
+}
+.confirm-screen .top{
+  width:100%; max-width:var(--page-max); margin:0 auto; padding:0 16px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.confirm-screen .back-btn{
+  width:40px; height:40px; border:0; border-radius:999px; background:#202124; color:#f8f9fa; display:grid; place-items:center;
+}
+.confirm-screen .top-title{ margin:0; font:600 18px/24px Inter,system-ui,sans-serif; }
+.confirm-screen .top-ghost{ width:40px; height:40px; }
+
+/* content */
+.confirm-screen .content{ width:100%; max-width:var(--col-max); margin:0 auto; }
+.confirm-screen .heading{ margin:0 0 6px; font:700 clamp(24px,6vw,32px)/1.25 Inter,system-ui,sans-serif; }
+.confirm-screen .subheading{ margin:0 0 16px; color:#c9c9c9; font:400 16px/1.4 Inter,system-ui,sans-serif; }
+
+/* cards */
+.confirm-screen .info-card{
+  background:#17181b; border-radius:16px; padding:14px; margin:12px 0;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+}
+.confirm-screen .card-head{
+  display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;
+}
+.confirm-screen .card-title{
+  margin:0; font:600 16px/20px Inter,system-ui,sans-serif; color:#fff;
+}
+.confirm-screen .pill-edit{
+  height:28px; padding:0 10px; display:inline-flex; align-items:center; border-radius:999px;
+  background:#1f2023; color:#e9eaec; border:1px solid rgba(255,255,255,.10);
+  font:600 12px/1 Inter,system-ui,sans-serif; text-decoration:none;
+}
+.confirm-screen .kv{
+  list-style:none; margin:8px 0 0; padding:0; display:flex; flex-direction:column; gap:8px;
+}
+.confirm-screen .kv li{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  color:#c9c9c9; font:400 14px/18px Inter,system-ui,sans-serif;
+}
+.confirm-screen .kv strong{ color:#f3f4f6; font-weight:600; }
+
+/* button */
+.confirm-screen .btn-primary{
+  width:100%; max-width:var(--col-max); height:56px; margin:18px auto 0; display:block;
+  border:0; border-radius:16px; background:#1682f9; color:#fff; font:600 16px/20px Inter,system-ui,sans-serif;
+}
+
+/* responsive tweaks */
+@media (min-width:640px){
+  .confirm-screen .top-bar{ height:80px; }
+  .confirm-screen{ padding-top: calc(80px + 16px); }
+}

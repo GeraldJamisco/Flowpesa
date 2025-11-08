@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Flowpesa — Confirm your information</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="confirm-screen">
+  <!-- Top bar -->
+  <header class="top-bar">
+    <div class="top">
+      <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+      <h1 class="top-title">Account verification</h1>
+      <span class="top-ghost" aria-hidden="true"></span>
+    </div>
+  </header>
+
+  <main class="content">
+    <h2 class="heading">Review your details</h2>
+    <p class="subheading">
+      Please confirm that your personal and address information below is correct.
+      Once confirmed, you’ll be redirected to your Flowpesa dashboard.
+    </p>
+
+    <!-- General info card -->
+    <section class="info-card">
+      <div class="card-head">
+        <h3 class="card-title">General info</h3>
+        <a class="pill-edit" href="verify-name.html">Edit</a>
+      </div>
+      <ul class="kv">
+        <li><span>Name</span><strong id="fullName">—</strong></li>
+        <li><span>Date of birth</span><strong id="dob">—</strong></li>
+        <li><span>Identity</span><strong id="idDoc">—</strong></li>
+        <li><span>Phone</span><strong id="phone">—</strong></li>
+      </ul>
+    </section>
+
+    <!-- Address info card -->
+    <section class="info-card">
+      <div class="card-head">
+        <h3 class="card-title">Home address</h3>
+        <a class="pill-edit" href="verify-address.html">Edit</a>
+      </div>
+      <ul class="kv">
+        <li><span>Country</span><strong id="country">—</strong></li>
+        <li><span>Street</span><strong id="street">—</strong></li>
+        <li><span>City / Region</span><strong id="cityRegion">—</strong></li>
+        <li><span>Postal code</span><strong id="postal">—</strong></li>
+      </ul>
+    </section>
+
+    <!-- Confirm -->
+    <button id="confirmBtn" class="btn-primary">Confirm and Continue</button>
+  </main>
+
+  <script>
+    // Pull data stored earlier
+    const get = k => sessionStorage.getItem(k) || localStorage.getItem(k) || '';
+
+    const data = {
+      first: get('fp_firstName'),
+      last:  get('fp_lastName'),
+      middle:get('fp_middleName'),
+      dob:   get('fp_dob'),
+      idType:get('fp_id_type'),
+      idNo:  get('fp_id_number'),
+      phone: get('fp_phone'),
+      country:get('fp_country'),
+      street: get('fp_street'),
+      city:   get('fp_city'),
+      region: get('fp_region'),
+      postal: get('fp_postal')
+    };
+
+    // Render
+    const fullName = [data.first, data.middle, data.last].filter(Boolean).join(' ');
+    document.getElementById('fullName').textContent = fullName || '—';
+    document.getElementById('dob').textContent = data.dob || '—';
+    document.getElementById('idDoc').textContent = (data.idType && data.idNo) ? `${data.idType}: ${data.idNo}` : (data.idNo || '—');
+    document.getElementById('phone').textContent = data.phone || '—';
+    document.getElementById('country').textContent = data.country || '—';
+    document.getElementById('street').textContent = data.street || '—';
+    const cityRegion = [data.city, data.region].filter(Boolean).join(', ');
+    document.getElementById('cityRegion').textContent = cityRegion || '—';
+    document.getElementById('postal').textContent = data.postal || '—';
+
+    // Confirm and redirect to dashboard
+    document.getElementById('confirmBtn').addEventListener('click', async () => {
+      const payload = {
+        name: fullName,
+        dob: data.dob,
+        id_type: data.idType,
+        id_number: data.idNo,
+        phone: data.phone,
+        address: {
+          country: data.country,
+          street: data.street,
+          city: data.city,
+          region: data.region,
+          postal: data.postal
+        }
+      };
+
+      // Optional: send confirmation to your backend
+      // await fetch('/api/kyc/confirm', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(payload)
+      // });
+
+      // Redirect user to dashboard
+      window.location.href = 'dashboard.html';
+    });
+  </script>
+</body>
+</html>

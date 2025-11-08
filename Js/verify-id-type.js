@@ -16,11 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Route by choice (adjust paths to your flow)
     const routes = {
-      national_id: 'upload-id-national.html',
-      passport: 'upload-id-passport.html',
-      drivers_license: 'upload-id-drivers.html',
+      national_id: 'verify-id-capture.html',
+      passport: 'verify-id-capture.html',
+      drivers_license: 'verify-id-capture.html',
     };
-    location.href = routes[chosen] || 'verify-id-consent.html';
+    location.href = routes[chosen] || 'verify-id-capture.html';
   });
 
   // Keyboard convenience on desktop

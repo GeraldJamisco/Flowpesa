@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Flowpesa — Review photos</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="idv-screen">
+  <header class="top-bar">
+    <div class="top">
+      <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+      <h1 class="top-title">Verify your identity</h1>
+      <span class="top-ghost" aria-hidden="true"></span>
+    </div>
+  </header>
+
+  <main class="content">
+    <h2 class="heading">Review your photos</h2>
+    <p class="subheading">Ensure details are clear. Retake if needed.</p>
+
+    <div class="photo-grid">
+      <div class="photo-card">
+        <div class="photo-head">
+          <span class="mini-pill">Front</span>
+          <a class="mini-pill" href="verify-id-front.html">Retake</a>
+        </div>
+        <img id="img-front" alt="Front of document">
+      </div>
+
+      <div class="photo-card">
+        <div class="photo-head">
+          <span class="mini-pill">Back</span>
+          <a class="mini-pill" href="verify-id-back.html">Retake</a>
+        </div>
+        <img id="img-back" alt="Back of document">
+      </div>
+    </div>
+
+    <button class="btn-primary" id="submit-idv" disabled>Submit photo</button>
+    <button class="btn-outline" onclick="location.href='verify-id-front.html'">Retake photo</button>
+  </main>
+
+  <script>
+    // load previews from sessionStorage
+    const f = sessionStorage.getItem('flowpesa_idv_front');
+    const b = sessionStorage.getItem('flowpesa_idv_back');
+    if (f) document.getElementById('img-front').src = f;
+    if (b) document.getElementById('img-back').src = b;
+    const submit = document.getElementById('submit-idv');
+    submit.disabled = !(f && b);
+
+    submit.addEventListener('click', async () => {
+      // TODO: POST f & b to your backend
+      location.href = 'verify-id-done.html';
+    });
+  </script>
+</body>
+</html>
