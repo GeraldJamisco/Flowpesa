@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flowpesa — Dashboard</title>
+
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="js/app-theme.js"></script>
+<script>
+  // Will respect saved preference, else device preference.
+  // Pass a button selector if you want a live toggle.
+  initThemeToggle('#themeToggleBtn');
+</script>
+
+  <style>
+    :root{
+      --fp-bg: #0f1012;
+      --fp-surface: #17181b;
+      --fp-stroke: #232428;
+      --fp-accent: #1682f9;
+    }
+    body{ background:var(--fp-bg); }
+    /* Wallet card gradient */
+    .fp-wallet{
+      background: radial-gradient(120% 140% at 100% 0%, #0d2a5f 0%, #101317 48%, #0a5bd6 100%);
+      color:#f4f7fb;
+      border-radius:1rem;
+      box-shadow:0 1.25rem 2.25rem rgba(0,0,0,.45);
+      overflow:hidden;
+    }
+    .fp-chip{ width:28px; height:18px; background:#24d07a; border-radius:.375rem; opacity:.9; }
+    .fp-nfc{ width:28px; height:20px; border-radius:.75rem; border:2px solid #2f88ff; background:#1667ff22; }
+    .fp-mask-btn{ background:#11386c; color:#d6e7ff; }
+    .fp-actions .btn{ background:var(--fp-surface); border:1px solid var(--fp-stroke); }
+    .fp-avatar{ width:56px; height:56px; border-radius:50%; object-fit:cover; border:2px solid #1f232a; }
+    .fp-card{ background:var(--fp-surface); border:1px solid var(--fp-stroke); }
+    .fp-bottom-nav{ backdrop-filter: blur(6px); border-top:1px solid var(--fp-stroke); }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+ <header class="fp-topbar">
+  <div class="fp-container">
+    <div class="fp-toolbar">
+      <!-- Left: menu -->
+      <button class="fp-icon-btn" aria-label="Menu">
+        <i class="bi bi-list"></i>
+      </button>
+
+      <!-- Center: search (flex-grow) -->
+      <div class="fp-toolbar-search">
+        <div class="input-group fp-pill-input fp-search">
+          <span class="input-group-text fp-search-icon">
+            <i class="bi bi-search"></i>
+          </span>
+          <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+        </div>
+      </div>
+
+      <!-- Right: actions -->
+      <div class="fp-toolbar-actions">
+        <button class="fp-icon-btn" aria-label="Notifications">
+          <i class="bi bi-bell"></i>
+        </button>
+        <button class="fp-icon-btn" aria-label="Profile">
+          <i class="bi bi-person"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Offcanvas menu -->
+  <div class="offcanvas offcanvas-start text-bg-dark" id="menu">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Menu</h5>
+      <button class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <a class="btn btn-outline-light w-100 mb-2" href="#">Profile</a>
+      <a class="btn btn-outline-light w-100 mb-2" href="#">Statements</a>
+      <a class="btn btn-outline-light w-100" href="#">Support</a>
+    </div>
+  </div>
+
+  <main class="container py-3" style="max-width:720px;">
+    <!-- Wallet / Balance -->
+    <section class="fp-wallet p-3 mb-3">
+      <div class="d-flex justify-content-between">
+        <div class="fp-chip"></div>
+        <div class="fp-nfc"></div>
+      </div>
+
+      <div class="mt-3 fs-5 fw-bold letter-spacing-1" id="cardNumber">3234 8678 4234 7628</div>
+
+      <div class="d-flex justify-content-between align-items-end mt-2">
+        <div>
+          <div class="fw-semibold">Rufat Rashidov</div>
+          <div class="small opacity-75">02/2025</div>
+        </div>
+        <div class="fw-bold fs-5 text-success">VISA</div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top border-light-subtle">
+        <div class="opacity-75 small">Available</div>
+        <div class="fw-bold fs-5" id="balText">UGX 2,458,000</div>
+      </div>
+
+      <div class="d-flex mt-2">
+        <button id="maskBtn" class="btn btn-sm fp-mask-btn ms-auto">Hide balance</button>
+      </div>
+    </section>
+
+    <!-- Actions -->
+    <section class="fp-actions mb-3">
+      <div class="row g-2 row-cols-4">
+        <div class="col"><button class="btn w-100 py-3 rounded-3 text-center"><i class="bi bi-plus-lg d-block fs-5 mb-1"></i>Balance</button></div>
+        <div class="col"><button id="goTransfer" class="btn w-100 py-3 rounded-3 text-center"><i class="bi bi-send d-block fs-5 mb-1"></i>Transfer</button></div>
+        <div class="col"><button class="btn w-100 py-3 rounded-3 text-center"><i class="bi bi-receipt d-block fs-5 mb-1"></i>Bills</button></div>
+        <div class="col"><button class="btn w-100 py-3 rounded-3 text-center"><i class="bi bi-three-dots d-block fs-5 mb-1"></i>More</button></div>
+      </div>
+    </section>
+
+    <!-- Quick Send -->
+    <section class="mb-3">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h5 class="m-0 fw-bold">Quick send</h5>
+        <a href="#" class="link-primary small">See All</a>
+      </div>
+      <div id="qsList" class="d-flex gap-3 overflow-auto pb-1"></div>
+    </section>
+
+    <!-- Transactions -->
+    <section class="mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h5 class="m-0 fw-bold">Transactions</h5>
+        <a href="#" class="link-primary small">See All</a>
+      </div>
+
+      <div id="txnList" class="vstack gap-2"></div>
+    </section>
+
+    <div style="height:84px"></div> <!-- spacer for bottom nav -->
+  </main>
+
+  <!-- Bottom nav -->
+  <nav class="navbar navbar-dark bg-body-tertiary navbar-expand fixed-bottom fp-bottom-nav">
+    <div class="container px-3" style="max-width:720px;">
+      <ul class="navbar-nav w-100 justify-content-between text-center">
+        <li class="nav-item"><a class="nav-link active" href="#"><i class="bi bi-house-door fs-5 d-block"></i><small>Home</small></a></li>
+        <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-grid fs-5 d-block"></i><small>Operations</small></a></li>
+        <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-credit-card fs-3 d-block"></i><small>Pay</small></a></li>
+        <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-graph-up fs-5 d-block"></i><small>Trade</small></a></li>
+        <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-gear fs-5 d-block"></i><small>Settings</small></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Mask / Unmask balance
+    const balText = document.getElementById('balText');
+    const maskBtn = document.getElementById('maskBtn');
+    const actualBalance = balText.textContent;
+    let masked = false;
+    function renderMask(){
+      if(masked){
+        balText.textContent = '••••••••';
+        maskBtn.textContent = 'Show balance';
+        maskBtn.ariaPressed = 'true';
+      }else{
+        balText.textContent = actualBalance;
+        maskBtn.textContent = 'Hide balance';
+        maskBtn.ariaPressed = 'false';
+      }
+    }
+    maskBtn.addEventListener('click', ()=>{ masked = !masked; renderMask(); });
+    renderMask();
+
+    // Quick Send (replace img paths with your local assets)
+    const quickSend = [
+      { name:'M. Jennifer', img:'assets/avatars/jennifer.png' },
+      { name:'A. Smith',    img:'assets/avatars/smith.png' },
+      { name:'P. Taylor',   img:'assets/avatars/taylor.png' },
+      { name:'L. Brown',    img:'assets/avatars/brown.png' },
+      { name:'M. Jennifer', img:'assets/avatars/jennifer2.png' },
+    ];
+    const qsList = document.getElementById('qsList');
+    qsList.innerHTML = quickSend.map(p => `
+      <button class="btn btn-outline-secondary border-0 text-center">
+        <img class="fp-avatar mb-1" src="${p.img}" alt="">
+        <div class="small fw-semibold text-truncate" style="width:72px;">${p.name}</div>
+      </button>
+    `).join('');
+
+    // Transactions
+    const txns = [
+      { title:'Airtime - MTN', sub:'Today • 10:42', amount:-5000 },
+      { title:'Salary', sub:'Yesterday • ACH', amount:+1450000 },
+      { title:'UMEME Power', sub:'Sep 12 • Token', amount:-78000 },
+      { title:'Wallet Top-up', sub:'Sep 10 • Flutterwave', amount:+250000 },
+    ];
+    const txnList = document.getElementById('txnList');
+    txnList.innerHTML = txns.map(t => `
+      <div class="fp-card rounded-3 p-2 d-flex align-items-center">
+        <div class="rounded-3 bg-dark-subtle text-primary-emphasis d-flex align-items-center justify-content-center me-2" style="width:40px;height:40px;">
+          ${t.amount < 0 ? '<i class="bi bi-arrow-down-left"></i>' : '<i class="bi bi-arrow-up-right"></i>'}
+        </div>
+        <div class="flex-grow-1">
+          <div class="fw-bold">${t.title}</div>
+          <div class="small text-secondary">${t.sub}</div>
+        </div>
+        <div class="${t.amount<0 ? 'text-danger' : 'text-success'} fw-bold">
+          ${t.amount<0 ? '-' : '+'} UGX ${Math.abs(t.amount).toLocaleString()}
+        </div>
+      </div>
+    `).join('');
+
+    // Example route
+    document.getElementById('goTransfer').addEventListener('click', () => {
+      window.location.href = 'transfer.html';
+    });
+  </script>
+  <script src="js/app-theme.js"></script>
+</body>
+</html>
