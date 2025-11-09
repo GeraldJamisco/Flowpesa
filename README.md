@@ -127,8 +127,38 @@ This project is under the **MIT License** — feel free to adapt for learning or
 ---
 
 screenshots
-
+Logo first show up as the preloader
 <img width="686" height="754" alt="image" src="https://github.com/user-attachments/assets/cf3072a9-a409-4c72-93ab-1bfaca0d65eb" />
+
+big screens
+<img width="1895" height="846" alt="image" src="https://github.com/user-attachments/assets/a1dbc6ee-31ec-4708-aae4-b658d89d4da6" />
+small screensh
+<img width="427" height="722" alt="image" src="https://github.com/user-attachments/assets/07454f71-d64d-4982-b10b-43a455e70723" />
+
+small screen signup screen
+<img width="428" height="727" alt="image" src="https://github.com/user-attachments/assets/3c32fe0a-a4f8-4fec-8e10-bd6cd3a27e33" />
+
+big screen sign up page 
+<img width="1892" height="851" alt="image" src="https://github.com/user-attachments/assets/258f784e-0cd4-4356-ab8e-bbd52ea6f4e8" />   <img width="636" height="860" alt="image" src="https://github.com/user-attachments/assets/fde288ba-6ed0-4c59-a883-795251922daf" />
+
+verify phone with code
+
+<img width="678" height="861" alt="image" src="https://github.com/user-attachments/assets/ac3f3df9-1775-4f52-be22-d8ec59c685a5" />
+
+verify email
+
+<img width="1897" height="853" alt="image" src="https://github.com/user-attachments/assets/7939e380-f1f0-4c26-a4e8-985d035811cb" />   <img width="393" height="746" alt="image" src="https://github.com/user-attachments/assets/7afba257-200f-4f81-a0bd-872df8625cd6" />
+
+
+create passcode for the security
+<img width="1890" height="851" alt="image" src="https://github.com/user-attachments/assets/0382d71d-c890-4a91-a2c7-ad98e396ae61" />    <img width="390" height="743" alt="image" src="https://github.com/user-attachments/assets/0e7487ae-0692-4fc0-aea6-e207a8d163ca" />     <img width="396" height="738" alt="image" src="https://github.com/user-attachments/assets/47cf975a-e4db-4137-ac68-264015ae5176" />
+
+
+
+
+
+
+
 
 
 ### 👑 Author
