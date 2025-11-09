@@ -50,29 +50,7 @@ flowpesa/
 | **Version Control** | Git & GitHub |
 | **Deployment** | Test server → `test.flowpesa.com` |
 
----
 
-<<<<<<< HEAD
-## 🧑‍💻 Getting Started (Local Preview)
-
-```bash
-# 1. Clone the repo
-git clone https://github.com/<your-username>/flowpesa.git
-
-# 2. Open the folder
-cd flowpesa
-
-# 3. Run locally (any static server)
-npx serve    # or "python -m http.server"
-
-# 4. Open in browser
-http://localhost:3000
-```
-
----
-
-=======
->>>>>>> e63a2dba45972b2976932632279679ed61f12aa1
 ## 🪄 UI/UX Principles
 
 - **Simple > Fancy:** 3 taps to finish any action  
