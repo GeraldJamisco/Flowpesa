@@ -126,6 +126,11 @@ This project is under the **MIT License** — feel free to adapt for learning or
 
 ---
 
+screenshots
+
+<img width="686" height="754" alt="image" src="https://github.com/user-attachments/assets/cf3072a9-a409-4c72-93ab-1bfaca0d65eb" />
+
+
 ### 👑 Author
 **Gerald Jamisco**  
 Fintech Developer & Founder — Flowpesa  
