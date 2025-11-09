@@ -153,6 +153,42 @@ verify email
 create passcode for the security
 <img width="1890" height="851" alt="image" src="https://github.com/user-attachments/assets/0382d71d-c890-4a91-a2c7-ad98e396ae61" />    <img width="390" height="743" alt="image" src="https://github.com/user-attachments/assets/0e7487ae-0692-4fc0-aea6-e207a8d163ca" />     <img width="396" height="738" alt="image" src="https://github.com/user-attachments/assets/47cf975a-e4db-4137-ac68-264015ae5176" />
 
+confirm citizenship in the resgion 
+
+<img width="397" height="752" alt="image" src="https://github.com/user-attachments/assets/97db7fee-8612-418b-a354-a72c72210825" />
+
+consent for the ID 
+<img width="1902" height="857" alt="image" src="https://github.com/user-attachments/assets/77b1e1c2-5c2b-41de-aa5b-668d08daefaa" />  <img width="400" height="735" alt="image" src="https://github.com/user-attachments/assets/cd5216d2-2c29-4a89-baf2-287166c8629f" />
+
+
+Choose Id type 
+
+<img width="402" height="742" alt="image" src="https://github.com/user-attachments/assets/023ac0a7-b24f-49f7-9261-74bd85751642" />   <img width="1888" height="852" alt="image" src="https://github.com/user-attachments/assets/fc180f24-6953-422e-8316-a709a5faea6d" />
+
+take id picture and choosing from galary 
+
+<img width="612" height="857" alt="image" src="https://github.com/user-attachments/assets/c5044725-360c-4ce8-96c9-4ae52e7dbdcc" />
+
+
+waiting for verification
+
+<img width="643" height="858" alt="image" src="https://github.com/user-attachments/assets/a7c9cfd2-480f-4a45-8ae0-245bd42167c5" />
+
+
+confirm details 
+<img width="762" height="863" alt="image" src="https://github.com/user-attachments/assets/abffe684-54cc-4d19-9929-9cc9db88b6fe" />
+
+
+dashboard
+<img width="341" height="752" alt="image" src="https://github.com/user-attachments/assets/b23379c1-ea1c-4e33-82b1-029f855b7df8" />
+
+
+
+<img width="1888" height="867" alt="image" src="https://github.com/user-attachments/assets/26f3e0e8-3ebf-48ca-87ef-60a88cce4c2d" />
+
+
+
+
 
 
 
