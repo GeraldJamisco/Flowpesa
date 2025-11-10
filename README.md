@@ -50,29 +50,7 @@ flowpesa/
 | **Version Control** | Git & GitHub |
 | **Deployment** | Test server → `test.flowpesa.com` |
 
----
 
-<<<<<<< HEAD
-## 🧑‍💻 Getting Started (Local Preview)
-
-```bash
-# 1. Clone the repo
-git clone https://github.com/<your-username>/flowpesa.git
-
-# 2. Open the folder
-cd flowpesa
-
-# 3. Run locally (any static server)
-npx serve    # or "python -m http.server"
-
-# 4. Open in browser
-http://localhost:3000
-```
-
----
-
-=======
->>>>>>> e63a2dba45972b2976932632279679ed61f12aa1
 ## 🪄 UI/UX Principles
 
 - **Simple > Fancy:** 3 taps to finish any action  
@@ -147,6 +125,29 @@ If you’d like to contribute, fork the repository and open a PR with a clear de
 This project is under the **MIT License** — feel free to adapt for learning or personal use.
 
 ---
+
+screenshots
+Logo first show up as the preloader
+<img width="686" height="754" alt="image" src="https://github.com/user-attachments/assets/cf3072a9-a409-4c72-93ab-1bfaca0d65eb" />
+
+
+dashboard
+<img width="341" height="752" alt="image" src="https://github.com/user-attachments/assets/b23379c1-ea1c-4e33-82b1-029f855b7df8" />
+
+
+
+<img width="1888" height="867" alt="image" src="https://github.com/user-attachments/assets/26f3e0e8-3ebf-48ca-87ef-60a88cce4c2d" />
+
+
+
+
+
+
+
+
+
+
+
 
 ### 👑 Author
 **Gerald Jamisco**  
