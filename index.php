@@ -18,8 +18,8 @@
           var key = 'preloaderShown';
           if (!sessionStorage.getItem(key)) {
             sessionStorage.setItem(key, '1');
-            var target = encodeURIComponent(location.pathname.replace(/\\\\/g, '/').split('/').pop() || 'index.html');
-            location.replace('preloader.html?next=' + target);
+            var target = encodeURIComponent(location.pathname.replace(/\\\\/g, '/').split('/').pop() || 'index.php');
+            location.replace('preloader.php?next=' + target);
           }
         } catch (_) {}
       })();
@@ -72,7 +72,7 @@
       </div>
 
       <div class="actions">
-        <a class="btn btn-primary" href="create-account.html" role="button">Create account</a>
+        <a class="btn btn-primary" href="Register.php" role="button">Create account</a>
         <a class="btn btn-outline" href="#sign-in" role="button">Sign in</a>
       </div>
     </main>

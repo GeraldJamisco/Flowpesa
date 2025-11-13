@@ -16,23 +16,128 @@ It enables users to **send, receive, save, and grow** their money seamlessly thr
 
 ---
 
-## 🧱 Project Structure
+## 🧱 Project Structure (Planned)
 
 ```bash
-flowpesa/
-├── index.html                 # Onboarding slides
-├── create-account.html        # Phone number signup
-<<<<<<< HEAD
-├── verify-phone.html          # 6-digit verification screen
-=======
-├── verify-otp.html            # 6-digit verification screen
->>>>>>> e63a2dba45972b2976932632279679ed61f12aa1
-├── css/
-│   ├── style.css              # Unified UI/UX styling
-│   └── vars.css               # Color & font variables
-├── assets/                    # Images, icons, logos
-└── README.md
+Flowpesa/
+│
+├── api/
+│   ├── db.php               → database connection (PDO or MySQLi)
+│   ├── helpers.php          → shared functions (sanitize, generate TXN IDs, etc.)
+│   ├── auth/
+│   │   ├── register.php
+│   │   ├── login.php
+│   │   └── logout.php
+│   ├── wallet/
+│   │   ├── balance.php
+│   │   ├── transactions.php
+│   │   ├── send_money.php
+│   │   └── add_money.php
+│   ├── kyc/
+│   │   ├── submit.php
+│   │   ├── status.php
+│   │   └── verify.php
+│   ├── payment/
+│   │   ├── flutterwave_init.php
+│   │   ├── flutterwave_webhook.php
+│   │   └── banks.php
+│   ├── admin/
+│   │   ├── users.php
+│   │   ├── transactions.php
+│   │   └── kyc.php
+│   └── index.php            → main API router
+│
+├── public/
+│   ├── index.php            → landing or redirect
+│   ├── login.php
+│   ├── register.php
+│   ├── dashboard.php
+│   ├── wallet.php
+│   └── kyc.php
+│
+├── assets/
+│   ├── css/
+│   ├── js/
+│   └── images/
+│
+└── .env or config.php        → DB creds, API keys, constants
 ```
+
+## 🔄 Flow Chart (High-Level)
+
+```mermaid
+flowchart TD
+  subgraph Client [Web/App]
+    A[Register] --> B[Verify Phone/Email]
+    B --> C[Set Passcode]
+    C --> D[Login]
+    D --> E[Dashboard]
+    E --> F[Wallet: Balance/History]
+    E --> G[Send Money]
+    E --> H[Add Money]
+    E --> I[KYC]
+  end
+
+  subgraph API [PHP API]
+    A1[/auth/register.php/]
+    B1[/auth/verify.php/]
+    C1[/auth/passcode.php/]
+    D1[/auth/login.php/]
+    F1[/wallet/balance.php/]
+    F2[/wallet/transactions.php/]
+    G1[/wallet/send_money.php/]
+    H1[/wallet/add_money.php/]
+    I1[/kyc/submit.php/]
+    I2[/kyc/status.php/]
+    P1[/payment/flutterwave_init.php/]
+    P2[/payment/flutterwave_webhook.php/]
+  end
+
+  subgraph Infra [DB & Providers]
+    DB[(MySQL)]
+    FW[Flutterwave]
+  end
+
+  A -->|POST /api/auth/register| A1 --> DB
+  B -->|POST /api/auth/verify| B1 --> DB
+  C -->|POST /api/auth/passcode| C1 --> DB
+  D -->|POST /api/auth/login| D1 --> DB
+
+  F -->|GET /api/wallet/balance| F1 --> DB
+  F -->|GET /api/wallet/txns| F2 --> DB
+  G -->|POST /api/wallet/send| G1 --> DB
+
+  H -->|POST /api/payment/init| P1 --> FW
+  FW -->|Webhook /api/payment/hook| P2 --> DB
+
+  I -->|POST /api/kyc/submit| I1 --> DB
+  I -->|GET /api/kyc/status| I2 --> DB
+```
+
+## 🛠️ API Plan (Endpoints)
+
+- Auth
+  - `POST /api/auth/register` → start registration (phone/email)
+  - `POST /api/auth/login` → passcode/token login
+  - `POST /api/auth/logout` → invalidate token
+- Wallet
+  - `GET /api/wallet/balance` → current balance
+  - `GET /api/wallet/transactions` → paginated history
+  - `POST /api/wallet/send` → P2P transfer
+  - `POST /api/wallet/add` → add money (delegates to payment init)
+- KYC
+  - `POST /api/kyc/submit` → upload data/files
+  - `GET /api/kyc/status` → tier and review state
+- Payments (Flutterwave)
+  - `POST /api/payment/init` → create payment intent
+  - `POST /api/payment/webhook` → verify + credit wallet
+- Admin
+  - `GET /api/admin/users` | `GET /api/admin/transactions` | `GET /api/admin/kyc`
+
+Notes
+- Use `Authorization: Bearer <token>` on protected routes.
+- All responses JSON: `{ success, data, error }`.
+- Centralize DB access in `api/db.php` and helpers in `api/helpers.php`.
 
 ## 🔐 Registration Flow
 
