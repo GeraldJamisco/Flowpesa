@@ -1,45 +1,55 @@
-const form  = document.getElementById('email-form');
-const input = document.getElementById('email');
-const clear = document.querySelector('.clear-btn');
-const error = document.getElementById('email-error');
-const btn   = document.getElementById('email-continue');
+// Js/verify-email.js
+(() => {
+  const form    = document.getElementById('email-form');
+  const input   = document.getElementById('email');
+  const clear   = document.querySelector('.clear-btn');
+  const error   = document.getElementById('email-error');
+  const counter = document.querySelector('.counter[data-for="email"]');
+  const btn     = document.getElementById('email-continue');
 
-// simple, robust email pattern
-const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+  if (!form || !input || !btn) return;
 
-function validate() {
-  const val = input.value.trim();
-  const ok  = emailRx.test(val);
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  btn.disabled = !ok;
-  btn.classList.toggle('is-active', ok);
+  function validate() {
+    const value = input.value.trim();
+    const len   = value.length;
+    const ok    = emailPattern.test(value);
 
-  error.hidden = ok;
-  if (!ok && val.length) error.textContent = 'Enter a valid email.';
+    if (counter) counter.textContent = `${len}/100`;
 
-  clear.hidden = val.length === 0;
-}
+    btn.disabled = !ok;
+    btn.classList.toggle('is-active', ok);
 
-input.addEventListener('input', validate);
-clear.addEventListener('click', () => {
-  input.value = '';
-  input.focus();
-  validate();
-});
+    if (error) {
+      // if server already sent an error, keep it until user types something new
+      if (len === 0) {
+        error.hidden = true;
+      } else {
+        error.hidden = ok;
+        if (!ok) {
+          error.textContent = 'Enter a valid email address (e.g., name@domain.com).';
+        }
+      }
+    }
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  validate();
-  if (btn.disabled) return;
+    if (clear) clear.hidden = len === 0;
+  }
 
-  // TODO: Call your API to send an OTP or magic link
-  // await fetch('/api/auth/email-begin', {...})
+  input.addEventListener('input', validate);
 
-  // Go to next step (Verify ID)
-  location.href = 'set-passcode.html';
-});
+  if (clear) {
+    clear.addEventListener('click', () => {
+      input.value = '';
+      input.focus();
+      validate();
+    });
+  }
 
-window.addEventListener('DOMContentLoaded', () => {
-  input.focus();
-  validate();
-});
+  // IMPORTANT: let the browser submit to send_email.php (no preventDefault here)
+  form.addEventListener('submit', () => {
+    // no JS handling, PHP does the work
+  });
+
+  window.addEventListener('DOMContentLoaded', validate);
+})();
