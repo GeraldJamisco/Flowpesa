@@ -141,7 +141,14 @@ Notes
 
 ## 🔐 Registration Flow
 
-- `create-account.html` → `verify-phone.html` → `verify-email.html` → `set-passcode.html` → `confirm-passcode.html` → `verify-id-citizenship.html` → `verify-id-consent.html` → `verify-id-type.html` → `upload-…`
+**Backend (Nov 2025 refresh)**
+1. `register.php` → creates a `registration_flows` row, captures MSISDN, and sets `step = 'phone'`.
+2. `verify-phone.php` → generates/saves the phone OTP (`phone_otp_hash`, `phone_otp_expires_at`, `attempts_phone=0`, `step='phone_otp'`) and fires the SMS.
+3. `verify-phone-code.php` → validates the OTP, marks `phone_verified = 1`, clears phone OTP fields, and advances the flow to `step='email'`.
+4. `verify-email.php` → collects the email, generates the email OTP (`email_otp_hash`, `email_otp_expires_at`, `step='email_otp'`) and dispatches the email.
+5. `verify-email-code.php` → validates the email OTP, sets `email_verified = 1`, moves the flow to `step='id_type'`, and redirects to `verify-id-type.php`.
+
+Every verification request now lives in `registration_flows`, so OTPs are stored server-side (not in sessions) and can be audited/resumed safely.
 
 ---
 

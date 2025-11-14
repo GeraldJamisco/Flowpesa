@@ -1,61 +1,106 @@
 <?php
-declare(strict_types=1);
+session_start();
+require __DIR__ . '/api/db.php'; // $pdo (PDO)
 
-require __DIR__ . '/api/db.php';
+// 1) Must have an active registration flow
+if (empty($_SESSION['reg_id'])) {
+    header('Location: register.php');
+    exit;
+}
 
-$requestToken  = (string)($_GET['request'] ?? '');
-$saved_email   = (string)($_GET['email'] ?? '');
-$flash_success = '';
-$flash_error   = '';
-$dev_code      = null;
+$regId    = (int) $_SESSION['reg_id'];
+$errorMsg = '';
+$emailVal = '';   // to prefill input
+$debugCode = null;
 
-if (isset($_GET['error'])) {
-    switch ($_GET['error']) {
-        case 'invalid':
-            $flash_error = 'Enter a valid email address (e.g., name@domain.com).';
-            break;
-        case 'server':
-            $flash_error = 'We could not start email verification. Please try again.';
-            break;
-        default:
-            $flash_error = 'Something went wrong. Please try again.';
+// Load flow
+$stmt = $pdo->prepare("SELECT * FROM registration_flows WHERE id = :id LIMIT 1");
+$stmt->execute([':id' => $regId]);
+$flow = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$flow) {
+    unset($_SESSION['reg_id']);
+    header('Location: register.php');
+    exit;
+}
+
+// Guard: phone must be verified first
+if ((int)$flow['phone_verified'] !== 1) {
+    header('Location: verify-phone-code.php');
+    exit;
+}
+
+$emailVal = $flow['email'] ?? '';
+
+// Simple mail sender (adjust addresses for real use)
+function sendVerificationEmail(string $to, string $code): bool
+{
+    $subject = 'Your Flowpesa email verification code';
+    $message = "Hi,\n\nYour Flowpesa verification code is: {$code}\n\n" .
+               "Enter this code in the Flowpesa app to confirm your email.\n\n" .
+               "If you didn’t request this, you can ignore this message.\n\n" .
+               "— Flowpesa Security";
+    $headers = "From: Flowpesa <no-reply@flowpesa.com>\r\n" .
+               "Reply-To: support@flowpesa.com\r\n" .
+               "X-Mailer: PHP/" . phpversion();
+
+    // On localhost this may silently fail; that’s fine for now.
+    return @mail($to, $subject, $message, $headers);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $emailVal = trim($_POST['email'] ?? '');
+
+    // Basic validation
+    if ($emailVal === '') {
+        $errorMsg = 'Email is required.';
+    } elseif (!filter_var($emailVal, FILTER_VALIDATE_EMAIL)) {
+        $errorMsg = 'Enter a valid email address (e.g., name@domain.com).';
+    } elseif (mb_strlen($emailVal) > 100) {
+        $errorMsg = 'Email is too long (max 100 characters).';
     }
-}
 
-if (isset($_GET['mail_error'])) {
-    $flash_error = 'We saved your request but could not send the email automatically.';
-}
+    if ($errorMsg === '') {
+        // Optional: check if already used by another user
+        // $check = $pdo->prepare("SELECT id FROM users WHERE email = :e LIMIT 1");
+        // $check->execute([':e' => $emailVal]);
+        // if ($check->fetch()) { $errorMsg = 'This email is already in use.'; }
 
-if (!$flash_error && isset($_GET['sent'])) {
-    $flash_success = 'We\'ve sent a verification code to your email.';
-}
+        if ($errorMsg === '') {
+            // Generate email OTP
+            $code  = (string) random_int(100000, 999999);
+            $hash  = password_hash($code, PASSWORD_DEFAULT);
+            $now   = new DateTimeImmutable();
+            $exp   = $now->add(new DateInterval('PT10M')); // 10 minutes
 
-if ($requestToken !== '') {
-    try {
-        $stmt = $pdo->prepare(
-            'SELECT contact_value, code, status
-               FROM verification_requests
-              WHERE request_token = :token AND verification_type = :type
-              LIMIT 1'
-        );
-        $stmt->execute([
-            ':token' => $requestToken,
-            ':type'  => 'email',
-        ]);
-        $row = $stmt->fetch();
+            // Store in registration_flows
+            $upd = $pdo->prepare("
+                UPDATE registration_flows
+                SET email              = :email,
+                    email_verified     = 0,
+                    email_otp_hash    = :hash,
+                    email_otp_expires_at = :exp,
+                    attempts_email    = 0,
+                    step              = 'email_otp'
+                WHERE id = :id
+            ");
+            $upd->execute([
+                ':email' => $emailVal,
+                ':hash'  => $hash,
+                ':exp'   => $exp->format('Y-m-d H:i:s'),
+                ':id'    => $regId,
+            ]);
 
-        if ($row) {
-            $saved_email = $row['contact_value'];
-            $dev_code    = $row['code'];
+            // Try sending mail (won’t work on some local setups, that’s ok)
+            $sent = sendVerificationEmail($emailVal, $code);
 
-            if ($row['status'] === 'verified' && !$flash_error) {
-                $flash_success = 'This email address is already verified.';
-            }
-        } elseif (!$flash_error) {
-            $flash_error = 'We could not find that email verification request.';
+            // DEV ONLY: expose code so you can continue even if mail() fails
+            $debugCode = $code;
+
+            // Redirect to code entry page with debug_code in URL for dev
+            header('Location: verify-email-code.php?debug_code=' . urlencode($code));
+            exit;
         }
-    } catch (Throwable $e) {
-        $flash_error = 'Unable to load your verification request.';
     }
 }
 ?>
@@ -87,27 +132,14 @@ if ($requestToken !== '') {
     <h1 class="title">Email</h1>
     <p class="subtitle">Please provide your email address.</p>
 
-    <?php if ($flash_success): ?>
-      <div class="flash success">
-        <?= htmlspecialchars($flash_success, ENT_QUOTES, 'UTF-8') ?>
-      </div>
+    <?php if ($debugCode !== null): ?>
+      <!-- DEV ONLY: remove when going live -->
+      <p style="color:#ffdf5b; font-size:13px; margin-bottom:10px;">
+        DEV email code: <strong><?= htmlspecialchars($debugCode) ?></strong>
+      </p>
     <?php endif; ?>
 
-    <?php if ($flash_error): ?>
-      <div class="flash error">
-        <?= htmlspecialchars($flash_error, ENT_QUOTES, 'UTF-8') ?>
-      </div>
-    <?php endif; ?>
-
-    <!-- DEV-ONLY helper: show verification code while designing -->
-    <?php if ($dev_code !== null): ?>
-      <div class="dev-box">
-        <strong>DEV ONLY:</strong> Email code =
-        <code><?= htmlspecialchars($dev_code, ENT_QUOTES, 'UTF-8') ?></code>
-      </div>
-    <?php endif; ?>
-
-    <form id="email-form" method="post" action="send_email.php" novalidate>
+    <form id="email-form" method="post" novalidate>
       <label class="label" for="email">Email address</label>
       <div class="pill">
         <input
@@ -120,29 +152,32 @@ if ($requestToken !== '') {
           maxlength="100"
           aria-describedby="email-help"
           required
-          value="<?= htmlspecialchars($saved_email, ENT_QUOTES, 'UTF-8') ?>"
+          value="<?= htmlspecialchars($emailVal) ?>"
         />
-        <button class="clear-btn" type="button" aria-label="Clear" <?= $saved_email === '' ? 'hidden' : '' ?>>&times;</button>
+        <button class="clear-btn" type="button" aria-label="Clear" <?= $emailVal === '' ? 'hidden' : '' ?>>&times;</button>
       </div>
 
       <div class="hint-row">
         <span id="email-help">We’ll use this for receipts and security alerts.</span>
         <span class="counter" data-for="email">
-          <?= strlen($saved_email) ?>/100
+          <?= strlen($emailVal) ?>/100
         </span>
       </div>
 
-      <p class="error" id="email-error" <?= $flash_error ? '' : 'hidden' ?>>
-        <?= $flash_error
-            ? htmlspecialchars($flash_error, ENT_QUOTES, 'UTF-8')
-            : 'Enter a valid email address (e.g., name@domain.com).' ?>
+      <p
+        class="error"
+        id="email-error"
+        role="alert"
+        <?= $errorMsg ? '' : 'hidden'; ?>
+      >
+        <?= htmlspecialchars($errorMsg ?: 'Enter a valid email address (e.g., name@domain.com).') ?>
       </p>
 
       <button
         id="email-continue"
-        class="cta<?= ($saved_email && !$flash_error) ? ' is-active' : '' ?>"
+        class="cta"
         type="submit"
-        <?= ($saved_email && !$flash_error) ? '' : 'disabled' ?>
+        <?= $errorMsg || $emailVal === '' ? 'disabled' : '' ?>
       >
         Continue
       </button>
@@ -150,5 +185,41 @@ if ($requestToken !== '') {
   </main>
 
   <script src="Js/verify-email.js"></script>
+  <script>
+    // tiny sync so JS & PHP stay in sync on first load
+    (function(){
+      const emailInput = document.getElementById('email');
+      const clearBtn   = document.querySelector('.clear-btn');
+      const counter    = document.querySelector('.counter[data-for="email"]');
+      const btn        = document.getElementById('email-continue');
+      const errorEl    = document.getElementById('email-error');
+
+      if (!emailInput || !btn) return;
+
+      function update() {
+        const val = emailInput.value.trim();
+        if (counter) counter.textContent = (val.length || 0) + '/100';
+
+        const ok = val.length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+        btn.disabled = !ok;
+        if (clearBtn) clearBtn.hidden = val.length === 0;
+
+        // Don’t show error while typing unless PHP already sent one
+        <?php if (!$errorMsg): ?>
+        if (!ok) errorEl.hidden = true;
+        <?php endif; ?>
+      }
+
+      emailInput.addEventListener('input', update);
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          emailInput.value = '';
+          emailInput.focus();
+          update();
+        });
+      }
+      update();
+    })();
+  </script>
 </body>
 </html>

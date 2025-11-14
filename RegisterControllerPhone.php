@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'config/db.php';   
+require __DIR__ . '/api/db.php';
 
 // Helper: normalize phone (very simple for now)
 function normalize_msisdn(string $countryCode, string $phone): string {
@@ -34,44 +34,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    if (empty($errors)) {
-        // Generate OTP
-        $otp = random_int(100000, 999999);
-        $otpHash = password_hash((string)$otp, PASSWORD_DEFAULT);
-
-        // Expiry in 10 minutes
-        $expiresAt = (new DateTime('+10 minutes'))->format('Y-m-d H:i:s');
-
+if (empty($errors)) {
         try {
-            // Insert registration flow
             $stmt = $pdo->prepare("
                 INSERT INTO registration_flows
-                    (country_code, phone, msisdn, phone_otp_hash, phone_otp_expires_at, step)
+                    (country_code, phone, msisdn, step, phone_verified, email_verified)
                 VALUES
-                    (:country_code, :phone, :msisdn, :otp_hash, :expires_at, 'phone')
+                    (:country_code, :phone, :msisdn, 'phone', 0, 0)
             ");
             $stmt->execute([
                 ':country_code' => $country,
                 ':phone'        => $phone,
                 ':msisdn'       => $msisdn,
-                ':otp_hash'     => $otpHash,
-                ':expires_at'   => $expiresAt
             ]);
 
-            $regId = (int)$pdo->lastInsertId();
-            $_SESSION['reg_id'] = $regId;
+            $_SESSION['reg_id'] = (int) $pdo->lastInsertId();
 
-            // TODO: send SMS via AfricasTalking here
-            // For now, **developer-only**: log OTP somewhere safe.
-            // DO NOT show this to real users in production.
-            // file_put_contents(__DIR__.'/storage/otp_debug.log', date('c')." $msisdn => $otp\n", FILE_APPEND);
-
-            // TEMP: show OTP in URL so you can test easily (remove later)
-            header('Location: verify-phone.php?msisdn=' . urlencode($msisdn) . '&debug_otp=' . $otp);
+            header('Location: verify-phone.php');
             exit;
 
         } catch (PDOException $e) {
-            // In production: log $e->getMessage() instead of echoing
             $errors[] = 'Something went wrong. Please try again.';
         }
     }

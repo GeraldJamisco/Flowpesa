@@ -1,7 +1,5 @@
 <?php
-require 'config/db.php';
 require 'RegisterControllerPhone.php';
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
