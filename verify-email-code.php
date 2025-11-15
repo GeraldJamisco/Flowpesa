@@ -100,13 +100,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             email_otp_hash      = NULL,
                             email_otp_expires_at= NULL,
                             attempts_email      = 0,
-                            step                = 'id_type'
+                            step                = 'set_passcode'
                         WHERE id = :id
                     ");
                     $upd->execute([':id' => $regId]);
 
-                    // Next step in your flow: choose ID type (identity/passport/driving licence)
-                    header('Location: verify-id-type.php');
+                    // Next step is to set passcode for security (now that both phone + email are verified)
+                    header('Location: set-passcode.php');
                     exit;
                 }
             }

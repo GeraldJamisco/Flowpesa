@@ -1,49 +1,70 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('passcode-form');
+  const hiddenField = document.getElementById('passcode-field');
   const dotsContainer = document.getElementById('dots');
   const clearKey = document.getElementById('clear');
   const enterKey = document.getElementById('enter');
-  const keypadKeys = document.querySelectorAll('.key:not(.key-action)');
+  const digitKeys = document.querySelectorAll('.key:not(.key-action)');
   const PASSCODE_LENGTH = 6;
-  let passcode = "";
 
-  // create 6 dots
-  for (let i = 0; i < PASSCODE_LENGTH; i++) {
+  if (!form || !hiddenField || !dotsContainer) return;
+
+  let passcode = '';
+
+  for (let i = 0; i < PASSCODE_LENGTH; i += 1) {
     const dot = document.createElement('div');
     dot.className = 'dot';
     dotsContainer.appendChild(dot);
   }
 
-  function renderDots() {
-    [...dotsContainer.children].forEach((d, i) =>
-      d.classList.toggle('active', i < passcode.length)
-    );
-  }
+  const refreshDots = () => {
+    [...dotsContainer.children].forEach((dot, idx) => {
+      dot.classList.toggle('active', idx < passcode.length);
+    });
+  };
 
-  function pushDigit(d) {
+  const pushDigit = (digit) => {
     if (passcode.length >= PASSCODE_LENGTH) return;
-    passcode += d;
-    renderDots();
-  }
-  function popDigit() {
+    passcode += digit;
+    refreshDots();
+  };
+
+  const popDigit = () => {
     if (!passcode.length) return;
     passcode = passcode.slice(0, -1);
-    renderDots();
+    refreshDots();
+  };
+
+  const syncAndSubmit = () => {
+    if (passcode.length !== PASSCODE_LENGTH) {
+      return false;
+    }
+    hiddenField.value = passcode;
+    return true;
+  };
+
+  digitKeys.forEach((btn) => {
+    btn.addEventListener('click', () => pushDigit(btn.textContent.trim()));
+  });
+
+  if (clearKey) {
+    clearKey.addEventListener('click', popDigit);
   }
- 
-function submitIfComplete() {
-  if (passcode.length === PASSCODE_LENGTH) {
-    sessionStorage.setItem('fp_first_passcode', passcode); // save first entry
-    location.href = 'confirm-passcode.html';
+
+  if (enterKey) {
+    enterKey.addEventListener('click', (e) => {
+      if (!syncAndSubmit()) {
+        e.preventDefault();
+      }
+    });
   }
-}
 
+  form.addEventListener('submit', (e) => {
+    if (!syncAndSubmit()) {
+      e.preventDefault();
+    }
+  });
 
-  // on-screen keypad
-  keypadKeys.forEach(btn => btn.addEventListener('click', () => pushDigit(btn.textContent)));
-  clearKey.addEventListener('click', popDigit);
-  enterKey.addEventListener('click', submitIfComplete);
-
-  // physical keyboard support (desktop/laptop)
   document.addEventListener('keydown', (e) => {
     if (/^[0-9]$/.test(e.key)) {
       e.preventDefault();
@@ -52,10 +73,11 @@ function submitIfComplete() {
       e.preventDefault();
       popDigit();
     } else if (e.key === 'Enter') {
-      e.preventDefault();
-      submitIfComplete();
+      if (!syncAndSubmit()) {
+        e.preventDefault();
+      }
     }
   });
 
-  renderDots();
+  refreshDots();
 });
