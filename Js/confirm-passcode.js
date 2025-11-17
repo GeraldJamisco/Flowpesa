@@ -1,97 +1,142 @@
+// confirm-passcode.js
 document.addEventListener('DOMContentLoaded', () => {
   const dotsContainer = document.getElementById('dots');
-  const error = document.getElementById('error');
+  const error        = document.getElementById('error');
 
-  const clearKey = document.getElementById('clear');
-  const enterKey = document.getElementById('enter');
+  const clearKey   = document.getElementById('clear');
+  const enterKey   = document.getElementById('enter');
   const keypadKeys = document.querySelectorAll('.key:not(.key-action)');
 
   const PASSCODE_LENGTH = 6;
-  let passcode = "";
+  let passcode    = "";
+  let isSubmitting = false;
 
-  // get first passcode from session
+  // 1) get first passcode from session (from set-passcode page)
   const first = sessionStorage.getItem('fp_first_passcode');
   if (!first) {
-    // user skipped first page
+    // user somehow landed here without creating passcode first
     location.href = "set-passcode.php";
     return;
   }
 
-  // create 6 dots
-  for (let i = 0; i < PASSCODE_LENGTH; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'dot';
-    dotsContainer.appendChild(dot);
+  // 2) render 6 dots
+  if (dotsContainer) {
+    for (let i = 0; i < PASSCODE_LENGTH; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'dot';
+      dotsContainer.appendChild(dot);
+    }
   }
 
   function renderDots() {
-    [...dotsContainer.children].forEach((d, i) =>
-      d.classList.toggle('active', i < passcode.length)
-    );
+    if (!dotsContainer) return;
+    [...dotsContainer.children].forEach((d, i) => {
+      d.classList.toggle('active', i < passcode.length);
+    });
+  }
+
+  function showError(msg) {
+    if (!error) return;
+    error.textContent = msg;
+    error.hidden = false;
+  }
+
+  function clearError() {
+    if (!error) return;
+    error.hidden = true;
+    error.textContent = "";
   }
 
   function pushDigit(d) {
+    if (isSubmitting) return;
     if (passcode.length >= PASSCODE_LENGTH) return;
     passcode += d;
+    clearError();
     renderDots();
   }
 
   function popDigit() {
+    if (isSubmitting) return;
     if (!passcode.length) return;
     passcode = passcode.slice(0, -1);
+    clearError();
     renderDots();
   }
 
   function submitIfComplete() {
-    if (passcode.length === PASSCODE_LENGTH) {
-      if (passcode === first) {
-        // good!
+    if (isSubmitting) return;
+    if (passcode.length !== PASSCODE_LENGTH) return;
+
+    // 3) check match with first passcode
+    if (passcode !== first) {
+      showError("Passcodes don’t match. Try again.");
+      passcode = "";
+      renderDots();
+      return;
+    }
+
+    // 4) send to backend to be saved in DB
+    isSubmitting = true;
+
+    fetch("create-passcode.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ passcode })
+    })
+    .then(res => res.json().catch(() => ({})))
+    .then(data => {
+      isSubmitting = false;
+
+      if (data.status === "ok") {
+        // cleanup session key
         sessionStorage.removeItem('fp_first_passcode');
-
-        // SEND TO BACKEND HERE (create-passcode.php)
-        fetch("create-passcode.php", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ passcode })
-        })
-        .then(res => res.json())
-        .then(d => {
-          if (d.status === "ok") {
-            location.href = "verify-id-type.php";
-          } else {
-            error.textContent = "Server error. Try again.";
-            error.hidden = false;
-          }
-        });
-
+        // go to next step
+        location.href = "verify-id-type.php";
       } else {
-        // mismatch!
-        error.hidden = false;
+        const msg = data.message || "Server error. Please try again.";
+        showError(msg);
+        // allow user to re-enter in case something changed
         passcode = "";
         renderDots();
       }
-    }
+    })
+    .catch(() => {
+      isSubmitting = false;
+      showError("Network error. Check your connection and try again.");
+    });
   }
 
-  // on-screen keypad
-  keypadKeys.forEach(btn =>
-    btn.addEventListener('click', () => pushDigit(btn.textContent))
-  );
+  // 5) on-screen keypad
+  keypadKeys.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const d = btn.textContent.trim();
+      if (/^\d$/.test(d)) pushDigit(d);
+      submitIfComplete();
+    });
+  });
 
-  clearKey.addEventListener('click', popDigit);
-  enterKey.addEventListener('click', submitIfComplete);
+  if (clearKey) {
+    clearKey.addEventListener('click', () => {
+      popDigit();
+    });
+  }
 
-  // keyboard support
+  if (enterKey) {
+    enterKey.addEventListener('click', () => {
+      submitIfComplete();
+    });
+  }
+
+  // 6) physical keyboard support
   document.addEventListener('keydown', (e) => {
     if (/^[0-9]$/.test(e.key)) {
       e.preventDefault();
       pushDigit(e.key);
-    }
-    else if (e.key === 'Backspace') {
+      submitIfComplete();
+    } else if (e.key === 'Backspace') {
       e.preventDefault();
       popDigit();
-    }
-    else if (e.key === 'Enter') {
+    } else if (e.key === 'Enter') {
       e.preventDefault();
       submitIfComplete();
     }

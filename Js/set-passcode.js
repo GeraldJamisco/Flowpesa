@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('passcode-form');
-  const hiddenField = document.getElementById('passcode-field');
+  const form          = document.getElementById('passcode-form');
   const dotsContainer = document.getElementById('dots');
-  const clearKey = document.getElementById('clear');
-  const enterKey = document.getElementById('enter');
-  const digitKeys = document.querySelectorAll('.key:not(.key-action)');
+  const clearKey      = document.getElementById('clear');
+  const enterKey      = document.getElementById('enter');
+  const digitKeys     = document.querySelectorAll('.key:not(.key-action)');
   const PASSCODE_LENGTH = 6;
 
-  if (!form || !hiddenField || !dotsContainer) return;
+  if (!dotsContainer) return;
 
   let passcode = '';
 
+  // Build the 6 dots
   for (let i = 0; i < PASSCODE_LENGTH; i += 1) {
     const dot = document.createElement('div');
     dot.className = 'dot';
@@ -35,36 +35,39 @@ document.addEventListener('DOMContentLoaded', () => {
     refreshDots();
   };
 
-  const syncAndSubmit = () => {
-    if (passcode.length !== PASSCODE_LENGTH) {
-      return false;
-    }
-    hiddenField.value = passcode;
-    return true;
+  // When we have 6 digits, store and go to confirm page
+  const handleComplete = () => {
+    if (passcode.length !== PASSCODE_LENGTH) return;
+
+    // Save first passcode for the next page
+    sessionStorage.setItem('fp_first_passcode', passcode);
+
+    // Go to confirm-passcode step
+    window.location.href = 'confirm-passcode.php';
   };
 
+  // On-screen keypad
   digitKeys.forEach((btn) => {
-    btn.addEventListener('click', () => pushDigit(btn.textContent.trim()));
+    btn.addEventListener('click', () => {
+      const d = btn.textContent.trim();
+      if (/^[0-9]$/.test(d)) pushDigit(d);
+    });
   });
 
   if (clearKey) {
-    clearKey.addEventListener('click', popDigit);
+    clearKey.addEventListener('click', () => {
+      popDigit();
+    });
   }
 
   if (enterKey) {
     enterKey.addEventListener('click', (e) => {
-      if (!syncAndSubmit()) {
-        e.preventDefault();
-      }
+      e.preventDefault();
+      handleComplete();
     });
   }
 
-  form.addEventListener('submit', (e) => {
-    if (!syncAndSubmit()) {
-      e.preventDefault();
-    }
-  });
-
+  // Support physical keyboard too
   document.addEventListener('keydown', (e) => {
     if (/^[0-9]$/.test(e.key)) {
       e.preventDefault();
@@ -73,11 +76,18 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       popDigit();
     } else if (e.key === 'Enter') {
-      if (!syncAndSubmit()) {
-        e.preventDefault();
-      }
+      e.preventDefault();
+      handleComplete();
     }
   });
+
+  // If there *is* a form, stop it from actually posting
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      handleComplete();
+    });
+  }
 
   refreshDots();
 });
