@@ -137,6 +137,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
   </main>
 
-  <script src="Js/set-passcode.js" defer></script>
+  <script src="Js/confirm-passcode.js" defer></script>
 </body>
 </html>

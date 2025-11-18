@@ -40,8 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $upd = $pdo->prepare("
             UPDATE registration_flows
-            SET passcode_hash = :h,
-                step          = 'complete'
+            SET temp_passcode_hash = :h,
+                step               = 'passcode_temp'
             WHERE id = :id
         ");
         $upd->execute([

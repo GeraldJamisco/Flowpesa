@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const form          = document.getElementById('passcode-form');
   const dotsContainer = document.getElementById('dots');
+  const passcodeField = document.getElementById('passcode-field');
   const clearKey      = document.getElementById('clear');
   const enterKey      = document.getElementById('enter');
   const digitKeys     = document.querySelectorAll('.key:not(.key-action)');
@@ -39,11 +40,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const handleComplete = () => {
     if (passcode.length !== PASSCODE_LENGTH) return;
 
-    // Save first passcode for the next page
-    sessionStorage.setItem('fp_first_passcode', passcode);
+    if (passcodeField) {
+      passcodeField.value = passcode;
+    }
 
-    // Go to confirm-passcode step
-    window.location.href = 'confirm-passcode.php';
+    // Post to PHP to store temp hash then redirect server-side
+    if (form) {
+      form.submit();
+    }
   };
 
   // On-screen keypad
