@@ -69,13 +69,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['fp_citizenship_country'] = $countryName;
         $_SESSION['fp_is_citizen'] = ($answer === 'yes') ? 1 : 0;
 
-        // OPTIONAL DB write (uncomment when you have table/column ready)
-        /*
-        require __DIR__ . '/config.php'; // make sure this sets $pdo
+        
+        require __DIR__ . '/api/db.php'; // $pdo
 
         if ($registrationId && isset($pdo)) {
             $stmt = $pdo->prepare(
-                "UPDATE registrations
+                "UPDATE registration_flows
                  SET citizenship_country = :country,
                      citizenship_is_citizen = :is_citizen
                  WHERE id = :id"
@@ -86,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ':id'         => $registrationId,
             ]);
         }
-        */
+        
 
         // Next step: choose ID type (National ID / Passport / Driver’s licence)
         header('Location: verify-id-type.php');
