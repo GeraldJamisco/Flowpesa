@@ -44,7 +44,7 @@ if ((int)$flow['email_verified'] !== 1) {
 }
 
 if (!empty($flow['passcode_hash']) && empty($flow['temp_passcode_hash'])) {
-    header('Location: verify-id-type.php');
+    header('Location: verify-id-citizenship.php');
     exit;
 }
 
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ");
         $upd->execute([':id' => $regId]);
 
-        header('Location: verify-id-type.php');
+        header('Location: verify-id-citizenship.php');
         exit;
     }
 }
