@@ -1,33 +1,33 @@
+// Js/verify-id-type.js
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('idtype-form');
-  const continueBtn = document.getElementById('continue');
+  if (!form) return;
 
-  // Enable button once a choice is made
-  form.addEventListener('change', () => {
-    const selected = form.querySelector('input[name="doc_type"]:checked');
-    continueBtn.toggleAttribute('disabled', !selected);
+  const radios = form.querySelectorAll('input[name="doc_type"]');
+  const btn = document.getElementById('continue');
+
+  const updateState = () => {
+    const checked = form.querySelector('input[name="doc_type"]:checked');
+    const hasSelection = !!checked;
+
+    if (btn) {
+      btn.disabled = !hasSelection;
+      btn.classList.toggle('is-active', hasSelection); // if your CSS uses this
+    }
+  };
+
+  radios.forEach(radio => {
+    radio.addEventListener('change', updateState);
   });
 
-  // Submit → route to the correct upload screen
+  // On page load, if something was pre-selected from PHP, reflect it
+  updateState();
+
+  // Optional: prevent submit if somehow nothing is chosen
   form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const chosen = form.querySelector('input[name="doc_type"]:checked')?.value;
-    if (!chosen) return;
-
-    // Route by choice (adjust paths to your flow)
-    const routes = {
-      national_id: 'verify-id-front.html',
-      passport: 'verify-id-front.html',
-      drivers_license: 'verify-id-front.html',
-    };
-    location.href = routes[chosen] || 'verify-id-front.html';
-  });
-
-  // Keyboard convenience on desktop
-  form.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
+    const checked = form.querySelector('input[name="doc_type"]:checked');
+    if (!checked) {
       e.preventDefault();
-      continueBtn.click();
     }
   });
 });
