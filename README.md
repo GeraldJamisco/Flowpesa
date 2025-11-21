@@ -106,9 +106,6 @@ Screenshots are available in:
    ```bash
    git clone https://github.com/GeraldJamisco/Flowpesa
 
-
-
-
 🤝 Contributing
 
 Contributions are welcome!
