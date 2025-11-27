@@ -62,9 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($errorMsg === '') {
         // Optional: check if already used by another user
-        // $check = $pdo->prepare("SELECT id FROM users WHERE email = :e LIMIT 1");
-        // $check->execute([':e' => $emailVal]);
-        // if ($check->fetch()) { $errorMsg = 'This email is already in use.'; }
+        $check = $pdo->prepare("SELECT id FROM registration_flows WHERE email = :e LIMIT 1");
+        $check->execute([':e' => $emailVal]);
+        if ($check->fetch()) { $errorMsg = 'This email is already in use.'; }
 
         if ($errorMsg === '') {
             // Generate email OTP

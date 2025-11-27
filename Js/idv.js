@@ -71,7 +71,7 @@
 
       // go to next step
       nextBtn?.addEventListener('click', () => {
-        const url = (side === 'front') ? 'verify-id-back.html' : 'verify-id-review.html';
+        const url = (side === 'front') ? 'verify-id-back.php' : 'verify-id-review.php';
         location.href = url;
       });
 

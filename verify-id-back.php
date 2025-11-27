@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Flowpesa — Verify ID (Front)</title>
+  <title>Flowpesa — Verify ID (Back)</title>
   <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body class="idv-screen">
@@ -18,7 +18,7 @@
 
   <main class="content">
     <h2 class="heading">Capture your document</h2>
-    <p class="subheading">Position the <strong>front</strong> of your document inside the frame.</p>
+    <p class="subheading">Just make sure the <strong>back</strong> lines up with the frame.</p>
 
     <div class="cam-card">
       <video id="idv-video" autoplay playsinline muted></video>
@@ -28,19 +28,18 @@
 
     <div class="cam-controls">
       <label class="ghost-pill" title="Pick from device">
-        <input id="file-front" type="file" accept="image/*" hidden>
+        <input id="file-back" type="file" accept="image/*" hidden>
         🖼️
       </label>
-      <button class="shutter" id="snap-front" aria-label="Take photo"></button>
+      <button class="shutter" id="snap-back" aria-label="Take photo"></button>
       <button class="ghost-pill" id="rotate" aria-label="Switch camera">⟳</button>
     </div>
 
-    <button class="btn-primary" id="next-front" disabled>Continue</button>
+    <button class="btn-primary" id="next-back" disabled>Continue</button>
   </main>
 
-  <!-- off-screen canvas for capture -->
   <canvas id="capture-canvas" style="display:none"></canvas>
   <script src="js/idv.js"></script>
-  <script>window.IDV.start('front');</script>
+  <script>window.IDV.start('back');</script>
 </body>
 </html>

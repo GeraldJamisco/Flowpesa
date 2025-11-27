@@ -1,5 +1,7 @@
 <?php
-require 'RegisterControllerPhone.php';
+session_start();
+require __DIR__ . '/api/db.php';
+require __DIR__ . '/RegisterControllerPhone.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
